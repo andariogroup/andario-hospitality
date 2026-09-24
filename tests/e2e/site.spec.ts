@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test';
 
 test('home, language and a service page', async ({ page }) => {
   await page.goto('/es');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Tu alojamiento merece mucho más que estar en Internet');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Haz crecer tu alojamiento en Internet');
   await page.getByRole('link', { name: 'EN' }).first().click();
   await expect(page).toHaveURL(/\/en$/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Your property deserves much more than simply being online');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Grow your property on the internet');
   await page.goto('/en/solutions/andario-booking-engine');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your own booking channel');
 });

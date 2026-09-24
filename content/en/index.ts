@@ -402,9 +402,9 @@ export const en: Dictionary = {
     htmlLang: 'en',
     pages: {
       home: {
-        title: 'Andario Hospitality | Digital Solutions for Independent Accommodations',
+        title: 'Grow your property on the internet | Andario Hospitality',
         description:
-          'Strategy, technology and support to digitalize small and medium independent accommodations and build channels they own.',
+          'We help hostels, small hotels and independent properties get a website, show up on Google and take direct bookings.',
       },
       solutions: {
         title: 'Digital Solutions for Independent Accommodations',
