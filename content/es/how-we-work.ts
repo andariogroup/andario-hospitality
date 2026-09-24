@@ -1,0 +1,198 @@
+import type { HowWeWorkPageContent } from '@/content/types';
+
+export const howWeWorkPageEs: HowWeWorkPageContent = {
+  eyebrow: 'Cómo trabajamos',
+  h1: 'Una digitalización progresiva, pensada para la realidad de tu alojamiento.',
+  support:
+    'No creemos que todos los establecimientos necesiten las mismas herramientas ni que deban implementarlas al mismo tiempo. Primero entendemos dónde estás, qué quieres mejorar y qué tiene sentido construir contigo.',
+  primaryCta: 'Hablar con Andario',
+  secondaryCta: 'Solicitar diagnóstico digital',
+  micro: 'Sin compromiso. Empezamos entendiendo tu situación.',
+  route: ['Tu alojamiento', 'Entender', 'Priorizar', 'Construir', 'Medir', 'Evolucionar', 'Siguiente paso'],
+  routeCaption: 'Una ruta progresiva. El orden muestra cómo pensamos el trabajo, no una obligación de contratar todo.',
+  firstTitle: 'No empezamos preguntando qué herramienta quieres. Empezamos preguntando qué necesitas.',
+  firstBody:
+    'Antes de hablar de una web, SEO, WhatsApp, reservas o analítica, queremos entender cómo funciona tu alojamiento, qué canales utilizas, dónde encuentras dificultades y qué quieres mejorar.',
+  firstMark: 'Primero entendemos. Después recomendamos.',
+  whyTitle: 'No digitalizamos por digitalizar.',
+  whyBody: 'Una herramienta puede ser excelente y aun así no ser la solución adecuada para un alojamiento en un determinado momento.',
+  pillars: [
+    { title: 'Contexto', body: 'Entendemos el establecimiento, la operación, los canales y el punto de partida.' },
+    { title: 'Prioridad', body: 'Identificamos qué debería resolverse primero y qué puede esperar.' },
+    { title: 'Progresión', body: 'Construimos por etapas para evitar complejidad innecesaria.' },
+    { title: 'Evolución', body: 'Observamos lo aprendido y ajustamos el camino cuando tenga sentido.' },
+  ],
+  stepsTitle: 'Cinco pasos para construir contigo.',
+  stepsClose: 'Tu negocio marca el ritmo. Nosotros construimos contigo el camino digital.',
+  resultLabel: 'Resultado',
+  steps: [
+    {
+      title: 'Entender',
+      headline: 'Primero queremos conocerte.',
+      body: 'Revisamos la situación actual de tu alojamiento: presencia digital, web, Google, redes, WhatsApp, OTAs, proceso de reserva, contenido y otros elementos relevantes.',
+      points: ['¿Dónde estás hoy?', '¿Qué ya tienes?', '¿Qué está funcionando?', '¿Qué está generando dificultades?', '¿Qué quieres mejorar?'],
+      bridge: [],
+      result: 'Un punto de partida claro.',
+    },
+    {
+      title: 'Priorizar',
+      headline: 'No todo tiene que hacerse al mismo tiempo.',
+      body: 'Organizamos las necesidades según impacto, prioridad, esfuerzo y contexto del establecimiento.',
+      points: [],
+      bridge: ['Necesidad', 'Prioridad', 'Acción'],
+      result: 'Una hoja de ruta comprensible.',
+    },
+    {
+      title: 'Construir',
+      headline: 'Convertimos la estrategia en acciones concretas.',
+      body: 'Implementamos las soluciones que tengan sentido para tu alojamiento: web, visibilidad, contenido, comunicación, reservas, analítica u otras capacidades del ecosistema Andario.',
+      points: [],
+      bridge: [],
+      result: 'Una solución adaptada a tu realidad.',
+    },
+    {
+      title: 'Medir',
+      headline: 'Lo que hacemos debe poder observarse.',
+      body: 'Cuando la medición está disponible, observamos señales como interacciones, canales, eventos, conversiones configuradas y otros indicadores relevantes.',
+      points: [],
+      bridge: [],
+      result: 'Información para entender qué está ocurriendo.',
+    },
+    {
+      title: 'Evolucionar',
+      headline: 'Tu estrategia no termina cuando termina una implementación.',
+      body: 'Revisamos lo aprendido, identificamos oportunidades de mejora y definimos los siguientes pasos cuando tenga sentido para el negocio.',
+      points: [],
+      bridge: [],
+      result: 'Un camino que puede crecer contigo.',
+    },
+  ],
+  expectTitle: '¿Cómo es trabajar con nosotros?',
+  expect: [
+    { title: 'Claridad', body: 'Te explicamos qué proponemos y por qué.' },
+    { title: 'Transparencia', body: 'No presentamos como necesario algo que no lo sea.' },
+    { title: 'Progresividad', body: 'Puedes avanzar por etapas.' },
+    { title: 'Acompañamiento', body: 'No te dejamos solo después de entregar una solución.' },
+    { title: 'Comunicación', body: 'Mantenemos claro qué estamos haciendo y qué sigue.' },
+    { title: 'Enfoque de negocio', body: 'La tecnología está al servicio de tu alojamiento.' },
+  ],
+  togetherTitle: 'Trabajamos mejor cuando construimos juntos.',
+  togetherBody:
+    'Nuestro trabajo funciona mejor cuando existe una relación de colaboración. Nosotros aportamos estrategia, tecnología y acompañamiento; tú aportas el conocimiento de tu alojamiento, tus prioridades y las decisiones que solo tú puedes tomar.',
+  together: [
+    { title: 'Tú conoces tu negocio', body: 'Nosotros ayudamos a convertir ese conocimiento en decisiones digitales.' },
+    { title: 'Tú defines tus prioridades', body: 'Nosotros ayudamos a estructurarlas.' },
+    { title: 'Tú aportas información y feedback', body: 'Nosotros transformamos ese contexto en soluciones.' },
+    { title: 'Juntos revisamos lo que ocurre', body: 'Y decidimos los siguientes pasos.' },
+  ],
+  togetherClose: 'No queremos trabajar para sustituirte. Queremos trabajar contigo.',
+  fitTitle: 'Probablemente encajamos bien si...',
+  fit: [
+    'quieres profesionalizar tu alojamiento;',
+    'estás dispuesto a entender antes de implementar;',
+    'valoras una relación de acompañamiento;',
+    'prefieres avanzar por etapas;',
+    'quieres entender qué se está haciendo;',
+    'estás dispuesto a aportar información y feedback;',
+    'buscas tecnología útil, no tecnología por moda.',
+  ],
+  fitClose: 'Si varias de estas frases te representan, probablemente tenemos una buena base para conversar.',
+  honestTitle: 'También creemos en ser honestos sobre cómo trabajamos.',
+  honest: [
+    { title: 'No empezamos por vender.', body: 'Primero entendemos.' },
+    { title: 'No recomendamos lo que no tiene sentido.', body: 'Cada solución debe responder a una necesidad.' },
+    { title: 'No prometemos resultados que no podemos controlar.', body: 'Comunicamos con claridad los límites.' },
+    { title: 'No creemos en digitalizar por digitalizar.', body: 'La tecnología debe tener un propósito.' },
+    { title: 'Sí creemos en construir paso a paso.', body: 'El alojamiento marca el ritmo.' },
+  ],
+  thinkTitle: 'Antes de construir, pensamos.',
+  thinkFlow: [
+    '¿Qué tienes?',
+    '¿Qué necesitas?',
+    '¿Qué es prioritario?',
+    '¿Qué podemos construir?',
+    '¿Cómo observaremos lo que ocurre?',
+    '¿Cuál es el siguiente paso?',
+  ],
+  exampleTitle: 'Un ejemplo de cómo se lee el proceso.',
+  exampleSteps: [
+    {
+      title: 'Punto de partida',
+      body: 'Un alojamiento tiene presencia en varios canales, procesos manuales y poca claridad sobre sus prioridades.',
+    },
+    { title: 'Diagnóstico', body: 'Se identifica qué necesita atención primero.' },
+    { title: 'Prioridad', body: 'Se define una hoja de ruta.' },
+    { title: 'Implementación', body: 'Se construyen las soluciones necesarias.' },
+    { title: 'Medición', body: 'Se observan las señales disponibles.' },
+    { title: 'Evolución', body: 'Se decide qué mejorar.' },
+  ],
+  exampleNote: 'Ejemplo conceptual. No representa resultados garantizados.',
+  methodTitle: 'El método primero. Las herramientas después.',
+  methodBody:
+    'El diagnóstico ayuda a identificar qué soluciones tienen sentido para cada alojamiento. No todos necesitan lo mismo ni al mismo tiempo.',
+  methodCaption: 'El dibujo muestra una forma de leer el ecosistema. No es un paquete obligatorio ni un orden de compra.',
+  stayCta: 'Ver alojamientos',
+  casesCta: 'Conocer el caso',
+  bookingTitle: 'Cuando tu alojamiento necesita fortalecer su canal propio de reservas.',
+  bookingBody:
+    'Andario Booking Engine es nuestra tecnología propia para gestionar disponibilidad, tarifas, huéspedes y reservas desde un canal directo.',
+  bookingNote:
+    'Puede formar parte de la estrategia cuando el diagnóstico y las necesidades del establecimiento lo justifican. Puede convivir con las OTAs. No las reemplaza, y reservar dentro de WhatsApp u otras redes no es un canal activo.',
+  bookingCta: 'Conocer Andario Booking Engine',
+  relationTitle: 'La relación no termina cuando termina una implementación.',
+  relationFlow: ['Cliente', 'Andario', 'Soluciones', 'Medición', 'Evolución'],
+  relationBody:
+    'Queremos construir una relación en la que podamos entender lo que ocurre, aprender de lo implementado y definir nuevos pasos cuando realmente aporten valor.',
+  clearTitle: 'Sabes qué estamos haciendo y por qué.',
+  clear: [
+    { title: 'Qué hacemos', body: 'Explicamos el alcance.' },
+    { title: 'Por qué lo hacemos', body: 'Relacionamos cada acción con una necesidad.' },
+    { title: 'Qué sigue', body: 'Dejamos claro el siguiente paso.' },
+  ],
+  finalTitle: 'Si nuestra forma de trabajar encaja contigo, hablemos.',
+  finalBody:
+    'Cuéntanos dónde está hoy tu alojamiento, qué quieres mejorar y qué esperas de tu estrategia digital. Empezaremos por entenderlo antes de recomendarte el siguiente paso.',
+  finalNote: 'Sin compromiso. Primero entendemos tu situación.',
+  faqs: [
+    {
+      q: '¿Tengo que contratar todas las soluciones?',
+      a: 'No. El método sirve para identificar qué tiene sentido ahora y qué puede esperar. Puedes empezar por una necesidad concreta.',
+    },
+    {
+      q: '¿Por dónde empieza el trabajo?',
+      a: 'Por entender dónde está el alojamiento, qué ya existe y qué quieres mejorar. Si el primer paso no está claro, Digital Check puede ayudar a ordenar prioridades.',
+    },
+    {
+      q: '¿Qué es Digital Check?',
+      a: 'Es la revisión inicial de la presencia digital para ver el punto de partida y decidir qué conviene hacer primero. No obliga a contratar el resto de soluciones.',
+    },
+    {
+      q: '¿Puedo empezar solamente con una página web?',
+      a: 'Sí, cuando la web es la necesidad prioritaria. Andario Web puede ser ese primer paso, y el diagnóstico ayuda a confirmar si es el que corresponde.',
+    },
+    {
+      q: '¿Puedo incorporar Booking Engine después?',
+      a: 'Sí. Puede entrar cuando el canal propio de reservas sea una prioridad. No tiene que estar en el primer paso.',
+    },
+    {
+      q: '¿Andario reemplaza las OTAs?',
+      a: 'No necesariamente. La propuesta fortalece el canal propio y puede convivir con plataformas externas, según la estrategia de cada establecimiento.',
+    },
+    {
+      q: '¿Qué información necesitan de mi alojamiento?',
+      a: 'El tipo de establecimiento, cómo operas hoy, los canales que usas, qué quieres mejorar y el feedback sobre lo que se va construyendo. Las decisiones del negocio siguen siendo tuyas.',
+    },
+    {
+      q: '¿Qué esperan de mí como cliente?',
+      a: 'Que conozcas tu alojamiento, definas prioridades, compartas información y des feedback. Nosotros ayudamos a convertir ese contexto en una ruta digital.',
+    },
+    {
+      q: '¿Cuánto tarda un proyecto?',
+      a: 'No hay un plazo igual para todos. El tiempo depende del alcance, de la información disponible y de las prioridades del establecimiento.',
+    },
+    {
+      q: '¿Cómo comienzo?',
+      a: 'Puedes hablar con Andario o solicitar un diagnóstico digital. Empezamos entendiendo la situación.',
+    },
+  ],
+};

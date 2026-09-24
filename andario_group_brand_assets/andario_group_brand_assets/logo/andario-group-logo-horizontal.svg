@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 620">
+<g transform="translate(20,25) scale(.55)">
+
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0077CC"/><stop offset=".55" stop-color="#38BDF8"/><stop offset="1" stop-color="#FFC857"/></linearGradient>
+<linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0077CC"/><stop offset=".6" stop-color="#0A2E5B"/><stop offset="1" stop-color="#06213F"/></linearGradient>
+<linearGradient id="wave" x1="0" x2="1"><stop stop-color="#00B4D8"/><stop offset="1" stop-color="#38BDF8"/></linearGradient>
+<clipPath id="clip"><circle cx="512" cy="360" r="300"/></clipPath></defs>
+<circle cx="512" cy="360" r="300" fill="url(#sky)"/>
+<g clip-path="url(#clip)">
+<rect x="200" y="420" width="624" height="260" fill="#0878B7"/>
+<circle cx="680" cy="315" r="60" fill="#FFC857"/>
+<path d="M180 335C270 270 320 325 385 285C450 245 500 305 560 270C635 225 700 275 845 220V430H180Z" fill="white" opacity=".72"/>
+<path d="M175 390C260 350 320 405 395 370C470 335 530 395 610 355C700 310 760 370 850 330V455H175Z" fill="white" opacity=".25"/>
+<path d="M700 210q30-25 60 0q-30-12-60 0M755 255q28-22 56 0q-28-10-56 0" fill="white"/>
+</g>
+<path d="M170 760L512 145L854 760H770L512 310L254 760Z" fill="url(#a)"/>
+<path d="M512 145L854 760H770L512 310Z" fill="#0077CC" opacity=".45"/>
+<g fill="white" stroke="#D9F6FF" stroke-width="7">
+<circle cx="512" cy="420" r="43"/>
+<rect x="493" y="455" width="38" height="190" rx="18"/>
+<rect x="402" y="485" width="220" height="38" rx="19"/>
+<path d="M400 630C408 705 458 746 512 746s104-41 112-116h-49c-5 44-27 66-63 66s-58-22-63-66Z"/>
+</g>
+<path d="M150 735C280 650 365 700 455 735c90 35 170 55 275-35 55-45 105-25 155 20-90 50-155 95-245 85-105-13-185-75-275-77-80-3-140 32-215 62Z" fill="url(#wave)"/>
+<path d="M150 790c100-55 185-40 280 0s210 60 305-5c55-37 100-35 150-5-95 65-180 100-275 90-110-12-180-65-265-75-75-9-135 20-195 40Z" fill="#0077CC" opacity=".75"/>
+
+</g>
+<text x="650" y="315" font-family="Arial, sans-serif" font-size="170" font-weight="700" letter-spacing="18" fill="#0A2E5B">ANDARIO</text>
+<line x1="675" y1="385" x2="920" y2="385" stroke="#0A2E5B" stroke-width="5"/>
+<text x="960" y="405" font-family="Arial, sans-serif" font-size="72" font-weight="500" letter-spacing="28" fill="#1F2937">GROUP</text>
+<line x1="1390" y1="385" x2="1640" y2="385" stroke="#0A2E5B" stroke-width="5"/>
+</svg>

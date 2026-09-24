@@ -1,0 +1,37 @@
+{
+  "concept": "Raíces firmes. Nuevos horizontes.",
+  "colors": {
+    "Azul profundo": [
+      "#0A2E5B",
+      "Confianza / estabilidad / profesionalismo"
+    ],
+    "Azul Andario": [
+      "#0077CC",
+      "Tecnología / crecimiento / innovación"
+    ],
+    "Azul cielo": [
+      "#38BDF8",
+      "Claridad / visión / oportunidades"
+    ],
+    "Turquesa": [
+      "#00B4D8",
+      "Movimiento / evolución / conexión"
+    ],
+    "Sol Andario": [
+      "#FFC857",
+      "Energía / optimismo / éxito"
+    ],
+    "Arena cálida": [
+      "#FFF4D6",
+      "Calidez / hospitality / cercanía"
+    ],
+    "Gris corporativo": [
+      "#1F2937",
+      "Equilibrio / sofisticación / neutralidad"
+    ],
+    "Blanco limpio": [
+      "#F8FAFC",
+      "Simplicidad / modernidad / espacio"
+    ]
+  }
+}

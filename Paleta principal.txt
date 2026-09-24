@@ -1,0 +1,10 @@
+Paleta principal
+Color	HEX	Concepto
+Azul profundo	#0A2E5B	Confianza / estabilidad
+Azul Andario	#0077CC	Tecnología / crecimiento
+Azul cielo	#38BDF8	Visión / oportunidades
+Turquesa	#00B4D8	Movimiento / evolución
+Sol Andario	#FFC857	Energía / optimismo
+Arena cálida	#FFF4D6	Hospitality / cercanía
+Gris corporativo	#1F2937	Sofisticación
+Blanco limpio	#F8FAFC	Modernidad / espacio

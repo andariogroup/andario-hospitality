@@ -1,0 +1,198 @@
+import type { HowWeWorkPageContent } from '@/content/types';
+
+export const howWeWorkPageEn: HowWeWorkPageContent = {
+  eyebrow: 'How we work',
+  h1: 'A progressive digitalization, shaped around the reality of your property.',
+  support:
+    'We do not believe every property needs the same tools, or that those tools should be implemented at the same time. First we understand where you are, what you want to improve and what makes sense to build with you.',
+  primaryCta: 'Talk with Andario',
+  secondaryCta: 'Request a digital diagnosis',
+  micro: 'No commitment. We start by understanding your situation.',
+  route: ['Your property', 'Understand', 'Prioritize', 'Build', 'Measure', 'Evolve', 'Next step'],
+  routeCaption: 'A progressive path. The order shows how we think about the work. It is not an obligation to contract everything.',
+  firstTitle: 'We do not start by asking which tool you want. We start by asking what you need.',
+  firstBody:
+    'Before talking about a website, SEO, WhatsApp, bookings or analytics, we want to understand how the property works, which channels you use, where the difficulties are and what you want to improve.',
+  firstMark: 'First we understand. Then we recommend.',
+  whyTitle: 'We do not digitalize for its own sake.',
+  whyBody: 'A tool can be excellent and still be the wrong solution for a property at a given moment.',
+  pillars: [
+    { title: 'Context', body: 'We look at the property, the operation, the channels and the starting point.' },
+    { title: 'Priority', body: 'We identify what should be solved first and what can wait.' },
+    { title: 'Progression', body: 'We build in stages so the work does not become unnecessarily complex.' },
+    { title: 'Evolution', body: 'We look at what was learned and adjust the path when it makes sense.' },
+  ],
+  stepsTitle: 'Five steps to build with you.',
+  stepsClose: 'Your business sets the pace. We build the digital path with you.',
+  resultLabel: 'Result',
+  steps: [
+    {
+      title: 'Understand',
+      headline: 'First we want to know you.',
+      body: 'We review the current situation: digital presence, website, Google, social profiles, WhatsApp, OTAs, the booking process, content and other relevant pieces.',
+      points: ['Where are you today?', 'What do you already have?', 'What is working?', 'What is creating difficulty?', 'What do you want to improve?'],
+      bridge: [],
+      result: 'A clear starting point.',
+    },
+    {
+      title: 'Prioritize',
+      headline: 'Not everything has to happen at once.',
+      body: 'We organize the needs by impact, priority, effort and the context of the property.',
+      points: [],
+      bridge: ['Need', 'Priority', 'Action'],
+      result: 'A roadmap you can understand.',
+    },
+    {
+      title: 'Build',
+      headline: 'We turn the strategy into concrete actions.',
+      body: 'We implement the solutions that make sense for your property: website, visibility, content, communication, bookings, analytics or other parts of the Andario ecosystem.',
+      points: [],
+      bridge: [],
+      result: 'A solution adapted to your reality.',
+    },
+    {
+      title: 'Measure',
+      headline: 'What we do should be possible to observe.',
+      body: 'When measurement is available, we look at signals such as interactions, channels, events, configured conversions and other relevant indicators.',
+      points: [],
+      bridge: [],
+      result: 'Information for understanding what is happening.',
+    },
+    {
+      title: 'Evolve',
+      headline: 'The strategy does not end when an implementation ends.',
+      body: 'We review what was learned, identify opportunities and define the next steps when they make sense for the business.',
+      points: [],
+      bridge: [],
+      result: 'A path that can grow with you.',
+    },
+  ],
+  expectTitle: 'What is it like to work with us?',
+  expect: [
+    { title: 'Clarity', body: 'We explain what we propose and why.' },
+    { title: 'Transparency', body: 'We do not present something as necessary when it is not.' },
+    { title: 'Progression', body: 'You can move forward in stages.' },
+    { title: 'Support', body: 'We do not leave you alone after delivering a solution.' },
+    { title: 'Communication', body: 'We keep clear what we are doing and what comes next.' },
+    { title: 'A business focus', body: 'Technology is there to serve the property.' },
+  ],
+  togetherTitle: 'We work better when we build together.',
+  togetherBody:
+    'The work goes further when the relationship is collaborative. We bring strategy, technology and support. You bring knowledge of the property, your priorities and the decisions only you can make.',
+  together: [
+    { title: 'You know your business', body: 'We help turn that knowledge into digital decisions.' },
+    { title: 'You set your priorities', body: 'We help structure them.' },
+    { title: 'You bring information and feedback', body: 'We turn that context into solutions.' },
+    { title: 'Together we review what happens', body: 'And we decide the next steps.' },
+  ],
+  togetherClose: 'We do not want to work in your place. We want to work with you.',
+  fitTitle: 'We are likely a good fit if...',
+  fit: [
+    'you want to professionalize the property;',
+    'you are willing to understand before implementing;',
+    'you value an ongoing relationship;',
+    'you prefer to move in stages;',
+    'you want to understand what is being done;',
+    'you are willing to share information and feedback;',
+    'you want useful technology, not technology for its own sake.',
+  ],
+  fitClose: 'If several of these lines sound like you, we probably have a good basis for a conversation.',
+  honestTitle: 'We also believe in being honest about how we work.',
+  honest: [
+    { title: 'We do not start by selling.', body: 'First we understand.' },
+    { title: 'We do not recommend what does not make sense.', body: 'Each solution should answer a need.' },
+    { title: 'We do not promise results we cannot control.', body: 'We say clearly where the limits are.' },
+    { title: 'We do not believe in digitalizing for its own sake.', body: 'Technology needs a purpose.' },
+    { title: 'We do believe in building step by step.', body: 'The property sets the pace.' },
+  ],
+  thinkTitle: 'Before we build, we think.',
+  thinkFlow: [
+    'What do you have?',
+    'What do you need?',
+    'What is a priority?',
+    'What can we build?',
+    'How will we observe what happens?',
+    'What is the next step?',
+  ],
+  exampleTitle: 'One way to read the process.',
+  exampleSteps: [
+    {
+      title: 'Starting point',
+      body: 'A property has a presence on several channels, manual processes and little clarity about its priorities.',
+    },
+    { title: 'Diagnosis', body: 'The team identifies what needs attention first.' },
+    { title: 'Priority', body: 'A roadmap is defined.' },
+    { title: 'Implementation', body: 'The necessary solutions are built.' },
+    { title: 'Measurement', body: 'The available signals are observed.' },
+    { title: 'Evolution', body: 'The next improvement is decided.' },
+  ],
+  exampleNote: 'A conceptual example. It does not represent guaranteed results.',
+  methodTitle: 'The method first. The tools after.',
+  methodBody:
+    'The diagnosis helps identify which solutions make sense for each property. Not every property needs the same things, or at the same time.',
+  methodCaption: 'The diagram is a way to read the ecosystem. It is not a required package and not a purchase order.',
+  stayCta: 'See accommodations',
+  casesCta: 'See the case',
+  bookingTitle: 'When the property needs to strengthen its own booking channel.',
+  bookingBody:
+    'Andario Booking Engine is our own technology for managing availability, rates, guests and reservations from a direct channel.',
+  bookingNote:
+    'It can be part of the strategy when the diagnosis and the needs of the property justify it. It can coexist with OTAs. It does not replace them, and booking inside WhatsApp or other social channels is not a live channel.',
+  bookingCta: 'Explore Andario Booking Engine',
+  relationTitle: 'The relationship does not end when an implementation ends.',
+  relationFlow: ['Client', 'Andario', 'Solutions', 'Measurement', 'Evolution'],
+  relationBody:
+    'We want a relationship in which we can understand what is happening, learn from what was implemented and define new steps when they actually add value.',
+  clearTitle: 'You know what we are doing and why.',
+  clear: [
+    { title: 'What we do', body: 'We explain the scope.' },
+    { title: 'Why we do it', body: 'We connect each action with a need.' },
+    { title: 'What follows', body: 'We make the next step clear.' },
+  ],
+  finalTitle: 'If this way of working fits you, let’s talk.',
+  finalBody:
+    'Tell us where the property is today, what you want to improve and what you expect from a digital strategy. We will start by understanding it before recommending the next step.',
+  finalNote: 'No commitment. First we understand your situation.',
+  faqs: [
+    {
+      q: 'Do I have to contract every solution?',
+      a: 'No. The method is there to identify what makes sense now and what can wait. You can start with one concrete need.',
+    },
+    {
+      q: 'Where does the work start?',
+      a: 'By understanding where the property is, what already exists and what you want to improve. If the first step is unclear, Digital Check can help set priorities.',
+    },
+    {
+      q: 'What is Digital Check?',
+      a: 'It is the first review of the digital presence: the starting point and what is worth doing first. It does not require contracting the rest of the solutions.',
+    },
+    {
+      q: 'Can I start with only a website?',
+      a: 'Yes, when the website is the priority. Andario Web can be that first step, and the diagnosis helps confirm whether it is the right one.',
+    },
+    {
+      q: 'Can I add Booking Engine later?',
+      a: 'Yes. It can come in when your own booking channel becomes a priority. It does not have to be the first step.',
+    },
+    {
+      q: 'Does Andario replace OTAs?',
+      a: 'Not necessarily. The proposal strengthens your own channel and can coexist with external platforms, according to each strategy.',
+    },
+    {
+      q: 'What information do you need from the property?',
+      a: 'The type of property, how you operate today, the channels you use, what you want to improve and feedback on what is being built. Business decisions stay with you.',
+    },
+    {
+      q: 'What do you expect from me as a client?',
+      a: 'That you know the property, set priorities, share information and give feedback. We help turn that context into a digital path.',
+    },
+    {
+      q: 'How long does a project take?',
+      a: 'There is no single duration. Time depends on the scope, the information available and the priorities of the property.',
+    },
+    {
+      q: 'How do I begin?',
+      a: 'You can talk with Andario or request a digital diagnosis. We start by understanding the situation.',
+    },
+  ],
+};
