@@ -1,12 +1,11 @@
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { WhatsAppButton } from '@/components/conversion/whatsapp-button';
-import { BeforeAfter, BookingHub, FlowSteps, PillarGrid, SolutionsHeroMap } from '@/components/graphics/solutions';
+import { FlowSteps, PillarGrid } from '@/components/graphics/solutions';
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { FaqList } from '@/components/sections/faq-list';
 import { AccommodationDigitalMaturity } from '@/components/services/maturity-picker';
 import { ServiceCard } from '@/components/services/service-card';
-import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
@@ -34,13 +33,18 @@ export function SolutionsView({
   ];
   const scenarios = page.scenarios.map((scenario) => ({
     title: scenario.title,
+    body: scenario.result,
     cta: scenario.cta,
     placement: scenario.placement,
-    services: scenario.services.map((id) => ({
-      href: serviceHref(locale, id),
-      name: dict.services[id].name,
-      service: id,
-    })),
+    actionHref: serviceHref(locale, scenario.service),
+    actionService: scenario.service,
+    services: [
+      {
+        href: serviceHref(locale, scenario.service),
+        name: dict.services[scenario.service].name,
+        service: scenario.service,
+      },
+    ],
   }));
 
   return (
@@ -52,49 +56,68 @@ export function SolutionsView({
           SERVICE_IDS.map((id) => ({ name: dict.services[id].name, routeId: id })),
         )}
       />
-      <Section tone="sand" className="overflow-hidden">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-            <Breadcrumbs locale={locale} items={crumbs} />
-            <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
-            <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.eyebrow}</p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{page.h1}</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{page.support}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'hero' }} cue>
-                {page.primaryCta}
+      <Section tone="sand">
+        <Container>
+          <Breadcrumbs locale={locale} items={crumbs} />
+          <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
+          <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.eyebrow}</p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{page.h1}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{page.support}</p>
+          <p className="mt-4 max-w-2xl font-semibold text-ink">{page.assist}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'hero' }} cue>
+              {page.primaryCta}
+            </TrackedLink>
+            {whatsapp ? (
+              <WhatsAppButton
+                phone={whatsapp}
+                locale={locale}
+                context="solutions"
+                label={page.secondaryCta}
+                event={{ name: 'solutions_whatsapp_click' }}
+              />
+            ) : (
+              <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'hero-talk' }} variant="secondary">
+                {page.secondaryCta}
               </TrackedLink>
-              <Button asChild variant="secondary">
-                <a href="#ecosystem">{page.secondaryCta}</a>
-              </Button>
-            </div>
-            <p className="mt-4 max-w-xl text-sm text-muted">{page.micro}</p>
+            )}
           </div>
-          <SolutionsHeroMap center={page.heroCenter} nodes={page.heroNodes} mobile={page.heroMobile} caption={page.heroCaption} />
+          <p className="mt-4 max-w-xl text-sm text-muted">{page.micro}</p>
         </Container>
       </Section>
 
       <Section>
-        <Container className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.startTitle}</h2>
-            <p className="mt-4 max-w-3xl leading-7 text-muted">{page.startBody}</p>
-          </div>
-          <FlowSteps steps={page.startSteps} />
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.problemTitle}</h2>
+          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.problemIntro}</p>
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {page.problems.map((problem, index) => (
+              <li key={problem} className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-5">
+                <p className="text-sm font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
+                <p className="mt-2 leading-7 text-ink">{problem}</p>
+              </li>
+            ))}
+          </ol>
         </Container>
       </Section>
 
-      <Section tone="sand">
-        <Container className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <Section id="situacion" tone="sand" className="scroll-mt-28">
+        <Container className="grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink">{page.whereTitle}</h2>
+            <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.whereTitle}</h2>
             <p className="mt-4 leading-7 text-muted">{page.whereIntro}</p>
           </div>
-          <AccommodationDigitalMaturity label={page.whereTitle} contactHref={contactHref} scenarios={scenarios} />
+          <AccommodationDigitalMaturity
+            label={page.whereTitle}
+            contactHref={contactHref}
+            resultLabel={page.resultLabel}
+            solutionLabel={page.solutionLabel}
+            scenarios={scenarios}
+          />
         </Container>
       </Section>
 
-      <Section id="ecosystem" className="scroll-mt-28">
+      <Section id="soluciones" className="scroll-mt-28">
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.cardsTitle}</h2>
           <p className="mt-4 max-w-3xl leading-7 text-muted">{page.cardsSupport}</p>
@@ -109,10 +132,8 @@ export function SolutionsView({
                   index={String(index + 1).padStart(2, '0')}
                   name={dict.services[id].name}
                   subtitle={card.category}
-                  summary={card.body}
                   problem={card.problem}
-                  related={card.related}
-                  chain={card.chain}
+                  summary={card.body}
                   cta={card.cta}
                   serviceId={id}
                   featured={featured}
@@ -126,71 +147,11 @@ export function SolutionsView({
       </Section>
 
       <Section tone="sand">
-        <Container className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.ownTech}</p>
-            <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-ink">{page.bookingTitle}</h2>
-            <p className="mt-4 leading-7 text-muted">{page.bookingSupport}</p>
-            <div className="mt-8">
-              <TrackedLink
-                href={serviceHref(locale, 'andario-booking-engine')}
-                event={{ name: 'solutions_service_click', service: 'andario-booking-engine' }}
-                extra={{ name: 'booking_engine_cta', placement: 'solutions-feature' }}
-                cue
-              >
-                {page.bookingCta}
-              </TrackedLink>
-            </div>
-          </div>
-          <BookingHub
-            title="Andario Booking Engine"
-            branches={page.bookingBranches}
-            result={page.bookingResult}
-            note={page.bookingNote}
-          />
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="grid items-start gap-10 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.connectTitle}</h2>
-            <p className="mt-4 max-w-3xl leading-7 text-muted">{page.connectBody}</p>
-          </div>
-          <FlowSteps steps={page.connectFlow} caption={page.connectNote} />
-        </Container>
-      </Section>
-
-      <Section tone="sand">
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.beforeTitle}</h2>
-          <div className="mt-8">
-            <BeforeAfter
-              beforeLabel={page.beforeLabel}
-              before={page.beforeItems}
-              afterLabel={page.afterLabel}
-              after={page.afterFlow}
-              note={page.afterNote}
-            />
-          </div>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.hopeTitle}</h2>
-            <p className="mt-4 max-w-3xl leading-7 text-muted">{page.hopeBody}</p>
-          </div>
-          <FlowSteps steps={page.hopeSteps} />
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.chooseTitle}</h2>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.paceTitle}</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.paceBody}</p>
           <ul className="mt-8 grid gap-3 md:grid-cols-2">
-            {page.chooseItems.map((item) => (
+            {page.paths.map((item) => (
               <li key={item.need}>
                 <TrackedLink
                   href={serviceHref(locale, item.service)}
@@ -204,28 +165,35 @@ export function SolutionsView({
             ))}
           </ul>
           <div className="mt-8">
-            <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'choose' }} cue>
-              {page.chooseCta}
+            <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'pace' }} cue>
+              {page.paceCta}
             </TrackedLink>
           </div>
         </Container>
       </Section>
 
       <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.matrixTitle}</h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.matrix.map((item) => (
-              <li key={item.need} className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-5">
-                <p className="text-sm text-muted">{item.need}</p>
-                <TrackedLink
-                  href={serviceHref(locale, item.service)}
-                  variant="ghost"
-                  className="mt-3 px-0"
-                  event={{ name: 'solutions_service_click', service: item.service }}
-                >
-                  {dict.services[item.service].name}
-                </TrackedLink>
+        <Container className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.ownTech}</p>
+            <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.bookingTitle}</h2>
+            <p className="mt-4 leading-7 text-muted">{page.bookingSupport}</p>
+            <p className="mt-4 leading-7 text-muted">{page.bookingNote}</p>
+            <div className="mt-8">
+              <TrackedLink
+                href={serviceHref(locale, 'andario-booking-engine')}
+                event={{ name: 'solutions_service_click', service: 'andario-booking-engine' }}
+                extra={{ name: 'booking_engine_cta', placement: 'solutions-feature' }}
+                cue
+              >
+                {page.bookingCta}
+              </TrackedLink>
+            </div>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {page.bookingItems.map((item) => (
+              <li key={item} className="rounded-[var(--radius-card)] border border-sand-deep bg-sand px-5 py-4 font-semibold text-ink">
+                {item}
               </li>
             ))}
           </ul>
@@ -233,41 +201,29 @@ export function SolutionsView({
       </Section>
 
       <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.adaptTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.adaptBody}</p>
+        <Container className="grid items-start gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <div>
+            <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.processTitle}</h2>
+            <p className="mt-6 text-xl font-semibold whitespace-pre-line text-ink">{page.processMark}</p>
+            <p className="mt-4 leading-7 text-muted">{page.processNote}</p>
+          </div>
+          <FlowSteps steps={page.process} />
         </Container>
       </Section>
 
       <Section>
-        <Container className="grid items-start gap-10 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink">{page.journeyTitle}</h2>
-            <p className="mt-4 text-sm font-semibold text-ink">{page.journeyNote}</p>
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.trustTitle}</h2>
+          <div className="mt-8">
+            <PillarGrid items={page.pillars} />
           </div>
-          <FlowSteps steps={page.journey} />
         </Container>
       </Section>
 
       <Section tone="sand">
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.trustTitle}</h2>
-          <div className="mt-8">
-            <PillarGrid items={page.pillars} />
-          </div>
-          <h2 className="mt-16 max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.craftTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.craftIntro}</p>
-          <div className="mt-8">
-            <PillarGrid items={page.craftPillars} />
-          </div>
-        </Container>
-      </Section>
-
-      <Section>
         <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.originTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.originBody}</p>
-          <p className="mt-6 inline-flex rounded-full bg-sand px-4 py-2 text-sm font-semibold text-ink">{page.pioneer}</p>
+          <p className="text-lg leading-8 text-ink">{page.pioneer}</p>
+          <p className="mt-4 inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink">{page.pioneerSoon}</p>
         </Container>
       </Section>
 

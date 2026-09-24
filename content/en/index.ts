@@ -157,7 +157,7 @@ const services: Dictionary['services'] = {
     metaTitle: 'Booking engine for hostels and small hotels',
     metaDescription:
       'Andario Booking Engine centralizes availability, rates, inventory and direct reservations for independent accommodations. Start with your own web channel.',
-    h1: 'Your own booking channel, with one central logic for your property.',
+    h1: 'Build your own direct booking channel.',
     intro:
       'Andario Booking Engine centralizes your property’s booking logic so you can build a direct channel, organize inventory and gradually connect different points of contact with your guests.',
     problemTitle: 'A property can have many channels. The problem starts when each one works on its own.',
@@ -193,75 +193,43 @@ const services: Dictionary['services'] = {
     faqs: [
       {
         q: 'What is Andario Booking Engine?',
-        a: 'It is Andario’s own technology for the booking logic of an independent property. It centralizes availability, rates, units, guests and reservations, and it is the base of a direct channel. It is not a loose form, and this corporate site does not process bookings.',
+        a: 'It is Andario’s own system for building and running a property’s direct booking channel. It organizes availability, rates, units and reservations. It is not a loose form or a calendar, and this page does not process bookings.',
       },
       {
         q: 'What is a booking engine for?',
-        a: 'So availability, terms and the reservation record happen under one logic, instead of repeating that work by hand in every conversation.',
+        a: 'So a guest can see what is free, check the price and move into a reservation from the property’s own channel, instead of repeating that work by hand in every conversation.',
       },
       {
-        q: 'What is the difference between a website and a booking engine?',
-        a: 'The website presents the property and welcomes the visitor. The booking engine holds availability, rates and reservations. The site can be the front door; the logic is not duplicated there.',
+        q: 'What is the difference between a website and Booking Engine?',
+        a: 'The website presents the property. The Booking Engine handles the reservation: availability, rates and the record.',
       },
       {
-        q: 'Can I keep using Booking.com or Airbnb?',
-        a: 'Yes. The engine does not ask you to leave OTAs. It helps you add a channel of your own. It does not sync those platforms while that integration does not exist.',
+        q: 'Can I keep using Booking.com?',
+        a: 'Yes. You can keep Booking.com and other OTAs and build a channel of your own at the same time. Andario Booking Engine does not sync OTAs today.',
       },
       {
-        q: 'What information does Andario Booking Engine centralize?',
-        a: 'Property configuration, units, inventory, availability, rates, guests, reservations, rules, statuses, payments according to configuration, source and administration.',
+        q: 'Can I use it if my hostel sells beds?',
+        a: 'Yes, when the property is set up to sell beds as a bookable resource.',
       },
       {
-        q: 'Can it work for a hostel with shared rooms and beds?',
-        a: 'Yes. The engine can work with rooms and with beds as a bookable resource, when the property is configured that way.',
+        q: 'Does it work for small hotels and cabins?',
+        a: 'Yes. It is meant for independent accommodations. The bookable unit follows the property when the product can represent it: a room, a bed or a whole unit.',
       },
       {
-        q: 'Can it work for small hotels, apartments or cabins?',
-        a: 'It is meant for independent accommodations. The bookable unit adapts to the property when the product can represent it: a room, a bed or a whole unit.',
+        q: 'Do I need to know about technology?',
+        a: 'No. Andario handles the technology and helps you configure the engine around how your property works. You know the business.',
       },
       {
-        q: 'Can I start with the website only and add Booking Engine later?',
-        a: 'Yes. Services are contracted separately. You can begin with the digital presence and add the engine when you want reservations to live in your own logic.',
+        q: 'Which channels work today?',
+        a: 'The starting point is the website: availability, rates, reservations and administration. WhatsApp can stay a conversation with Andario Connect, but it does not book inside the chat yet.',
       },
       {
-        q: 'How does it integrate with WhatsApp?',
-        a: 'WhatsApp is a conversation channel today, with Andario Connect, to guide and stay with the guest. Booking inside WhatsApp is not live yet. Noting WhatsApp as a booking’s source does not mean the chat books on its own.',
+        q: 'What is still on the roadmap?',
+        a: 'WhatsApp as a booking channel, Instagram, Facebook, Google, broader automation, an AI assistant and other integrations. None of that is available yet.',
       },
       {
-        q: 'Which channels can it connect?',
-        a: 'The starting direct channel is the engine’s booking flow, which the website can open. Instagram, Facebook, Google, other channels and an AI assistant are on the roadmap.',
-      },
-      {
-        q: 'Are the future integrations already available?',
-        a: 'No. What is marked as roadmap describes where the product can grow. It is not live for the guest.',
-      },
-      {
-        q: 'How are rates and availability managed?',
-        a: 'Rates are configured by unit type, currency and validity. Availability is checked by dates and accounts for resources already booked. The price is calculated in the engine, not on this page.',
-      },
-      {
-        q: 'How is a booking’s source identified?',
-        a: 'Each reservation can store the channel it came from, for example the website. That helps you see where it started. It is not the same as having every channel already integrated.',
-      },
-      {
-        q: 'What happens when a booking is cancelled?',
-        a: 'If arrival has not started, administration can cancel it. The booking is not deleted: the record stays, availability opens again and, in this version, cancellation does not run an automatic refund.',
-      },
-      {
-        q: 'How is information protected?',
-        a: 'The engine separates properties, validates operations, applies availability rules and controls administrative access. Where it is available, actions are recorded. We do not describe sensitive technical detail, and we do not claim the system is infallible.',
-      },
-      {
-        q: 'Do I need to abandon OTAs?',
-        a: 'No. They can remain in the commercial strategy. The aim is to add your own infrastructure for a more direct relationship with guests.',
-      },
-      {
-        q: 'What do I need to start?',
-        a: 'A conversation about the property: unit types, how you sell today, rates, rules and whether you want to begin with the web channel. If something is missing, it is identified during the process.',
-      },
-      {
-        q: 'How can I request a demo or commercial information?',
-        a: 'Through the contact form or WhatsApp. A conversation does not lock you into a contract. Scope and price are defined after understanding the property, not on this page.',
+        q: 'How can I begin?',
+        a: 'Tell us what kind of property you have and how you take bookings today. A conversation does not lock you into a contract. Scope is defined after we understand the property.',
       },
     ],
     ctaTitle: 'Build the direct booking channel for your property.',
@@ -407,9 +375,9 @@ export const en: Dictionary = {
           'We help hostels, small hotels and independent properties get a website, show up on Google and take direct bookings.',
       },
       solutions: {
-        title: 'Digital Solutions for Independent Accommodations',
+        title: 'Solutions to digitalize your property',
         description:
-          'Strategy, website, SEO, direct bookings, WhatsApp, content and analytics for small and medium independent accommodations.',
+          'A website, a presence on Google, direct bookings and WhatsApp for hostels, small hotels and independent properties. Start with what you need.',
       },
       'digital-check': {
         title: services['digital-check'].metaTitle,
@@ -447,7 +415,7 @@ export const en: Dictionary = {
       'how-we-work': {
         title: 'How we work',
         description:
-          'See how Andario Hospitality works: diagnosis, strategy, implementation, measurement and evolution to digitalize independent accommodations step by step.',
+          'We start by understanding your property. A Digital Check shows where you are and gives you a roadmap. Then we implement only what makes sense.',
       },
       cases: {
         title: 'Cases',

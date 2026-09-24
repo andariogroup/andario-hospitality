@@ -8,11 +8,15 @@ export function AccommodationDigitalMaturity({
   label,
   contactHref,
   scenarios,
+  resultLabel,
+  solutionLabel,
   idPrefix = 'scenario',
   track = 'solutions',
 }: {
   label: string;
   contactHref: string;
+  resultLabel?: string;
+  solutionLabel?: string;
   idPrefix?: string;
   track?: 'solutions' | 'home' | 'accommodations';
   scenarios: {
@@ -20,6 +24,8 @@ export function AccommodationDigitalMaturity({
     body?: string;
     cta: string;
     placement: string;
+    actionHref?: string;
+    actionService?: string;
     services: { href: string; name: string; service: string }[];
   }[];
 }) {
@@ -77,18 +83,34 @@ export function AccommodationDigitalMaturity({
         aria-labelledby={`${idPrefix}-tab-${active}`}
         className="mt-4 rounded-[var(--radius-card)] border border-sand-deep bg-white p-5"
       >
-        {current.body ? <p className="text-sm leading-6 text-muted">{current.body}</p> : null}
-        <ul className={`flex flex-wrap gap-2 ${current.body ? 'mt-4' : ''}`}>
-          {current.services.map((service) => (
-            <li key={service.href}>
-              <TrackedLink href={service.href} variant="secondary" event={serviceEvent(service.service)}>
-                {service.name}
-              </TrackedLink>
-            </li>
-          ))}
-        </ul>
+        {current.body ? (
+          <div>
+            {resultLabel ? <p className="text-sm font-semibold text-teal">{resultLabel}</p> : null}
+            <p className={`leading-7 text-muted ${resultLabel ? 'mt-2' : ''}`}>{current.body}</p>
+          </div>
+        ) : null}
+        {current.actionHref && current.services[0] ? (
+          <div className="mt-4">
+            {solutionLabel ? <p className="text-sm font-semibold text-teal">{solutionLabel}</p> : null}
+            <p className="mt-1 font-semibold text-ink">{current.services[0].name}</p>
+          </div>
+        ) : (
+          <ul className={`flex flex-wrap gap-2 ${current.body ? 'mt-4' : ''}`}>
+            {current.services.map((service) => (
+              <li key={service.href}>
+                <TrackedLink href={service.href} variant="secondary" event={serviceEvent(service.service)}>
+                  {service.name}
+                </TrackedLink>
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="mt-4">
-          <TrackedLink href={contactHref} event={ctaEvent(current.placement)} cue>
+          <TrackedLink
+            href={current.actionHref ?? contactHref}
+            event={current.actionService ? serviceEvent(current.actionService) : ctaEvent(current.placement)}
+            cue
+          >
             {current.cta}
           </TrackedLink>
         </div>

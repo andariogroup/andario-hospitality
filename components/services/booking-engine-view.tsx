@@ -1,6 +1,6 @@
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { WhatsAppButton } from '@/components/conversion/whatsapp-button';
-import { BeforeAfter, BookingFlow, EngineHub, ReservationSketch, RoadmapTimeline } from '@/components/graphics/booking-engine';
+import { BookingFlow, ReservationSketch } from '@/components/graphics/booking-engine';
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { FaqList } from '@/components/sections/faq-list';
@@ -10,30 +10,17 @@ import type { Dictionary } from '@/content/types';
 import { href, type Locale } from '@/lib/i18n/routes';
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo/structured-data';
 
-function LeadPair({
-  locale,
-  contactHref,
-  primary,
-  whatsapp,
-  whatsappLabel,
-  placement,
-}: {
-  locale: Locale;
-  contactHref: string;
-  primary: string;
-  whatsapp: string | null;
-  whatsappLabel: string;
-  placement: string;
-}) {
+function Path({ items }: { items: { title: string; body: string }[] }) {
   return (
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-      <TrackedLink href={contactHref} event={{ name: 'booking_engine_cta', placement }} cue>
-        {primary}
-      </TrackedLink>
-      {whatsapp ? (
-        <WhatsAppButton phone={whatsapp} locale={locale} context="booking" label={whatsappLabel} />
-      ) : null}
-    </div>
+    <ol className="grid gap-3">
+      {items.map((item, index) => (
+        <li key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white px-4 py-3">
+          <p className="text-xs font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
+          <p className="mt-1 font-semibold text-ink">{item.title}</p>
+          <p className="text-sm leading-6 text-muted">{item.body}</p>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -66,7 +53,7 @@ export function BookingEngineView({
         })}
       />
       <JsonLd data={faqJsonLd(service.faqs)} />
-      <Section tone="sand" className="overflow-hidden">
+      <Section tone="sand">
         <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Breadcrumbs locale={locale} items={crumbs} />
@@ -74,122 +61,237 @@ export function BookingEngineView({
             <p className="text-sm font-semibold tracking-[0.14em] text-teal">ANDARIO BOOKING ENGINE</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{service.h1}</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{page.support}</p>
-            <LeadPair
-              locale={locale}
-              contactHref={contactHref}
-              primary={page.primaryCta}
-              whatsapp={whatsapp}
-              whatsappLabel={page.talkCta}
-              placement="hero"
-            />
-            <p className="mt-4 max-w-xl text-sm text-muted">{dict.chrome.ctaNote}</p>
+            <p className="mt-4 max-w-xl font-semibold text-ink">{page.assist}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <TrackedLink href={contactHref} event={{ name: 'booking_engine_cta', placement: 'hero' }} cue>
+                {page.primaryCta}
+              </TrackedLink>
+              {whatsapp ? (
+                <WhatsAppButton phone={whatsapp} locale={locale} context="booking" label={page.talkCta} />
+              ) : (
+                <TrackedLink href={contactHref} event={{ name: 'booking_engine_cta', placement: 'hero-talk' }} variant="secondary">
+                  {page.talkCta}
+                </TrackedLink>
+              )}
+            </div>
+            <p className="mt-4 max-w-xl text-sm text-muted">{page.heroMicro}</p>
           </div>
-          <EngineHub
-            caption={page.hubCaption}
-            core={page.hubCore}
-            channels={page.hubChannels}
-            outcomes={page.hubOutcomes}
-            availableLabel={page.availableLabel}
-            roadmapLabel={page.roadmapLabel}
-          />
+          <Path items={page.path} />
         </Container>
       </Section>
 
       <Section>
-        <Container className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+        <Container className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-ink">{service.problemTitle}</h2>
-            <p className="mt-4 leading-7 text-muted">{service.problem}</p>
-            <ul className="mt-6 space-y-3">
-              {page.problemPoints.map((point) => (
-                <li key={point} className="flex gap-3 text-sm leading-6 text-ink">
-                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
-                  {point}
-                </li>
-              ))}
-            </ul>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.whatTitle}</h2>
+            <p className="mt-4 leading-7 text-muted">{page.whatBody}</p>
+            <p className="mt-4 font-semibold text-ink">{page.whatWeb}</p>
+            <p className="mt-2 font-semibold text-ink">{page.whatEngine}</p>
           </div>
-          <BeforeAfter
-            beforeTitle={page.beforeTitle}
-            beforeCaption={page.beforeCaption}
-            beforeChannels={page.beforeChannels}
-            beforeResult={page.beforeResult}
-            afterTitle={page.afterTitle}
-            afterCaption={page.afterCaption}
-            afterChannels={page.afterChannels}
-            afterResult={page.afterResult}
-          />
+          <Path items={page.whatFlow} />
         </Container>
       </Section>
 
       <Section tone="sand">
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.valueTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.valueBody}</p>
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {page.valueItems.map((item) => (
-              <li key={item} className="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-ink">
-                {item}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-12 max-w-3xl">
-            <h2 className="text-2xl font-semibold text-ink">{page.exactTitle}</h2>
-            <p className="mt-4 leading-7 text-muted">{page.exactBody}</p>
-          </div>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.centralTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.centralIntro}</p>
-          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.central.map((item, index) => (
-              <li key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white p-4">
-                <p className="text-xs font-semibold tracking-wide text-teal">{String(index + 1).padStart(2, '0')}</p>
-                <h3 className="mt-2 font-semibold text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.featuresTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.featuresIntro}</p>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.contrastTitle}</h2>
           <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {page.groups.map((group) => (
-              <article key={group.title} className="rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)]">
-                <h3 className="text-lg font-semibold text-ink">{group.title}</h3>
-                <ul className="mt-4 space-y-4">
-                  {group.items.map((item) => (
-                    <li key={item.name}>
-                      <p className="font-semibold text-ink">{item.name}</p>
-                      <p className="mt-1 text-sm leading-6 text-muted">
-                        <span className="font-semibold text-ink">{page.doesLabel}. </span>
-                        {item.does}
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-muted">
-                        <span className="font-semibold text-ink">{page.whyLabel}. </span>
-                        {item.why}
-                      </p>
+            {[page.webCard, page.engineCard].map((card) => (
+              <article key={card.name} className="rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)]">
+                <h3 className="text-lg font-semibold text-ink">{card.name}</h3>
+                <p className="mt-2 font-semibold text-ink">{card.role}</p>
+                <ul className="mt-4 space-y-2">
+                  {card.points.map((point) => (
+                    <li key={point} className="text-sm leading-6 text-muted">
+                      {point}
                     </li>
                   ))}
                 </ul>
               </article>
             ))}
           </div>
-          <LeadPair
-            locale={locale}
-            contactHref={contactHref}
-            primary={page.featuresCta}
-            whatsapp={whatsapp}
-            whatsappLabel={page.talkCta}
-            placement="features"
-          />
+          <p className="mt-6 max-w-2xl text-lg font-semibold text-ink">{page.contrastClose}</p>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container className="grid items-start gap-10 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.manualTitle}</h2>
+            <ol className="mt-6 space-y-3">
+              {page.manualSteps.map((step, index) => (
+                <li key={step} className="text-sm leading-6 text-ink">
+                  <span className="mr-2 font-semibold text-teal">{String(index + 1).padStart(2, '0')}</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 leading-7 text-muted">{page.manualBody}</p>
+          </div>
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.organizedTitle}</h2>
+            <ol className="mt-6 space-y-3">
+              {page.organizedSteps.map((step, index) => (
+                <li key={step} className="text-sm leading-6 text-ink">
+                  <span className="mr-2 font-semibold text-teal">{String(index + 1).padStart(2, '0')}</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 leading-7 text-muted">{page.organizedBody}</p>
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container className="max-w-3xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.exampleTitle}</h2>
+          <p className="mt-4 leading-7 text-muted">{page.exampleIntro}</p>
+          <ol className="mt-6 grid gap-2 sm:grid-cols-2">
+            {page.exampleSteps.map((step, index) => (
+              <li key={step} className="rounded-2xl bg-white px-4 py-3 text-sm text-ink">
+                <span className="mr-2 font-semibold text-teal">{index + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 leading-7 text-muted">{page.exampleClose}</p>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.useTitle}</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {page.uses.map((item) => (
+              <article key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep p-5">
+                <h3 className="font-semibold text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+                <p className="mt-3 text-sm font-semibold text-ink">
+                  <span className="text-teal">{page.resultLabel}. </span>
+                  {item.result}
+                </p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.otaTitle}</h2>
+          <p className="mt-4 max-w-2xl font-semibold text-ink">{page.otaLead}</p>
+          <p className="mt-3 max-w-2xl leading-7 text-muted">{page.otaBody}</p>
+          <div className="mt-8 grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+            <article className="rounded-[var(--radius-card)] bg-white p-5">
+              <h3 className="font-semibold text-ink">{page.otaExternalLabel}</h3>
+              <ul className="mt-3 space-y-2">
+                {page.otaExternal.map((item) => (
+                  <li key={item} className="text-sm text-ink">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+            <p className="text-center text-2xl font-semibold text-teal" aria-hidden="true">
+              +
+            </p>
+            <article className="rounded-[var(--radius-card)] bg-white p-5">
+              <h3 className="font-semibold text-ink">{page.otaOwnLabel}</h3>
+              <ol className="mt-3 space-y-2">
+                {page.otaOwn.map((item) => (
+                  <li key={item} className="text-sm font-semibold text-ink">
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            </article>
+          </div>
+          <p className="mt-6 font-semibold text-ink">{page.otaSync}</p>
+          <p className="mt-2 max-w-2xl leading-7 text-muted">{page.otaNote}</p>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.organizeTitle}</h2>
+          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+            {page.groups.map((group) => (
+              <article key={group.title} className="rounded-[var(--radius-card)] border border-sand-deep p-5">
+                <h3 className="text-lg font-semibold text-ink">{group.title}</h3>
+                {group.items.map((item) => (
+                  <div key={item.name} className="mt-4">
+                    <p className="font-semibold text-ink">{item.name}</p>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      <span className="font-semibold text-ink">{page.doesLabel}. </span>
+                      {item.does}
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      <span className="font-semibold text-ink">{page.whyLabel}. </span>
+                      {item.why}
+                    </p>
+                  </div>
+                ))}
+              </article>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.dayTitle}</h2>
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {page.benefits.map((group) => (
+              <article key={group.audience} className="rounded-[var(--radius-card)] bg-white p-5">
+                <h3 className="font-semibold text-ink">{group.audience}</h3>
+                <ul className="mt-4 space-y-2">
+                  {group.points.map((point) => (
+                    <li key={point} className="text-sm leading-6 text-muted">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container className="max-w-3xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.demandTitle}</h2>
+          {page.demand.map((paragraph) => (
+            <p key={paragraph} className="mt-4 leading-7 text-muted">
+              {paragraph}
+            </p>
+          ))}
+          <p className="mt-4 leading-7 text-muted">{page.demandNote}</p>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {page.companions.map((item) => (
+              <li key={item.routeId}>
+                <TrackedLink href={href(locale, item.routeId)} variant="secondary" event={{ name: 'booking_engine_cta', placement: item.routeId }}>
+                  {item.label}
+                </TrackedLink>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.ecosystemTitle}</h2>
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {page.ecosystem.map((item, index) => (
+              <li key={item.name} className="rounded-[var(--radius-card)] bg-white p-4">
+                <p className="text-xs font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
+                <h3 className="mt-2 font-semibold text-ink">{item.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 max-w-2xl leading-7 text-muted">{page.ecosystemNote}</p>
         </Container>
       </Section>
 
@@ -218,102 +320,33 @@ export function BookingEngineView({
       </Section>
 
       <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.channelsTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.channelsBody}</p>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-            {page.channels.map((channel) => (
-              <li key={channel.name} className="rounded-[var(--radius-card)] border border-sand-deep p-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="font-semibold text-ink">{channel.name}</h3>
-                  <span
-                    className={
-                      channel.status === 'available'
-                        ? 'rounded-full bg-teal-wash px-2 py-0.5 text-xs font-semibold text-teal-dark'
-                        : 'rounded-full bg-sand-deep px-2 py-0.5 text-xs font-semibold text-ink'
-                    }
-                  >
-                    {channel.status === 'available' ? page.availableLabel : page.roadmapLabel}
-                  </span>
-                </div>
-                <p className="mt-2 text-sm leading-6 text-muted">{channel.note}</p>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.rolesTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.rolesIntro}</p>
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {page.roles.map((role) => (
-              <article key={role.name} className="rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)]">
-                <h3 className="text-lg font-semibold text-ink">{role.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{role.role}</p>
-                <ul className="mt-4 space-y-2">
-                  {role.points.map((point) => (
-                    <li key={point} className="text-sm text-ink">
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+        <Container className="grid gap-8 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.todayTitle}</h2>
+            <p className="mt-4 leading-7 text-muted">{page.honesty}</p>
           </div>
-          <ol className="mt-8 space-y-3">
-            {page.rolesFlow.map((step, index) => (
-              <li key={step} className="flex items-center gap-3 text-sm font-semibold text-ink">
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-teal text-xs text-white">
-                  {index + 1}
-                </span>
-                {step}
-              </li>
-            ))}
-          </ol>
-          <p className="mt-6 max-w-2xl leading-7 text-muted">{page.rolesClose}</p>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.benefitsTitle}</h2>
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {page.benefits.map((group) => (
-              <article key={group.audience} className="rounded-[var(--radius-card)] bg-sand p-5">
-                <h3 className="font-semibold text-ink">{group.audience}</h3>
-                <ul className="mt-4 space-y-2">
-                  {group.points.map((point) => (
-                    <li key={point} className="text-sm leading-6 text-muted">
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+          <div className="grid gap-4">
+            <article className="rounded-[var(--radius-card)] border border-sand-deep p-5">
+              <h3 className="font-semibold text-teal">{page.availableLabel}</h3>
+              <ul className="mt-3 space-y-2">
+                {page.todayItems.map((item) => (
+                  <li key={item} className="text-sm text-ink">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+            <article className="rounded-[var(--radius-card)] bg-sand p-5">
+              <h3 className="font-semibold text-ink">{page.roadmapLabel}</h3>
+              <ul className="mt-3 space-y-2">
+                {page.laterItems.map((item) => (
+                  <li key={item} className="text-sm text-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.otaTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.otaBody}</p>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.whoTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.whoBody}</p>
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {page.whoTypes.map((type) => (
-              <li key={type} className="rounded-full border border-sand-deep px-3 py-1.5 text-sm text-ink">
-                {type}
-              </li>
-            ))}
-          </ul>
         </Container>
       </Section>
 
@@ -322,6 +355,7 @@ export function BookingEngineView({
           <div>
             <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.trustTitle}</h2>
             <p className="mt-4 leading-7 text-muted">{page.trustBody}</p>
+            <p className="mt-4 leading-7 text-muted">{page.trustHonest}</p>
           </div>
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
             {page.trustPoints.map((point) => (
@@ -334,49 +368,40 @@ export function BookingEngineView({
       </Section>
 
       <Section>
-        <Container className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.evolutionTitle}</h2>
-            <p className="mt-4 leading-7 text-muted">{page.evolutionBody}</p>
-            <div className="mt-8">
-              <RoadmapTimeline
-                items={page.evolution}
-                availableLabel={page.availableLabel}
-                roadmapLabel={page.roadmapLabel}
-              />
-            </div>
-          </div>
-          <div>
-            <article className="rounded-[var(--radius-card)] bg-sand p-6">
-              <h2 className="text-2xl font-semibold text-ink">{page.pioneerTitle}</h2>
-              <p className="mt-4 leading-7 text-muted">{page.pioneerBody}</p>
-            </article>
-            <h2 className="mt-10 text-2xl font-semibold text-ink">{page.diffTitle}</h2>
-            <ul className="mt-4 space-y-4">
-              {page.diff.map((item) => (
-                <li key={item.title}>
-                  <p className="font-semibold text-ink">{item.title}</p>
-                  <p className="mt-1 text-sm leading-6 text-muted">{item.body}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <Container>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.whoTitle}</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.whoBody}</p>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {page.whoTypes.map((type) => (
+              <li key={type} className="rounded-full border border-sand-deep px-3 py-1.5 text-sm text-ink">
+                {type}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 max-w-2xl font-semibold text-ink">{page.whoQuestion}</p>
+          <p className="mt-2 max-w-2xl leading-7 text-muted">{page.whoAnswer}</p>
+          <p className="mt-6 max-w-3xl leading-7 text-muted">{page.whoNot}</p>
         </Container>
       </Section>
 
       <Section tone="sand">
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{dict.nav.faq}</h2>
-          <div className="mt-6">
-            <FaqList items={service.faqs} trackPage="andario-booking-engine" />
-          </div>
+        <Container className="max-w-3xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.techTitle}</h2>
+          {page.tech.map((paragraph) => (
+            <p key={paragraph} className="mt-4 leading-7 text-muted">
+              {paragraph}
+            </p>
+          ))}
+          <p className="mt-6 text-xl font-semibold text-ink">{page.techMark}</p>
+          <p className="mt-10 leading-8 text-ink">{page.pioneer}</p>
         </Container>
       </Section>
 
       <Section>
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.startTitle}</h2>
-          <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.startTitle}</h2>
+          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.startNote}</p>
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {page.startSteps.map((step, index) => (
               <li key={step.title} className="rounded-[var(--radius-card)] bg-sand p-4">
                 <p className="text-xs font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
@@ -385,30 +410,31 @@ export function BookingEngineView({
               </li>
             ))}
           </ol>
-          <LeadPair
-            locale={locale}
-            contactHref={contactHref}
-            primary={page.startCta}
-            whatsapp={whatsapp}
-            whatsappLabel={page.whatsappCta}
-            placement="start"
-          />
         </Container>
       </Section>
 
-      <Section tone="sand">
+      <Section className="border-t border-sand-deep">
         <Container>
-          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-ink">{page.finalTitle}</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">{dict.nav.faq}</h2>
+          <div className="mt-6">
+            <FaqList items={service.faqs} trackPage="andario-booking-engine" />
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="sand" className="pb-24">
+        <Container>
+          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.finalTitle}</h2>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{page.finalBody}</p>
-          <LeadPair
-            locale={locale}
-            contactHref={contactHref}
-            primary={page.finalCta}
-            whatsapp={whatsapp}
-            whatsappLabel={page.whatsappCta}
-            placement="final"
-          />
-          <p className="mt-4 max-w-xl text-sm text-muted">{dict.chrome.ctaNote}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            {whatsapp ? (
+              <WhatsAppButton phone={whatsapp} locale={locale} context="booking" label={page.talkCta} variant="primary" />
+            ) : null}
+            <TrackedLink href={contactHref} event={{ name: 'booking_engine_cta', placement: 'final' }} variant={whatsapp ? 'secondary' : 'primary'} cue>
+              {page.infoCta}
+            </TrackedLink>
+          </div>
+          <p className="mt-4 max-w-xl text-sm text-muted">{page.finalMicro}</p>
         </Container>
       </Section>
     </>
