@@ -17,7 +17,7 @@ export function FooterCta({
   cta: string;
 }) {
   const pathname = usePathname();
-  if (pathname === `/${locale}` || pathname === href(locale, 'solutions')) return null;
+  if (pathname === `/${locale}` || pathname === href(locale, 'solutions') || pathname === href(locale, 'how-we-work')) return null;
 
   return (
     <section className="bg-white" aria-labelledby="footer-cta-title">

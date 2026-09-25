@@ -63,6 +63,7 @@ export type AnalyticsEvent =
   | { name: 'how_we_work_solution_click'; service: string }
   | { name: 'how_we_work_booking_engine_click'; placement: string }
   | { name: 'how_we_work_faq_open' }
+  | { name: 'how_we_work_case_click' }
   | { name: 'about_how_we_work_click'; placement: string }
   | { name: 'about_booking_engine_click'; placement: string }
   | { name: 'about_case_click' }

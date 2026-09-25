@@ -415,7 +415,7 @@ export const en: Dictionary = {
       'how-we-work': {
         title: 'How we work',
         description:
-          'We start by understanding your property. A Digital Check shows where you are and gives you a roadmap. Then we implement only what makes sense.',
+          'See how we look at a property, set priorities and digitalize what it needs through diagnosis, strategy, technology and support.',
       },
       cases: {
         title: 'Cases',

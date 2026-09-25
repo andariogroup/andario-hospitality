@@ -415,7 +415,7 @@ export const es: Dictionary = {
       'how-we-work': {
         title: 'Cómo trabajamos',
         description:
-          'Empezamos entendiendo tu alojamiento. Con Digital Check ves dónde estás y recibes una hoja de ruta. Después implementamos solo lo que tiene sentido.',
+          'Conoce cómo analizamos, priorizamos y digitalizamos las necesidades de tu alojamiento mediante diagnóstico, estrategia, tecnología y acompañamiento.',
       },
       cases: {
         title: 'Casos',

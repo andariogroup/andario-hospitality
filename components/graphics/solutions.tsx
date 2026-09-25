@@ -12,7 +12,15 @@ function Chip({ children, tone = 'sand' }: { children: string; tone?: 'sand' | '
   );
 }
 
-export function FlowSteps({ steps, caption }: { steps: string[]; caption?: string }) {
+export function FlowSteps({
+  steps,
+  caption,
+  chip = 'sand',
+}: {
+  steps: string[];
+  caption?: string;
+  chip?: 'sand' | 'white';
+}) {
   return (
     <figure>
       {caption ? <figcaption className="mb-4 max-w-3xl text-sm leading-6 text-muted">{caption}</figcaption> : null}
@@ -25,7 +33,7 @@ export function FlowSteps({ steps, caption }: { steps: string[]; caption?: strin
             <span className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-xs font-semibold text-white">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <span className="min-w-0 rounded-2xl bg-sand px-3 py-1.5 text-sm font-semibold text-ink">{step}</span>
+            <span className={`min-w-0 rounded-2xl px-3 py-1.5 text-sm font-semibold text-ink ${chip === 'white' ? 'bg-white' : 'bg-sand'}`}>{step}</span>
           </li>
         ))}
       </ol>
