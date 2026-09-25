@@ -1,16 +1,14 @@
-import { audienceIcons } from '@/components/graphics/icons';
-import { FlowSteps } from '@/components/graphics/solutions';
+import { audienceIcons, serviceIcons } from '@/components/graphics/icons';
 import { WhatsAppButton } from '@/components/conversion/whatsapp-button';
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { JsonLd } from '@/components/seo/json-ld';
 import { FaqList } from '@/components/sections/faq-list';
-import { ServiceCard } from '@/components/services/service-card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
 import { href, type Locale, type ServiceId } from '@/lib/i18n/routes';
 import { faqJsonLd, itemListJsonLd } from '@/lib/seo/structured-data';
-import { Compass, Link2, MessageCircle, MonitorSmartphone, Search, Share2, type LucideIcon } from 'lucide-react';
+import { ChartLine, Compass, Cpu, Eye, Handshake, Layers, MessageCircle, Search, Sprout, Unplug, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 
 const OFFER_ORDER: ServiceId[] = [
@@ -22,7 +20,10 @@ const OFFER_ORDER: ServiceId[] = [
   'andario-growth',
 ];
 
-const PROBLEM_ICONS: LucideIcon[] = [Share2, Link2, MonitorSmartphone, MessageCircle, Search, Compass];
+const ECOSYSTEM: ServiceId[] = ['digital-check', ...OFFER_ORDER];
+
+const SITUATION_ICONS: LucideIcon[] = [Sprout, Search, MessageCircle, Unplug, ChartLine];
+const DIFFERENTIATOR_ICONS: LucideIcon[] = [Compass, Layers, Cpu, Handshake, Eye];
 
 export function HomePage({
   locale,
@@ -42,7 +43,7 @@ export function HomePage({
       <JsonLd
         data={itemListJsonLd(
           locale,
-          [...OFFER_ORDER, 'digital-check' as const].map((id) => ({ name: dict.services[id].name, routeId: id })),
+          [...ECOSYSTEM].map((id) => ({ name: dict.services[id].name, routeId: id })),
         )}
       />
 
@@ -90,106 +91,170 @@ export function HomePage({
       </Section>
 
       <Section>
+        <Container className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+          <p className="max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{page.bridge}</p>
+          <Image
+            src="/home/digital-check-desk.webp"
+            alt={page.checkAlt}
+            width={1024}
+            height={682}
+            sizes="(min-width: 1024px) 52vw, 100vw"
+            className="aspect-[3/2] w-full rounded-[var(--radius-card)] object-cover"
+          />
+        </Container>
+      </Section>
+
+      <Section tone="sand">
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.problemTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.problemIntro}</p>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.problems.map((problem, index) => {
-              const Icon = PROBLEM_ICONS[index] ?? Compass;
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.situationsTitle}</h2>
+          <ol className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {page.situations.map((situation, index) => {
+              const Icon = SITUATION_ICONS[index] ?? Compass;
               return (
-                <li key={problem} className="flex gap-3 rounded-[var(--radius-card)] border border-sand-deep bg-sand p-5 text-base leading-7 text-ink">
-                  <Icon aria-hidden="true" className="mt-1 h-6 w-6 shrink-0 text-teal" />
-                  <span>{problem}</span>
+                <li key={situation.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white p-5">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-wash text-teal">
+                      <Icon aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <p className="text-sm font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-ink">{situation.title}</h3>
+                  <p className="mt-2 leading-7 text-muted">{situation.body}</p>
                 </li>
               );
             })}
-          </ul>
-          <p className="mt-8 max-w-2xl text-xl font-semibold text-ink">{page.problemClose}</p>
-          <p className="mt-3 max-w-2xl leading-7 text-muted">{page.problemNext}</p>
-          <div className="mt-8">
+          </ol>
+          <p className="mt-8 max-w-2xl text-lg font-semibold text-ink">{page.situationClose}</p>
+          <div className="mt-6">
             <TrackedLink href={contact} event={{ name: 'home_primary_cta_click', placement: 'problems' }} cue>
-              {page.problemCta}
+              {page.situationCta}
             </TrackedLink>
           </div>
         </Container>
       </Section>
 
-      <Section id="soluciones" tone="sand" className="scroll-mt-28">
+      <Section id="soluciones" className="scroll-mt-28">
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.offerTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.offerSupport}</p>
-          <article className="mt-10 grid items-center gap-8 rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)] lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
-            <Image
-              src="/home/digital-check-desk.webp"
-              alt={page.checkAlt}
-              width={1024}
-              height={682}
-              sizes="(min-width: 1024px) 48vw, 100vw"
-              className="aspect-[3/2] w-full rounded-[var(--radius-card)] object-cover"
-            />
+          <article className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{dict.services['digital-check'].name}</p>
-              <h3 className="mt-3 text-2xl font-semibold text-ink">{page.cards['digital-check'].title}</h3>
-              <p className="mt-3 leading-7 text-muted">{page.cards['digital-check'].body}</p>
-              <p className="mt-3 text-sm text-muted">{page.checkNote}</p>
+              <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.cards['digital-check'].title}</h2>
+              <p className="mt-4 max-w-xl leading-7 text-muted">{page.cards['digital-check'].body}</p>
               <div className="mt-6">
-                <TrackedLink
-                  href={href(locale, 'digital-check')}
-                  event={{ name: 'home_service_click', service: 'digital-check' }}
-                  cue
-                >
+                <TrackedLink href={href(locale, 'digital-check')} event={{ name: 'home_service_click', service: 'digital-check' }} cue>
                   {page.cards['digital-check'].cta}
                 </TrackedLink>
               </div>
             </div>
+            <figure className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-4 sm:p-6">
+              <p className="text-xs font-semibold tracking-[0.14em] text-teal uppercase">{page.boardTitle}</p>
+              <p className="mt-2 text-lg font-semibold text-ink">{page.boardStatus}</p>
+              <p className="mt-5 text-sm font-semibold text-ink">{page.boardAreas}</p>
+              <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                {page.checkItems.map((item) => {
+                  const ready = item.tone === 'steady';
+                  const status = ready ? (locale === 'es' ? 'En orden' : 'In place') : locale === 'es' ? 'Prioridad' : 'Priority';
+                  return (
+                    <li key={item.label} className="flex items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3 text-sm text-ink">
+                      <span>{item.label}</span>
+                      <span className={ready ? 'font-semibold text-teal' : 'font-semibold text-ink'}>
+                        <span aria-hidden="true">{ready ? '✓' : '!'}</span>
+                        <span className="sr-only">{status}</span>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                <div>
+                  <p className="text-sm font-semibold text-ink">{page.boardOpportunities}</p>
+                  <ul className="mt-2 space-y-1 text-sm leading-6 text-muted">
+                    {page.opportunities.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-ink">{page.boardNext}</p>
+                  <ol className="mt-2 space-y-1 text-sm leading-6 text-muted">
+                    {page.nextSteps.map((item, index) => (
+                      <li key={item}>
+                        {index + 1}. {item}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+              <figcaption className="mt-4 text-sm leading-6 text-muted">{page.checkNote}</figcaption>
+            </figure>
           </article>
-          <div className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {OFFER_ORDER.map((id, index) => {
-              const card = page.cards[id];
-              return (
-                <ServiceCard
-                  key={id}
-                  href={href(locale, id)}
-                  index={String(index + 1).padStart(2, '0')}
-                  name={card.title}
-                  subtitle={dict.services[id].name}
-                  summary={card.body}
-                  cta={card.cta}
-                  serviceId={id}
-                  featured={id === 'andario-booking-engine'}
-                  event={{ name: 'home_service_click', service: id }}
-                />
-              );
-            })}
-          </div>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.roadmapTitle}</h2>
+          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.roadmapIntro}</p>
+          <ol className="mt-10 grid gap-6 md:grid-cols-6 md:gap-4">
+            {page.roadmap.map((step, index) => (
+              <li key={step} className="relative flex items-start gap-4 md:flex-col md:gap-3">
+                {index < page.roadmap.length - 1 ? (
+                  <span aria-hidden="true" className="absolute top-5 left-5 h-[calc(100%+1.5rem)] w-px bg-sand-deep md:top-5 md:left-5 md:h-px md:w-[calc(100%-0.5rem)]" />
+                ) : null}
+                <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-teal/30 bg-white text-sm font-semibold text-teal">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className="pt-2 font-semibold text-ink md:pt-0">{step}</span>
+              </li>
+            ))}
+          </ol>
           <div className="mt-8">
-            <TrackedLink
-              href={href(locale, 'solutions')}
-              event={{ name: 'home_secondary_cta_click', placement: 'solutions' }}
-              variant="secondary"
-            >
-              {page.solutionsCta}
+            <TrackedLink href={href(locale, 'how-we-work')} event={{ name: 'home_secondary_cta_click', placement: 'process' }} variant="secondary">
+              {page.processCta}
             </TrackedLink>
           </div>
         </Container>
       </Section>
 
       <Section>
-        <Container className="grid items-start gap-10 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.paceTitle}</h2>
-            {page.pace.map((paragraph) => (
-              <p key={paragraph} className="mt-4 leading-7 text-muted">
-                {paragraph}
-              </p>
-            ))}
+        <Container>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.offerTitle}</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.offerSupport}</p>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {ECOSYSTEM.map((id) => {
+              const card = page.cards[id];
+              const Icon = serviceIcons[id];
+              return (
+                <li key={id}>
+                  <TrackedLink
+                    href={href(locale, id)}
+                    event={{ name: 'home_service_click', service: id }}
+                    variant="secondary"
+                    className="h-full items-start justify-start gap-4 rounded-[var(--radius-card)] border-sand-deep bg-white p-5 text-left shadow-none hover:translate-y-0 hover:border-teal"
+                  >
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-teal-wash text-teal">
+                      <Icon aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block text-xs font-semibold tracking-[0.12em] text-teal uppercase">{card.role}</span>
+                      <span className="mt-1 block font-semibold text-ink">{dict.services[id].name}</span>
+                      <span className="mt-2 block text-sm leading-6 text-muted">{card.body}</span>
+                    </span>
+                  </TrackedLink>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-8">
+            <TrackedLink href={href(locale, 'solutions')} event={{ name: 'home_secondary_cta_click', placement: 'solutions' }} variant="secondary">
+              {page.solutionsCta}
+            </TrackedLink>
           </div>
-          <FlowSteps steps={page.paceSteps} />
         </Container>
       </Section>
 
       <Section tone="sand">
-        <Container className="grid items-center gap-10 lg:grid-cols-2">
+        <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <h2 className="text-3xl font-semibold tracking-tight whitespace-pre-line text-ink sm:text-4xl">{page.knownTitle}</h2>
             {page.knownBody.map((paragraph) => (
@@ -238,28 +303,19 @@ export function HomePage({
       </Section>
 
       <Section tone="sand">
-        <Container className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.processTitle}</h2>
-            <div className="mt-8">
-              <TrackedLink
-                href={href(locale, 'how-we-work')}
-                event={{ name: 'home_secondary_cta_click', placement: 'process' }}
-                variant="secondary"
-              >
-                {page.processCta}
-              </TrackedLink>
-            </div>
-          </div>
-          <ol className="grid gap-4">
-            {page.process.map((step, index) => (
-              <li key={step.title} className="rounded-[var(--radius-card)] bg-white p-5">
-                <p className="text-sm font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
-                <h3 className="mt-1 text-lg font-semibold text-ink">{step.title}</h3>
-                <p className="mt-2 leading-7 text-muted">{step.body}</p>
-              </li>
-            ))}
-          </ol>
+        <Container>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {page.differentiators.map((item, index) => {
+              const Icon = DIFFERENTIATOR_ICONS[index] ?? Compass;
+              return (
+                <li key={item.title} className="rounded-[var(--radius-card)] bg-white p-5">
+                  <Icon aria-hidden="true" className="h-5 w-5 text-teal" />
+                  <h2 className="mt-4 text-lg font-semibold text-ink">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+                </li>
+              );
+            })}
+          </ul>
         </Container>
       </Section>
 
@@ -272,6 +328,14 @@ export function HomePage({
                 {paragraph}
               </p>
             ))}
+            <p className="mt-4 font-semibold text-ink">{page.bookingOta}</p>
+            <ul className="mt-6 grid gap-2 text-sm text-ink sm:grid-cols-2">
+              {page.bookingPoints.map((point) => (
+                <li key={point} className="rounded-2xl bg-sand px-3 py-2">
+                  {point}
+                </li>
+              ))}
+            </ul>
             <div className="mt-8">
               <TrackedLink
                 href={href(locale, 'andario-booking-engine')}
@@ -299,7 +363,7 @@ export function HomePage({
               </div>
             </div>
             <figcaption className="mt-3 text-sm leading-6 text-muted">
-              {page.mockNote} {page.bookingNote}
+              {page.mockNote}
             </figcaption>
           </figure>
         </Container>
@@ -313,6 +377,7 @@ export function HomePage({
               {paragraph}
             </p>
           ))}
+          <p className="mt-4 text-sm font-semibold text-ink">{page.pioneerNote}</p>
           <div className="mt-8">
             <TrackedLink href={href(locale, 'about')} event={{ name: 'home_secondary_cta_click', placement: 'about' }} variant="secondary">
               {page.pioneerCta}

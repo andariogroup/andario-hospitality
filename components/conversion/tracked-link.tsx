@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { track, type AnalyticsEvent } from '@/lib/analytics/events';
+import type { ReactNode } from 'react';
 
 export function TrackedLink({
   href,
@@ -16,7 +17,7 @@ export function TrackedLink({
 }: {
   href: string;
   event: AnalyticsEvent;
-  children: string;
+  children: ReactNode;
   variant?: 'primary' | 'secondary' | 'inverse' | 'ghost';
   className?: string;
   cue?: boolean;

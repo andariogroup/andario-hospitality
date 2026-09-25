@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { SocialLinks } from '@/components/conversion/social-links';
-import { TrackedLink } from '@/components/conversion/tracked-link';
+import { FooterCta } from '@/components/layout/footer-cta';
 import { FooterEmail, FooterPhone, FooterTalk } from '@/components/layout/footer-channels';
 import { Container } from '@/components/ui/container';
 import { FooterLocales } from '@/components/navigation/footer-locales';
@@ -47,23 +47,12 @@ export function Footer({
 
   return (
     <footer>
-      <section className="bg-white" aria-labelledby="footer-cta-title">
-        <Container className="py-8 sm:py-12">
-          <div className="rounded-3xl bg-sand px-6 py-10 sm:px-10 sm:py-12">
-            <h2 id="footer-cta-title" className="max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              {dict.chrome.footerCtaTitle}
-            </h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-muted sm:text-base">{dict.chrome.footerCtaBody}</p>
-            <TrackedLink
-              href={href(locale, 'contact')}
-              event={{ name: 'footer_cta_click' }}
-              className="mt-6"
-            >
-              {dict.chrome.primaryCta}
-            </TrackedLink>
-          </div>
-        </Container>
-      </section>
+      <FooterCta
+        locale={locale}
+        title={dict.chrome.footerCtaTitle}
+        body={dict.chrome.footerCtaBody}
+        cta={dict.chrome.primaryCta}
+      />
 
       <div className="bg-ink text-white">
         <Container className="grid gap-8 py-12 sm:py-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
