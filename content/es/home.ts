@@ -28,6 +28,8 @@ export const homePageEs: HomePageContent = {
   mockPrice: 'Tarifa del alojamiento',
   mockAction: 'Reservar',
   mockNote: 'Ejemplo ilustrativo. No es una captura del producto.',
+  bookingAlt:
+    'Interfaz ilustrativa de Andario Booking Engine en computador y teléfono, con habitaciones y una reserva de ejemplo.',
   bridge: 'Tener presencia digital no significa tener una estrategia digital.',
   situationsTitle: '¿Dónde está hoy tu alojamiento?',
   situations: [
@@ -114,6 +116,7 @@ export const homePageEs: HomePageContent = {
   ],
   audienceCta: 'Ver alojamientos',
   processCta: 'Conocer nuestra forma de trabajar',
+  differentiatorsTitle: 'Por qué trabajar con Andario',
   differentiators: [
     { title: 'Especialización', body: 'Trabajamos con alojamientos, no con cualquier negocio.' },
     { title: 'Simplicidad', body: 'Te explicamos las opciones en lenguaje claro.' },
@@ -136,12 +139,6 @@ export const homePageEs: HomePageContent = {
   bookingNote: 'Ejemplo ilustrativo. No es una captura del producto.',
   bookingOta: 'No necesitas abandonar las OTAs. Necesitas fortalecer tu canal propio.',
   bookingPoints: ['Disponibilidad', 'Tarifas', 'Habitaciones o unidades', 'Huéspedes', 'Reservas', 'Reglas', 'Origen del canal', 'Administración'],
-  pioneerTitle: 'BARUCH Hostal · Buritaca, Colombia',
-  pioneer: [
-    'Un establecimiento pionero con el que estamos llevando Andario Hospitality de la idea a la operación real.',
-  ],
-  pioneerNote: 'Todavía no publicamos métricas, reservas ni testimonios.',
-  pioneerCta: 'Conocer el proyecto',
   finalTitle: '¿No sabes por dónde empezar?',
   finalBody: ['Cuéntanos dónde está hoy tu alojamiento, qué te preocupa y qué quieres mejorar.'],
   finalPrimary: 'Solicitar diagnóstico digital',

@@ -408,9 +408,9 @@ export const en: Dictionary = {
         description: services['andario-growth'].metaDescription,
       },
       accommodations: {
-        title: 'Digital solutions for independent accommodations',
+        title: 'Independent accommodations',
         description:
-          'See how Andario Hospitality works with hostels, small hotels, inns, apartments, cabins and other independent accommodations.',
+          'Andario Hospitality helps hostels, small hotels, inns, tourist apartments, cabins and villas improve their presence and how they take bookings.',
       },
       'how-we-work': {
         title: 'How we work',

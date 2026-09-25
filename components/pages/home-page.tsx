@@ -91,20 +91,6 @@ export function HomePage({
       </Section>
 
       <Section>
-        <Container className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
-          <p className="max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{page.bridge}</p>
-          <Image
-            src="/home/digital-check-desk.webp"
-            alt={page.checkAlt}
-            width={1024}
-            height={682}
-            sizes="(min-width: 1024px) 52vw, 100vw"
-            className="aspect-[3/2] w-full rounded-[var(--radius-card)] object-cover"
-          />
-        </Container>
-      </Section>
-
-      <Section tone="sand">
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.situationsTitle}</h2>
           <ol className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -130,6 +116,20 @@ export function HomePage({
               {page.situationCta}
             </TrackedLink>
           </div>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+          <p className="max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{page.bridge}</p>
+          <Image
+            src="/home/digital-check-desk.webp"
+            alt={page.checkAlt}
+            width={1024}
+            height={682}
+            sizes="(min-width: 1024px) 52vw, 100vw"
+            className="aspect-[3/2] w-full rounded-[var(--radius-card)] object-cover"
+          />
         </Container>
       </Section>
 
@@ -304,13 +304,14 @@ export function HomePage({
 
       <Section tone="sand">
         <Container>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.differentiatorsTitle}</h2>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {page.differentiators.map((item, index) => {
               const Icon = DIFFERENTIATOR_ICONS[index] ?? Compass;
               return (
                 <li key={item.title} className="rounded-[var(--radius-card)] bg-white p-5">
                   <Icon aria-hidden="true" className="h-5 w-5 text-teal" />
-                  <h2 className="mt-4 text-lg font-semibold text-ink">{item.title}</h2>
+                  <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
                 </li>
               );
@@ -347,42 +348,17 @@ export function HomePage({
               </TrackedLink>
             </div>
           </div>
-          <figure className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-4 sm:p-6">
-            <div className="rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)]">
-              <p className="text-xs font-semibold tracking-[0.14em] text-teal uppercase">Andario Booking Engine</p>
-              <p className="mt-2 text-lg font-semibold text-ink">{page.mockProperty}</p>
-              <p className="mt-4 text-sm font-semibold text-ink">
-                {page.mockDates}
-                <span className="mx-2 text-muted">·</span>
-                {page.mockGuests}
-              </p>
-              <p className="mt-4 rounded-2xl bg-teal-wash px-4 py-3 text-sm font-semibold text-ink">{page.mockUnit}</p>
-              <div className="mt-4 flex items-center justify-between gap-3">
-                <p className="text-sm font-semibold text-ink">{page.mockPrice}</p>
-                <span className="rounded-full bg-teal px-4 py-2 text-sm font-semibold text-white">{page.mockAction}</span>
-              </div>
-            </div>
-            <figcaption className="mt-3 text-sm leading-6 text-muted">
-              {page.mockNote}
-            </figcaption>
+          <figure>
+            <Image
+              src="/home/booking-channel.webp"
+              alt={page.bookingAlt}
+              width={1024}
+              height={682}
+              sizes="(min-width: 1024px) 52vw, 100vw"
+              className="h-auto w-full rounded-[var(--radius-card)]"
+            />
+            <figcaption className="mt-3 text-sm leading-6 text-muted">{page.mockNote}</figcaption>
           </figure>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.pioneerTitle}</h2>
-          {page.pioneer.map((paragraph) => (
-            <p key={paragraph} className="mt-4 leading-7 text-muted">
-              {paragraph}
-            </p>
-          ))}
-          <p className="mt-4 text-sm font-semibold text-ink">{page.pioneerNote}</p>
-          <div className="mt-8">
-            <TrackedLink href={href(locale, 'about')} event={{ name: 'home_secondary_cta_click', placement: 'about' }} variant="secondary">
-              {page.pioneerCta}
-            </TrackedLink>
-          </div>
         </Container>
       </Section>
 

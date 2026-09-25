@@ -408,9 +408,9 @@ export const es: Dictionary = {
         description: services['andario-growth'].metaDescription,
       },
       accommodations: {
-        title: 'Soluciones digitales para alojamientos independientes',
+        title: 'Alojamientos independientes',
         description:
-          'Conoce las soluciones de Andario Hospitality para hostales, hoteles pequeños, posadas, apartamentos, cabañas y otros alojamientos independientes.',
+          'Andario Hospitality acompaña a hostales, hoteles pequeños, posadas, apartamentos turísticos, cabañas y villas a mejorar su presencia y sus reservas.',
       },
       'how-we-work': {
         title: 'Cómo trabajamos',

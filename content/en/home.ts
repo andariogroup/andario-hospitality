@@ -27,6 +27,8 @@ export const homePageEn: HomePageContent = {
   mockPrice: 'Property rate',
   mockAction: 'Book',
   mockNote: 'Illustrative example. Not a screenshot of the product.',
+  bookingAlt:
+    'Illustrative Andario Booking Engine interface on a computer and a phone, with rooms and a sample reservation.',
   bridge: 'Having a digital presence is not the same as having a digital strategy.',
   situationsTitle: 'Where is your property today?',
   situations: [
@@ -104,6 +106,7 @@ export const homePageEn: HomePageContent = {
   audiences: ['Hostels', 'Small hotels', 'Inns', 'Guesthouses', 'Cabins', 'Rural stays', 'Tourist apartments', 'Apart-hotels'],
   audienceCta: 'See accommodations',
   processCta: 'See how we work',
+  differentiatorsTitle: 'Why work with Andario',
   differentiators: [
     { title: 'Focus', body: 'We work with places to stay, not with every kind of business.' },
     { title: 'Simplicity', body: 'We explain the options in plain language.' },
@@ -126,12 +129,6 @@ export const homePageEn: HomePageContent = {
   bookingNote: 'Illustrative example. Not a screenshot of the product.',
   bookingOta: 'You do not need to leave the OTAs. You need a stronger channel of your own.',
   bookingPoints: ['Availability', 'Rates', 'Rooms or units', 'Guests', 'Reservations', 'Rules', 'Channel source', 'Administration'],
-  pioneerTitle: 'BARUCH Hostal · Buritaca, Colombia',
-  pioneer: [
-    'A pioneering property, where we are taking Andario Hospitality from an idea into real operations.',
-  ],
-  pioneerNote: 'We do not publish metrics, bookings or testimonials yet.',
-  pioneerCta: 'See the project',
   finalTitle: 'Not sure where to start?',
   finalBody: ['Tell us where your property is today, what worries you and what you want to improve.'],
   finalPrimary: 'Request a digital diagnosis',
