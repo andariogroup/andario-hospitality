@@ -9,6 +9,7 @@ export const accommodationsPageEn: AccommodationsPageContent = {
   primaryCta: 'Request a digital diagnosis',
   secondaryCta: 'Talk with Andario',
   micro: 'Hostels · small hotels · inns · tourist apartments · cabins · villas',
+  heroAlt: 'City building with the Andario Hospitality mark on the facade, on an urban street.',
   typesTitle: 'What kind of property do you have?',
   typesSupport:
     'It does not matter if you are just opening or if you have welcomed guests for years. We work with independent properties that want a clearer presence and a simpler way of working.',
@@ -95,6 +96,7 @@ export const accommodationsPageEn: AccommodationsPageContent = {
   checkNext: 'Set according to the real situation of the property.',
   checkCta: 'Request Digital Check',
   checkDisclaimer: 'No commitment. You are not required to contract every solution.',
+  checkMark: 'You do not need to know which tool to buy. You need to know what your property needs.',
   checkNote: 'A conceptual sketch. Not a screenshot of the product.',
   solutionsTitle: 'We can help in different areas',
   solutionsSupport: 'You do not have to contract everything. We start with what your property actually needs.',
@@ -137,12 +139,14 @@ export const accommodationsPageEn: AccommodationsPageContent = {
     'Your property can have its own booking channel on the website, so guests can check availability and book directly.',
   bookingPhrase: 'This does not mean leaving Booking.com, Airbnb or other platforms. It means building a channel of your own as well.',
   bookingCta: 'Explore Andario Booking Engine',
+  bookingNote: 'Illustrative example. Not a screenshot of the product.',
   humanTitle: 'You know your property. We know the technology.',
   humanBody: [
     'You know your guests, your rooms, your seasons and how you work. We do not expect you to be an expert in websites, Google, SEO or booking systems.',
     'Our work is to turn what you need into digital solutions that are simple, useful and fitted to your business.',
   ],
   humanMark: 'You do not need to become a technology company to use technology well.',
+  humanAlt: 'Two people reviewing a laptop at a lodging reception, with a courtyard and plants behind them.',
   startTitle: 'How do we start?',
   steps: [
     { title: 'You tell us where you are', body: 'We get to know the property and how you work today.' },
@@ -151,7 +155,10 @@ export const accommodationsPageEn: AccommodationsPageContent = {
     { title: 'We build with you', body: 'We put in place the solutions that make sense for your business.' },
     { title: 'We keep improving', body: 'We measure, learn and keep evolving with you.' },
   ],
-  baruch: 'We are building our first digital-evolution case with BARUCH Hostal, in Buritaca, Colombia.',
+  baruchEyebrow: 'Our first pioneering property',
+  baruchTitle: 'BARUCH Hostal',
+  baruchPlace: 'Buritaca, Colombia',
+  baruch: 'We are building with BARUCH Hostal our first digital-evolution case for an independent accommodation.',
   finalTitle: 'Tell us about your property.',
   finalBody:
     'Do you have a hostel, small hotel, inn, tourist apartment, cabin or villa? Tell us how you work today and what you would like to improve.',

@@ -7,7 +7,7 @@ import {
   optionalPhone,
   resolveSiteUrl,
 } from '@/lib/config/env';
-import { alternateHref, href, resolvePathname, resolveSegments } from '@/lib/i18n/routes';
+import { alternateHref, href, isRoutePublic, resolvePathname, resolveSegments } from '@/lib/i18n/routes';
 import { whatsAppUrl } from '@/lib/whatsapp/url';
 
 describe('environment parsers', () => {
@@ -46,6 +46,7 @@ describe('localized routes', () => {
     expect(href('es', 'andario-web')).toBe('/es/soluciones/andario-web');
     expect(href('en', 'andario-web')).toBe('/en/solutions/andario-web');
     expect(href('es', 'accommodations')).toBe('/es/alojamientos');
+    expect(isRoutePublic('accommodations')).toBe(false);
     expect(href('en', 'privacy')).toBe('/en/privacy');
   });
 

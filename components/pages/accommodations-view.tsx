@@ -10,6 +10,7 @@ import type { Dictionary } from '@/content/types';
 import { href, type Locale } from '@/lib/i18n/routes';
 import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo/structured-data';
 import { Camera, ChartLine, MessageCircle, Search, Sprout, Store, type LucideIcon } from 'lucide-react';
+import Image from 'next/image';
 
 const SITUATION_ICONS: LucideIcon[] = [Sprout, Search, MessageCircle, Store, Camera, ChartLine];
 
@@ -37,31 +38,42 @@ export function AccommodationsView({
       <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
 
       <Section tone="sand">
-        <Container>
-          <Breadcrumbs locale={locale} items={crumbs} />
-          <p className="mt-6 text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.eyebrow}</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{page.h1}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{page.support}</p>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.complement}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <TrackedLink href={contact} event={{ name: 'accommodations_diagnosis_click', placement: 'hero' }} cue>
-              {page.primaryCta}
-            </TrackedLink>
-            {whatsapp ? (
-              <WhatsAppButton
-                phone={whatsapp}
-                locale={locale}
-                context="accommodations"
-                label={page.secondaryCta}
-                event={{ name: 'accommodations_whatsapp_click' }}
-              />
-            ) : (
-              <TrackedLink href={contact} event={{ name: 'accommodations_diagnosis_click', placement: 'hero-secondary' }} variant="secondary">
-                {page.secondaryCta}
+        <Container className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <Breadcrumbs locale={locale} items={crumbs} />
+            <p className="mt-6 text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.eyebrow}</p>
+            <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{page.h1}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{page.support}</p>
+            <p className="mt-4 max-w-2xl leading-7 text-muted">{page.complement}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <TrackedLink href={contact} event={{ name: 'accommodations_diagnosis_click', placement: 'hero' }} cue>
+                {page.primaryCta}
               </TrackedLink>
-            )}
+              {whatsapp ? (
+                <WhatsAppButton
+                  phone={whatsapp}
+                  locale={locale}
+                  context="accommodations"
+                  label={page.secondaryCta}
+                  event={{ name: 'accommodations_whatsapp_click' }}
+                />
+              ) : (
+                <TrackedLink href={contact} event={{ name: 'accommodations_diagnosis_click', placement: 'hero-secondary' }} variant="secondary">
+                  {page.secondaryCta}
+                </TrackedLink>
+              )}
+            </div>
+            <p className="mt-6 max-w-3xl text-sm leading-6 text-muted">{page.micro}</p>
           </div>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-muted">{page.micro}</p>
+          <Image
+            src="/home/andario-city-building.webp"
+            alt={page.heroAlt}
+            width={1024}
+            height={769}
+            priority
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover"
+          />
         </Container>
       </Section>
 
@@ -120,6 +132,7 @@ export function AccommodationsView({
               <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.checkTitle}</h2>
               <p className="mt-4 max-w-xl font-semibold text-ink">{page.checkSupport}</p>
               <p className="mt-4 max-w-xl leading-7 text-muted">{page.checkBody}</p>
+              <p className="mt-4 max-w-xl font-semibold text-ink">{page.checkMark}</p>
               <div className="mt-6">
                 <TrackedLink href={contact} event={{ name: 'accommodations_diagnosis_click', placement: 'digital-check' }} cue>
                   {page.checkCta}
@@ -213,32 +226,63 @@ export function AccommodationsView({
       </Section>
 
       <Section>
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.bookingTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.bookingBody}</p>
-          <p className="mt-4 font-semibold text-ink">{page.bookingPhrase}</p>
-          <div className="mt-8">
-            <TrackedLink
-              href={href(locale, 'andario-booking-engine')}
-              event={{ name: 'accommodations_booking_engine_click', placement: 'feature' }}
-              extra={{ name: 'booking_engine_cta', placement: 'accommodations-feature' }}
-              cue
-            >
-              {page.bookingCta}
-            </TrackedLink>
+        <Container className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.bookingTitle}</h2>
+            <p className="mt-4 leading-7 text-muted">{page.bookingBody}</p>
+            <p className="mt-4 font-semibold text-ink">{page.bookingPhrase}</p>
+            <div className="mt-8">
+              <TrackedLink
+                href={href(locale, 'andario-booking-engine')}
+                event={{ name: 'accommodations_booking_engine_click', placement: 'feature' }}
+                extra={{ name: 'booking_engine_cta', placement: 'accommodations-feature' }}
+                cue
+              >
+                {page.bookingCta}
+              </TrackedLink>
+            </div>
           </div>
+          <figure className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-4 sm:p-6">
+            <div className="rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)]">
+              <p className="text-xs font-semibold tracking-[0.14em] text-teal uppercase">Andario Booking Engine</p>
+              <p className="mt-2 text-lg font-semibold text-ink">{locale === 'es' ? 'Tu alojamiento' : 'Your property'}</p>
+              <p className="mt-4 text-sm font-semibold text-ink">
+                {locale === 'es' ? 'Llegada · Salida' : 'Arrival · Departure'}
+                <span className="mx-2 text-muted">·</span>
+                {locale === 'es' ? 'Huéspedes' : 'Guests'}
+              </p>
+              <p className="mt-4 rounded-2xl bg-teal-wash px-4 py-3 text-sm font-semibold text-ink">
+                {locale === 'es' ? 'Habitación disponible' : 'Room available'}
+              </p>
+              <div className="mt-4 flex items-center justify-between gap-3">
+                <p className="text-sm font-semibold text-ink">{locale === 'es' ? 'Tarifa del alojamiento' : 'Property rate'}</p>
+                <span className="rounded-full bg-teal px-4 py-2 text-sm font-semibold text-white">{locale === 'es' ? 'Reservar' : 'Book'}</span>
+              </div>
+            </div>
+            <figcaption className="mt-3 text-sm leading-6 text-muted">{page.bookingNote}</figcaption>
+          </figure>
         </Container>
       </Section>
 
       <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.humanTitle}</h2>
-          {page.humanBody.map((paragraph) => (
-            <p key={paragraph} className="mt-4 leading-7 text-muted">
-              {paragraph}
-            </p>
-          ))}
-          <p className="mt-8 text-xl font-semibold tracking-tight text-ink">{page.humanMark}</p>
+        <Container className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.humanTitle}</h2>
+            {page.humanBody.map((paragraph) => (
+              <p key={paragraph} className="mt-4 leading-7 text-muted">
+                {paragraph}
+              </p>
+            ))}
+            <p className="mt-8 text-xl font-semibold tracking-tight text-ink">{page.humanMark}</p>
+          </div>
+          <Image
+            src="/home/known-reception.webp"
+            alt={page.humanAlt}
+            width={1024}
+            height={769}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover"
+          />
         </Container>
       </Section>
 
@@ -254,11 +298,19 @@ export function AccommodationsView({
               </li>
             ))}
           </ol>
-          <p className="mt-8 max-w-3xl text-sm leading-6 text-muted">{page.baruch}</p>
         </Container>
       </Section>
 
-      <Section tone="sand" className="border-t border-sand-deep">
+      <Section tone="sand">
+        <Container className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.baruchEyebrow}</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink">{page.baruchTitle}</h2>
+          <p className="mt-2 text-sm font-semibold text-ink">{page.baruchPlace}</p>
+          <p className="mt-4 leading-7 text-muted">{page.baruch}</p>
+        </Container>
+      </Section>
+
+      <Section className="border-t border-sand-deep">
         <Container>
           <h2 className="text-3xl font-semibold tracking-tight text-ink">{dict.nav.faq}</h2>
           <div className="mt-6">
@@ -267,7 +319,7 @@ export function AccommodationsView({
         </Container>
       </Section>
 
-      <Section className="pb-24">
+      <Section tone="sand" className="pb-24">
         <Container>
           <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.finalTitle}</h2>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{page.finalBody}</p>

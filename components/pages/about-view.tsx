@@ -269,10 +269,7 @@ export function AboutView({
               </p>
             ))}
             <p className="mt-8 font-semibold text-ink">{page.exploreTitle}</p>
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-              <TrackedLink href={href(locale, 'accommodations')} event={{ name: 'about_solution_click', target: 'accommodations' }} variant="secondary">
-                {page.stayCta}
-              </TrackedLink>
+            <div className="mt-4">
               <TrackedLink href={href(locale, 'solutions')} event={{ name: 'about_solution_click', target: 'solutions' }} variant="secondary">
                 {page.solutionsCta}
               </TrackedLink>

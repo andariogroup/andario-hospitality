@@ -290,15 +290,6 @@ export function HomePage({
               );
             })}
           </ul>
-          <div className="mt-8">
-            <TrackedLink
-              href={href(locale, 'accommodations')}
-              event={{ name: 'home_secondary_cta_click', placement: 'accommodations' }}
-              variant="secondary"
-            >
-              {page.audienceCta}
-            </TrackedLink>
-          </div>
         </Container>
       </Section>
 

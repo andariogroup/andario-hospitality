@@ -32,8 +32,12 @@ export type RouteId = (typeof ROUTE_IDS)[number];
 /** The cases page stays in the project. Set this to true when there is a case ready to publish. */
 export const CASES_PUBLISHED = false;
 
+/** The accommodations page stays in the project. Set this to true to publish it again. */
+export const ACCOMMODATIONS_PUBLISHED = false;
+
 export function isRoutePublic(routeId: RouteId): boolean {
   if (routeId === 'cases') return CASES_PUBLISHED;
+  if (routeId === 'accommodations') return ACCOMMODATIONS_PUBLISHED;
   return true;
 }
 

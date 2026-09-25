@@ -9,6 +9,7 @@ export const accommodationsPageEs: AccommodationsPageContent = {
   primaryCta: 'Solicitar diagnóstico digital',
   secondaryCta: 'Hablar con Andario',
   micro: 'Hostales · hoteles pequeños · posadas · apartamentos turísticos · cabañas · villas',
+  heroAlt: 'Edificio urbano con la marca Andario Hospitality en la fachada, sobre una calle de ciudad.',
   typesTitle: '¿Qué tipo de alojamiento tienes?',
   typesSupport:
     'No importa si estás empezando o si llevas años recibiendo huéspedes. Trabajamos con alojamientos independientes que quieren mejorar su presencia y su forma de trabajar.',
@@ -95,6 +96,7 @@ export const accommodationsPageEs: AccommodationsPageContent = {
   checkNext: 'Definidos según la situación real del alojamiento.',
   checkCta: 'Solicitar Digital Check',
   checkDisclaimer: 'Sin compromiso. Sin obligarte a contratar todas las soluciones.',
+  checkMark: 'No necesitas saber qué herramienta comprar. Necesitas saber qué necesita tu alojamiento.',
   checkNote: 'Representación conceptual. No es una captura del producto.',
   solutionsTitle: 'Podemos ayudarte en diferentes áreas',
   solutionsSupport: 'No tienes que contratarlo todo. Empezamos por lo que realmente necesita tu alojamiento.',
@@ -137,12 +139,14 @@ export const accommodationsPageEs: AccommodationsPageContent = {
     'Tu alojamiento puede tener su propio canal de reservas integrado en tu página web, permitiendo que tus huéspedes consulten disponibilidad y realicen reservas directamente.',
   bookingPhrase: 'Esto no significa abandonar Booking.com, Airbnb u otras plataformas. Significa construir también tu propio canal.',
   bookingCta: 'Conocer Andario Booking Engine',
+  bookingNote: 'Ejemplo ilustrativo. No es una captura del producto.',
   humanTitle: 'Tú conoces tu alojamiento. Nosotros conocemos la tecnología.',
   humanBody: [
     'Tú conoces a tus huéspedes, tus habitaciones, tus temporadas y tu forma de trabajar. No esperamos que seas experto en páginas web, Google, SEO o sistemas de reservas.',
     'Nuestro trabajo es convertir tus necesidades en soluciones digitales sencillas, útiles y adaptadas a tu negocio.',
   ],
   humanMark: 'No necesitas convertirte en una empresa tecnológica para aprovechar la tecnología.',
+  humanAlt: 'Dos personas revisando un computador en la recepción de un alojamiento, con patio y plantas al fondo.',
   startTitle: '¿Cómo empezamos?',
   steps: [
     { title: 'Nos cuentas dónde estás', body: 'Conocemos tu alojamiento y cómo trabajas hoy.' },
@@ -151,7 +155,10 @@ export const accommodationsPageEs: AccommodationsPageContent = {
     { title: 'Construimos contigo', body: 'Implementamos las soluciones que tengan sentido para tu negocio.' },
     { title: 'Seguimos mejorando', body: 'Medimos, aprendemos y evolucionamos contigo.' },
   ],
-  baruch: 'Estamos construyendo nuestro primer caso de evolución digital con BARUCH Hostal, en Buritaca, Colombia.',
+  baruchEyebrow: 'Nuestro primer alojamiento pionero',
+  baruchTitle: 'BARUCH Hostal',
+  baruchPlace: 'Buritaca, Colombia',
+  baruch: 'Estamos construyendo con BARUCH Hostal nuestro primer caso de evolución digital para un alojamiento independiente.',
   finalTitle: 'Cuéntanos de tu alojamiento.',
   finalBody:
     '¿Tienes un hostal, hotel pequeño, posada, apartamento turístico, cabaña o villa? Cuéntanos cómo trabajas hoy y qué te gustaría mejorar.',

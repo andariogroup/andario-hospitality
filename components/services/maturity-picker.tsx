@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import type { AnalyticsEvent } from '@/lib/analytics/events';
+import { CalendarDays, ChartLine, Check, Layers, MessageCircle, Monitor, Search, type LucideIcon } from 'lucide-react';
+
+const SITUATION_ICONS: LucideIcon[] = [Monitor, Search, CalendarDays, MessageCircle, Layers, ChartLine];
 
 export function AccommodationDigitalMaturity({
   label,
@@ -21,6 +24,7 @@ export function AccommodationDigitalMaturity({
   track?: 'solutions' | 'home' | 'accommodations';
   scenarios: {
     title: string;
+    summary?: string;
     body?: string;
     cta: string;
     placement: string;
@@ -49,6 +53,7 @@ export function AccommodationDigitalMaturity({
       <div role="tablist" aria-label={label} className="grid gap-2">
         {scenarios.map((scenario, index) => {
           const selected = index === active;
+          const Icon = SITUATION_ICONS[index] ?? Monitor;
           return (
             <button
               key={scenario.title}
@@ -58,8 +63,8 @@ export function AccommodationDigitalMaturity({
               aria-selected={selected}
               aria-controls={`${idPrefix}-panel-${index}`}
               tabIndex={selected ? 0 : -1}
-              className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-colors ${
-                selected ? 'border-teal bg-teal-wash text-ink' : 'border-sand-deep bg-white text-ink hover:border-teal/40'
+              className={`flex items-start gap-3 rounded-2xl border px-4 py-3 text-left transition duration-200 motion-safe:hover:-translate-y-0.5 ${
+                selected ? 'border-teal bg-teal-wash text-ink' : 'border-sand-deep bg-white text-ink hover:border-teal'
               }`}
               onClick={() => setActive(index)}
               onKeyDown={(event) => {
@@ -71,17 +76,27 @@ export function AccommodationDigitalMaturity({
                 document.getElementById(`${idPrefix}-tab-${next}`)?.focus();
               }}
             >
-              <span className="mr-2 text-teal">{String(index + 1).padStart(2, '0')}</span>
-              {scenario.title}
+              <span className={`mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${selected ? 'bg-white text-teal' : 'bg-sand text-ink'}`}>
+                <Icon aria-hidden="true" className="h-4 w-4" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-teal">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="font-semibold text-ink">{scenario.title}</span>
+                </span>
+                {scenario.summary ? <span className="mt-1 block text-sm font-normal leading-6 text-muted">{scenario.summary}</span> : null}
+              </span>
+              {selected ? <Check aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-teal" /> : null}
             </button>
           );
         })}
       </div>
       <div
+        key={active}
         id={`${idPrefix}-panel-${active}`}
         role="tabpanel"
         aria-labelledby={`${idPrefix}-tab-${active}`}
-        className="mt-4 rounded-[var(--radius-card)] border border-sand-deep bg-white p-5"
+        className="mt-4 rounded-[var(--radius-card)] border border-sand-deep bg-white p-5 motion-safe:animate-[dc-fade_0.2s_ease]"
       >
         {current.body ? (
           <div>

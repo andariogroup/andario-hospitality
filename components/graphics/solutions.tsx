@@ -152,10 +152,13 @@ export function BeforeAfter({
 
 export function PillarGrid({ items }: { items: { title: string; body: string }[] }) {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((item) => (
-        <li key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white p-5">
-          <h3 className="font-semibold text-ink">{item.title}</h3>
+    <ul className="grid gap-5 sm:grid-cols-2">
+      {items.map((item, index) => (
+        <li key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white p-6 sm:p-7">
+          <p aria-hidden="true" className="text-sm font-semibold text-teal">
+            {String(index + 1).padStart(2, '0')}
+          </p>
+          <h3 className="mt-3 text-lg font-semibold text-ink">{item.title}</h3>
           <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
         </li>
       ))}
