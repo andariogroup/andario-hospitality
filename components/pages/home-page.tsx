@@ -1,5 +1,5 @@
 import { audienceIcons } from '@/components/graphics/icons';
-import { BookingHub, FlowSteps } from '@/components/graphics/solutions';
+import { FlowSteps } from '@/components/graphics/solutions';
 import { WhatsAppButton } from '@/components/conversion/whatsapp-button';
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -10,6 +10,8 @@ import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
 import { href, type Locale, type ServiceId } from '@/lib/i18n/routes';
 import { faqJsonLd, itemListJsonLd } from '@/lib/seo/structured-data';
+import { Compass, Link2, MessageCircle, MonitorSmartphone, Search, Share2, type LucideIcon } from 'lucide-react';
+import Image from 'next/image';
 
 const OFFER_ORDER: ServiceId[] = [
   'andario-web',
@@ -18,8 +20,9 @@ const OFFER_ORDER: ServiceId[] = [
   'andario-connect',
   'andario-content',
   'andario-growth',
-  'digital-check',
 ];
+
+const PROBLEM_ICONS: LucideIcon[] = [Share2, Link2, MonitorSmartphone, MessageCircle, Search, Compass];
 
 export function HomePage({
   locale,
@@ -39,34 +42,50 @@ export function HomePage({
       <JsonLd
         data={itemListJsonLd(
           locale,
-          OFFER_ORDER.map((id) => ({ name: dict.services[id].name, routeId: id })),
+          [...OFFER_ORDER, 'digital-check' as const].map((id) => ({ name: dict.services[id].name, routeId: id })),
         )}
       />
 
       <Section tone="sand" className="pb-16 sm:pb-24">
-        <Container>
-          <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-6xl">{page.h1}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{page.support}</p>
-          <p className="mt-4 max-w-xl font-semibold text-ink">{page.trust}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <TrackedLink href={contact} event={{ name: 'home_primary_cta_click', placement: 'hero' }} cue>
-              {page.primaryCta}
-            </TrackedLink>
-            {whatsapp ? (
-              <WhatsAppButton
-                phone={whatsapp}
-                locale={locale}
-                context="home"
-                label={page.secondaryCta}
-                event={{ name: 'home_whatsapp_click' }}
-              />
-            ) : (
-              <TrackedLink href={contact} event={{ name: 'home_secondary_cta_click', placement: 'hero' }} variant="secondary">
-                {page.secondaryCta}
+        <Container className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-6xl">{page.h1}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{page.support}</p>
+            <p className="mt-4 max-w-xl font-semibold text-ink">{page.trust}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <TrackedLink href={contact} event={{ name: 'home_primary_cta_click', placement: 'hero' }} cue>
+                {page.primaryCta}
               </TrackedLink>
-            )}
+              {whatsapp ? (
+                <WhatsAppButton
+                  phone={whatsapp}
+                  locale={locale}
+                  context="home"
+                  label={page.secondaryCta}
+                  event={{ name: 'home_whatsapp_click' }}
+                />
+              ) : (
+                <TrackedLink href={contact} event={{ name: 'home_secondary_cta_click', placement: 'hero' }} variant="secondary">
+                  {page.secondaryCta}
+                </TrackedLink>
+              )}
+            </div>
+            <p className="mt-6 max-w-3xl text-sm leading-6 text-muted">{page.forLine}</p>
           </div>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-muted">{page.forLine}</p>
+          <figure className="relative">
+            <Image
+              src="/home/andario-city-building.webp"
+              alt={page.heroAlt}
+              width={1024}
+              height={769}
+              priority
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover"
+            />
+            <figcaption className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1.5 text-sm font-semibold text-ink">
+              {page.heroBadge}
+            </figcaption>
+          </figure>
         </Container>
       </Section>
 
@@ -75,11 +94,15 @@ export function HomePage({
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.problemTitle}</h2>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{page.problemIntro}</p>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.problems.map((problem) => (
-              <li key={problem} className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-5 text-base leading-7 text-ink">
-                {problem}
-              </li>
-            ))}
+            {page.problems.map((problem, index) => {
+              const Icon = PROBLEM_ICONS[index] ?? Compass;
+              return (
+                <li key={problem} className="flex gap-3 rounded-[var(--radius-card)] border border-sand-deep bg-sand p-5 text-base leading-7 text-ink">
+                  <Icon aria-hidden="true" className="mt-1 h-6 w-6 shrink-0 text-teal" />
+                  <span>{problem}</span>
+                </li>
+              );
+            })}
           </ul>
           <p className="mt-8 max-w-2xl text-xl font-semibold text-ink">{page.problemClose}</p>
           <p className="mt-3 max-w-2xl leading-7 text-muted">{page.problemNext}</p>
@@ -95,7 +118,32 @@ export function HomePage({
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.offerTitle}</h2>
           <p className="mt-4 max-w-3xl leading-7 text-muted">{page.offerSupport}</p>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article className="mt-10 grid items-center gap-8 rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)] lg:grid-cols-[1.05fr_0.95fr] lg:p-8">
+            <Image
+              src="/home/digital-check-desk.webp"
+              alt={page.checkAlt}
+              width={1024}
+              height={682}
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="aspect-[3/2] w-full rounded-[var(--radius-card)] object-cover"
+            />
+            <div>
+              <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{dict.services['digital-check'].name}</p>
+              <h3 className="mt-3 text-2xl font-semibold text-ink">{page.cards['digital-check'].title}</h3>
+              <p className="mt-3 leading-7 text-muted">{page.cards['digital-check'].body}</p>
+              <p className="mt-3 text-sm text-muted">{page.checkNote}</p>
+              <div className="mt-6">
+                <TrackedLink
+                  href={href(locale, 'digital-check')}
+                  event={{ name: 'home_service_click', service: 'digital-check' }}
+                  cue
+                >
+                  {page.cards['digital-check'].cta}
+                </TrackedLink>
+              </div>
+            </div>
+          </article>
+          <div className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {OFFER_ORDER.map((id, index) => {
               const card = page.cards[id];
               return (
@@ -141,13 +189,23 @@ export function HomePage({
       </Section>
 
       <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight whitespace-pre-line text-ink sm:text-4xl">{page.knownTitle}</h2>
-          {page.knownBody.map((paragraph) => (
-            <p key={paragraph} className="mt-4 text-lg leading-8 text-muted">
-              {paragraph}
-            </p>
-          ))}
+        <Container className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight whitespace-pre-line text-ink sm:text-4xl">{page.knownTitle}</h2>
+            {page.knownBody.map((paragraph) => (
+              <p key={paragraph} className="mt-4 text-lg leading-8 text-muted">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <Image
+            src="/home/known-reception.webp"
+            alt={page.knownAlt}
+            width={1024}
+            height={769}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="aspect-[4/3] w-full rounded-[var(--radius-card)] object-cover"
+          />
         </Container>
       </Section>
 
@@ -225,7 +283,25 @@ export function HomePage({
               </TrackedLink>
             </div>
           </div>
-          <BookingHub title="Andario Booking Engine" branches={page.bookingBranches} result={page.bookingResult} note={page.bookingNote} />
+          <figure className="rounded-[var(--radius-card)] border border-sand-deep bg-sand p-4 sm:p-6">
+            <div className="rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-soft)]">
+              <p className="text-xs font-semibold tracking-[0.14em] text-teal uppercase">Andario Booking Engine</p>
+              <p className="mt-2 text-lg font-semibold text-ink">{page.mockProperty}</p>
+              <p className="mt-4 text-sm font-semibold text-ink">
+                {page.mockDates}
+                <span className="mx-2 text-muted">·</span>
+                {page.mockGuests}
+              </p>
+              <p className="mt-4 rounded-2xl bg-teal-wash px-4 py-3 text-sm font-semibold text-ink">{page.mockUnit}</p>
+              <div className="mt-4 flex items-center justify-between gap-3">
+                <p className="text-sm font-semibold text-ink">{page.mockPrice}</p>
+                <span className="rounded-full bg-teal px-4 py-2 text-sm font-semibold text-white">{page.mockAction}</span>
+              </div>
+            </div>
+            <figcaption className="mt-3 text-sm leading-6 text-muted">
+              {page.mockNote} {page.bookingNote}
+            </figcaption>
+          </figure>
         </Container>
       </Section>
 

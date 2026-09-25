@@ -4,7 +4,7 @@ import {
   CalendarCheck,
   Camera,
   ChartLine,
-  ClipboardCheck,
+  ScanSearch,
   Compass,
   Globe,
   Hotel,
@@ -17,7 +17,7 @@ import {
 import type { ServiceId } from '@/lib/i18n/routes';
 
 export const serviceIcons: Record<ServiceId, LucideIcon> = {
-  'digital-check': ClipboardCheck,
+  'digital-check': ScanSearch,
   'andario-web': Globe,
   'andario-visibility': Search,
   'andario-booking-engine': CalendarCheck,
