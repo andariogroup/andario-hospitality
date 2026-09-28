@@ -1,15 +1,19 @@
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { WhatsAppButton } from '@/components/conversion/whatsapp-button';
-import { FlowSteps, PillarGrid } from '@/components/graphics/solutions';
+import { DeliverableSheet, DigitalCheckPanel, MethodTimeline } from '@/components/graphics/how-we-work';
+import { FlowSteps } from '@/components/graphics/solutions';
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { FaqList } from '@/components/sections/faq-list';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
-import { CASES_PUBLISHED, href, type Locale, type ServiceId } from '@/lib/i18n/routes';
+import { href, type Locale } from '@/lib/i18n/routes';
 import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo/structured-data';
+import { Compass, Eye, Handshake, Layers, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
+
+const PRINCIPLE_ICONS: LucideIcon[] = [Compass, Layers, Handshake, Eye];
 
 function Actions({
   locale,
@@ -42,22 +46,6 @@ function Actions({
   );
 }
 
-function NumberedSteps({ items }: { items: { title: string; body: string }[] }) {
-  return (
-    <ol className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
-      {items.map((item, index) => (
-        <li key={item.title} className="border-t border-sand-deep pt-5">
-          <p aria-hidden="true" className="text-sm font-semibold text-teal">
-            {String(index + 1).padStart(2, '0')}
-          </p>
-          <h3 className="mt-2 text-xl font-semibold text-ink">{item.title}</h3>
-          <p className="mt-2 leading-7 text-muted">{item.body}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 export function HowWeWorkView({
   locale,
   dict,
@@ -78,7 +66,7 @@ export function HowWeWorkView({
     <>
       <JsonLd data={faqJsonLd(page.faqs)} />
       <Section tone="sand">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <Container className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div>
             <Breadcrumbs locale={locale} items={crumbs} />
             <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
@@ -89,7 +77,7 @@ export function HowWeWorkView({
             <p className="mt-4 max-w-xl text-sm text-muted">{page.micro}</p>
           </div>
           <Image
-            src="/how-we-work/hero-facade.jpg"
+            src="/how-we-work/hero-facade.webp"
             alt={page.heroAlt}
             width={1024}
             height={935}
@@ -103,18 +91,43 @@ export function HowWeWorkView({
       <Section id="metodo" className="scroll-mt-28">
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.methodTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.methodBody}</p>
-          <NumberedSteps items={page.method} />
+          <MethodTimeline steps={page.method} />
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.businessTitle}</h2>
+            <p className="mt-4 text-lg leading-8 text-muted">{page.businessBody}</p>
+          </div>
+          <Image
+            src="/home/known-reception.webp"
+            alt={page.businessAlt}
+            width={1024}
+            height={769}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="aspect-[4/3] h-auto w-full rounded-[var(--radius-card)] object-cover"
+          />
+        </Container>
+      </Section>
+
+      <Section>
+        <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.checkTitle}</h2>
+            <p className="mt-4 text-lg leading-8 text-muted">{page.checkBody}</p>
+          </div>
+          <DigitalCheckPanel name={page.checkName} rows={page.checkRows} label={page.checkLabel} />
         </Container>
       </Section>
 
       <Section tone="sand">
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.checkTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.checkBody}</p>
-          <ol className="mt-10 grid gap-6 md:grid-cols-2">
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.reviewTitle}</h2>
+          <ol className="mt-10 grid gap-8 md:grid-cols-2">
             {page.questions.map((item, index) => (
-              <li key={item.title}>
+              <li key={item.title} className="border-t border-sand-deep pt-5">
                 <p aria-hidden="true" className="text-sm font-semibold text-teal">
                   {String(index + 1).padStart(2, '0')}
                 </p>
@@ -127,10 +140,22 @@ export function HowWeWorkView({
       </Section>
 
       <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.receiveTitle}</h2>
-          <NumberedSteps items={page.receive} />
-          <Actions locale={locale} page={page} whatsapp={whatsapp} contact={contact} placement="receive" />
+        <Container className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.receiveTitle}</h2>
+            <ol className="mt-8 grid gap-6">
+              {page.receive.map((item, index) => (
+                <li key={item.title}>
+                  <p aria-hidden="true" className="text-sm font-semibold text-teal">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="mt-1 text-lg font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted">{item.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <DeliverableSheet title={page.deliverableTitle} items={page.deliverableItems} label={page.deliverableLabel} />
         </Container>
       </Section>
 
@@ -146,24 +171,6 @@ export function HowWeWorkView({
 
       <Section>
         <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.decisionTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.decisionBody}</p>
-          <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold text-ink">
-            {page.decisionParts.map((part, index) => (
-              <span key={part} className="inline-flex items-center gap-3">
-                {index > 0 ? <span>+</span> : null}
-                <span className="rounded-full bg-sand px-4 py-2">{part}</span>
-              </span>
-            ))}
-            <span>=</span>
-            <span className="rounded-full bg-teal px-4 py-2 text-white">{page.decisionEquals}</span>
-          </p>
-          <p className="mt-6 font-semibold text-ink">{page.decisionNote}</p>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container className="max-w-3xl">
           <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.approveTitle}</h2>
           <p className="mt-4 leading-7 text-muted">{page.approveBody}</p>
           <ol className="mt-8 flex flex-col gap-4 border-l border-teal/30 pl-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2 sm:border-l-0 sm:pl-0">
@@ -174,85 +181,46 @@ export function HowWeWorkView({
               </li>
             ))}
           </ol>
-          <p className="mt-6 leading-7 text-muted">{page.approveNote}</p>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.paceTitle}</h2>
-          <p className="mt-4 text-lg leading-8 text-muted">{page.paceBody}</p>
         </Container>
       </Section>
 
       <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.knownTitle}</h2>
-          <p className="mt-4 text-lg leading-8 text-muted">{page.knownBody}</p>
+        <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.knownTitle}</h2>
+            <p className="mt-4 text-lg leading-8 text-muted">{page.knownBody}</p>
+          </div>
+          <Image
+            src="/how-we-work/known-digital.webp"
+            alt={page.knownAlt}
+            width={1024}
+            height={576}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="h-auto w-full rounded-[var(--radius-card)]"
+          />
         </Container>
       </Section>
 
       <Section>
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.principlesTitle}</h2>
-          <div className="mt-10">
-            <PillarGrid items={page.principles} />
-          </div>
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2">
+            {page.principles.map((item, index) => {
+              const Icon = PRINCIPLE_ICONS[index] ?? Compass;
+              return (
+                <li key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep p-6 sm:p-7">
+                  <Icon aria-hidden="true" className="h-5 w-5 text-teal" />
+                  <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+                </li>
+              );
+            })}
+          </ul>
           <p className="mx-auto mt-10 max-w-2xl text-center text-lg font-semibold text-ink">{page.principlesMark}</p>
         </Container>
       </Section>
 
       <Section tone="sand">
-        <Container className="max-w-3xl">
-          <p className="text-lg leading-8 text-ink">{page.solutionsBody}</p>
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
-            {page.solutionIds.map((id) => (
-              <li key={id}>
-                <TrackedLink
-                  href={href(locale, id)}
-                  variant="ghost"
-                  className="h-auto min-h-11 rounded-md px-1 py-2 text-teal shadow-none hover:translate-y-0 hover:bg-transparent hover:text-teal-dark"
-                  event={solutionEvent(id)}
-                >
-                  {dict.services[id].name}
-                </TrackedLink>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="max-w-3xl">
-          <p className="text-lg leading-8 text-ink">{page.bookingBody}</p>
-          <div className="mt-6">
-            <TrackedLink
-              href={href(locale, 'andario-booking-engine')}
-              event={{ name: 'how_we_work_booking_engine_click', placement: 'feature' }}
-              extra={{ name: 'booking_engine_cta', placement: 'how-we-work-feature' }}
-              cue
-            >
-              {page.bookingCta}
-            </TrackedLink>
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container className="max-w-3xl">
-          <h2 className="text-2xl font-semibold text-ink sm:text-3xl">{page.pioneerTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.pioneerBody}</p>
-          {CASES_PUBLISHED ? (
-            <div className="mt-6">
-              <TrackedLink href={href(locale, 'cases')} event={{ name: 'how_we_work_case_click' }} variant="secondary" cue>
-                {page.pioneerCta}
-              </TrackedLink>
-            </div>
-          ) : null}
-        </Container>
-      </Section>
-
-      <Section>
         <Container>
           <h2 className="text-3xl font-semibold tracking-tight text-ink">{dict.nav.faq}</h2>
           <div className="mt-6">
@@ -261,7 +229,7 @@ export function HowWeWorkView({
         </Container>
       </Section>
 
-      <Section tone="sand">
+      <Section>
         <Container>
           <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.finalTitle}</h2>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{page.finalBody}</p>
@@ -271,8 +239,4 @@ export function HowWeWorkView({
       </Section>
     </>
   );
-}
-
-function solutionEvent(id: ServiceId) {
-  return { name: 'how_we_work_solution_click' as const, service: id };
 }

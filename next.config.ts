@@ -64,12 +64,20 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 828, 1080, 1200, 1920],
+    deviceSizes: [640, 828, 1080, 1200],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async headers() {
-    return [{ source: '/:path*', headers: SECURITY_HEADERS }];
+    const cached = { key: 'Cache-Control', value: 'public, max-age=2592000' };
+    return [
+      { source: '/:path*', headers: SECURITY_HEADERS },
+      { source: '/home/:path*', headers: [cached] },
+      { source: '/how-we-work/:path*', headers: [cached] },
+      { source: '/solutions/:path*', headers: [cached] },
+      { source: '/brand/:path*', headers: [cached] },
+    ];
   },
 };
 

@@ -1,19 +1,6 @@
 ﻿import { Breadcrumbs } from '@/components/navigation/breadcrumbs';
 import { FaqList } from '@/components/sections/faq-list';
-import { AndarioWebView } from '@/components/services/andario-web-view';
-import { VisibilityView } from '@/components/services/visibility-view';
-import { ConnectView } from '@/components/services/connect-view';
-import { ContentView } from '@/components/services/content-view';
-import { GrowthView } from '@/components/services/growth-view';
-import { BookingEngineView } from '@/components/services/booking-engine-view';
-import { DigitalCheckView } from '@/components/services/digital-check-view';
-import { SolutionsView } from '@/components/services/solutions-view';
-import { AccommodationsView } from '@/components/pages/accommodations-view';
-import { AboutView } from '@/components/pages/about-view';
-import { HowWeWorkView } from '@/components/pages/how-we-work-view';
 import { ContactActions } from '@/components/conversion/contact-actions';
-import { ContactView } from '@/components/pages/contact-view';
-import { TermsView } from '@/components/pages/terms-view';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -21,7 +8,7 @@ import type { Dictionary } from '@/content/types';
 import { href, isServiceId, SERVICE_IDS, type Locale, type RouteId } from '@/lib/i18n/routes';
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo/structured-data';
 
-export function RoutePage({
+export async function RoutePage({
   locale,
   routeId,
   dict,
@@ -37,12 +24,15 @@ export function RoutePage({
   }
 
   if (routeId === 'solutions') {
+    const { SolutionsView } = await import('@/components/services/solutions-view');
     return <SolutionsView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'accommodations') {
+    const { AccommodationsView } = await import('@/components/pages/accommodations-view');
     return <AccommodationsView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'how-we-work') {
+    const { HowWeWorkView } = await import('@/components/pages/how-we-work-view');
     return <HowWeWorkView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'cases') {
@@ -54,6 +44,7 @@ export function RoutePage({
     );
   }
   if (routeId === 'about') {
+    const { AboutView } = await import('@/components/pages/about-view');
     return <AboutView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'faq') {
@@ -64,8 +55,14 @@ export function RoutePage({
       </>
     );
   }
-  if (routeId === 'contact') return <ContactView locale={locale} dict={dict} whatsapp={whatsapp} />;
-  if (routeId === 'terms') return <TermsView locale={locale} dict={dict} />;
+  if (routeId === 'contact') {
+    const { ContactView } = await import('@/components/pages/contact-view');
+    return <ContactView locale={locale} dict={dict} whatsapp={whatsapp} />;
+  }
+  if (routeId === 'terms') {
+    const { TermsView } = await import('@/components/pages/terms-view');
+    return <TermsView locale={locale} dict={dict} />;
+  }
   if (routeId === 'privacy') return <LegalPage locale={locale} dict={dict} />;
 
   return null;
@@ -128,7 +125,7 @@ function PageIntro({
   );
 }
 
-function ServicePage({
+async function ServicePage({
   locale,
   routeId,
   dict,
@@ -141,24 +138,31 @@ function ServicePage({
 }) {
   const service = dict.services[routeId];
   if (routeId === 'digital-check') {
+    const { DigitalCheckView } = await import('@/components/services/digital-check-view');
     return <DigitalCheckView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'andario-web') {
+    const { AndarioWebView } = await import('@/components/services/andario-web-view');
     return <AndarioWebView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'andario-visibility') {
+    const { VisibilityView } = await import('@/components/services/visibility-view');
     return <VisibilityView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'andario-connect') {
+    const { ConnectView } = await import('@/components/services/connect-view');
     return <ConnectView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'andario-content') {
+    const { ContentView } = await import('@/components/services/content-view');
     return <ContentView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'andario-growth') {
+    const { GrowthView } = await import('@/components/services/growth-view');
     return <GrowthView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   if (routeId === 'andario-booking-engine') {
+    const { BookingEngineView } = await import('@/components/services/booking-engine-view');
     return <BookingEngineView locale={locale} dict={dict} whatsapp={whatsapp} />;
   }
   const crumbs = [

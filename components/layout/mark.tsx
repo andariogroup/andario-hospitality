@@ -9,7 +9,6 @@ export function Mark({ className, labeled = true }: { className?: string; labele
         alt=""
         width={40}
         height={40}
-        priority
         unoptimized
         className="h-10 w-10"
       />

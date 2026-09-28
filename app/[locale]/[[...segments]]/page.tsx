@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { HomePage } from '@/components/pages/home-page';
-import { RoutePage } from '@/components/pages/route-page';
 import { getDictionary } from '@/content';
 import { site } from '@/lib/config/site';
 import { href, isLocale, isRoutePublic, LOCALES, resolveSegments, ROUTE_IDS } from '@/lib/i18n/routes';
@@ -48,8 +46,10 @@ export default async function Page({
   const dict = getDictionary(locale);
 
   if (routeId === 'home') {
+    const { HomePage } = await import('@/components/pages/home-page');
     return <HomePage locale={locale} dict={dict} whatsapp={site.whatsapp} />;
   }
 
+  const { RoutePage } = await import('@/components/pages/route-page');
   return <RoutePage locale={locale} routeId={routeId} dict={dict} whatsapp={site.whatsapp} />;
 }
