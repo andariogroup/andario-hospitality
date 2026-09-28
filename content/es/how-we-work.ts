@@ -60,7 +60,48 @@ export const howWeWorkPageEs: HowWeWorkPageContent = {
   approveTitle: 'Tú apruebas el camino. Nosotros te ayudamos a construirlo.',
   approveBody:
     'Te presentamos nuestras recomendaciones, prioridades y opciones de implementación. Tú apruebas el camino y nosotros te acompañamos a ejecutarlo.',
-  approveFlow: ['Diagnóstico', 'Estrategia', 'Propuesta', 'Aprobación', 'Implementación', 'Medición'],
+  approveTrust: 'Tú apruebas qué se implementa.',
+  approveResultLabel: 'Resultado',
+  approveClose: 'Medimos para decidir qué sigue.',
+  approveSteps: [
+    {
+      label: 'Diagnóstico',
+      title: 'Entendemos dónde estás.',
+      body: 'Analizamos la situación actual de tu alojamiento y detectamos oportunidades de mejora.',
+      result: 'Una visión clara de tu situación actual.',
+    },
+    {
+      label: 'Estrategia',
+      title: 'Definimos qué conviene hacer.',
+      body: 'Convertimos los hallazgos en prioridades y definimos un camino de acción.',
+      result: 'Prioridades claras y ordenadas.',
+    },
+    {
+      label: 'Propuesta',
+      title: 'Te presentamos el camino.',
+      body: 'Te mostramos nuestras recomendaciones, las soluciones que proponemos y cómo podemos implementarlas.',
+      result: 'Una propuesta adaptada a las necesidades de tu alojamiento.',
+    },
+    {
+      label: 'Aprobación',
+      title: 'Tú apruebas el camino.',
+      body: 'Revisamos contigo la propuesta y definimos el camino de implementación.',
+      result: 'Una decisión clara y compartida.',
+      mark: 'Tú + Andario',
+    },
+    {
+      label: 'Implementación',
+      title: 'Lo construimos contigo.',
+      body: 'Ponemos en marcha las soluciones acordadas y acompañamos su implementación.',
+      result: 'Las soluciones empiezan a funcionar en tu alojamiento.',
+    },
+    {
+      label: 'Medición',
+      title: 'Observamos qué está pasando.',
+      body: 'Medimos lo que ocurre y utilizamos esa información para identificar los siguientes pasos.',
+      result: 'Información para seguir evolucionando.',
+    },
+  ],
   knownTitle: 'Tú conoces tu alojamiento. Nosotros conocemos la parte digital.',
   knownBody:
     'Combinamos tu conocimiento del negocio con nuestra experiencia en estrategia y tecnología para construir soluciones que tengan sentido para tu alojamiento.',

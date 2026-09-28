@@ -31,6 +31,29 @@ export const homePageEs: HomePageContent = {
   bookingAlt:
     'Interfaz ilustrativa de Andario Booking Engine en computador y teléfono, con habitaciones y una reserva de ejemplo.',
   bridge: 'Tener presencia digital no significa tener una estrategia digital.',
+  bridgeBody:
+    'Puedes tener una página web, aparecer en Google, recibir mensajes por WhatsApp y estar presente en plataformas de reserva. Pero si cada canal funciona por separado, no tienes claro qué priorizar o no sabes qué está generando resultados, todavía falta una estrategia.',
+  bridgeMark:
+    'Una estrategia digital conecta tus canales, tus objetivos y la experiencia de tus huéspedes alrededor de un mismo camino.',
+  bridgePoints: [
+    {
+      title: 'Ser encontrado',
+      tags: 'Google · contenido · redes',
+      body: 'Haz que más personas encuentren tu alojamiento cuando buscan opciones como la tuya.',
+    },
+    {
+      title: 'Convertir',
+      tags: 'Web · WhatsApp · reservas',
+      body: 'Facilita el camino desde conocer tu alojamiento hasta contactarlo o reservar.',
+    },
+    {
+      title: 'Saber qué funciona',
+      tags: 'Medición · datos · decisiones',
+      body: 'Entiende qué está funcionando y utiliza esa información para decidir qué mejorar.',
+    },
+  ],
+  checkLead:
+    'Analizamos la presencia digital de tu alojamiento, identificamos oportunidades y te ayudamos a definir qué conviene mejorar primero.',
   situationsTitle: '¿Dónde está hoy tu alojamiento?',
   situations: [
     { title: 'Estoy empezando', body: 'Presencia digital mínima y no sé por dónde comenzar.' },
@@ -54,43 +77,50 @@ export const homePageEs: HomePageContent = {
     'andario-web': {
       role: 'Construir',
       title: 'Una página web profesional',
-      body: 'Para que tus huéspedes conozcan tu alojamiento, vean lo que ofreces y puedan contactarte o reservar.',
+      body: 'Creamos una página web profesional para mostrar tu alojamiento, tus espacios, tus servicios y facilitar el contacto o la reserva.',
+      points: ['Diseño adaptado a tu alojamiento', 'Página optimizada para Google', 'Contacto y reservas directas'],
       cta: 'Conocer Andario Web',
     },
     'andario-visibility': {
       role: 'Ser encontrado',
       title: 'Que te encuentren en Google',
-      body: 'Trabajamos para mejorar la presencia de tu alojamiento cuando las personas buscan dónde hospedarse.',
+      body: 'Trabajamos la presencia de tu alojamiento en Google y otros canales para ayudar a que más personas lo encuentren.',
+      points: ['Presencia en Google', 'SEO y contenidos', 'Perfil de negocio optimizado'],
       cta: 'Conocer Andario Visibility',
     },
     'andario-booking-engine': {
       role: 'Recibir reservas',
       title: 'Recibe reservas directamente',
-      body: 'Construimos un canal propio para que tus huéspedes puedan consultar y gestionar sus reservas.',
+      body: 'Un canal propio de reservas para que tus huéspedes consulten disponibilidad y puedan reservar directamente.',
+      points: ['Reservas desde tu sitio', 'Disponibilidad en línea', 'Gestión de reservas'],
       cta: 'Conocer Andario Booking Engine',
     },
     'andario-connect': {
       role: 'Comunicar',
       title: 'Atiende mejor por WhatsApp',
-      body: 'Te ayudamos a organizar la comunicación con tus huéspedes y responder más fácilmente.',
+      body: 'Te ayudamos a organizar la comunicación con tus huéspedes para responder consultas y acompañarlos durante su reserva.',
+      points: ['WhatsApp y otros canales', 'Mensajes organizados', 'Respuestas más eficientes'],
       cta: 'Conocer Andario Connect',
     },
     'andario-content': {
       role: 'Mostrar',
       title: 'Muestra mejor tu alojamiento',
-      body: 'Fotografías, textos y contenido para mostrar la experiencia que ofreces.',
+      body: 'Creamos y gestionamos contenido para mostrar mejor tus espacios, tus servicios y la experiencia que ofreces.',
+      points: ['Fotografía profesional', 'Gestión de redes sociales', 'Contenido para tu alojamiento'],
       cta: 'Conocer Andario Content',
     },
     'andario-growth': {
       role: 'Medir y mejorar',
       title: 'Entiende qué está funcionando',
-      body: 'Te ayudamos a conocer qué canales y acciones están generando resultados.',
+      body: 'Analizamos los resultados de tus canales digitales para identificar oportunidades y ayudarte a tomar mejores decisiones.',
+      points: ['Reportes claros', 'Identificación de oportunidades', 'Acompañamiento continuo'],
       cta: 'Conocer Andario Growth',
     },
     'digital-check': {
       role: 'Entender',
-      title: 'Descubre por dónde empezar',
-      body: 'Analizamos tu situación y te ayudamos a definir qué deberías mejorar primero.',
+      title: 'Primero entendemos dónde estás.',
+      body: 'Analizamos la presencia digital de tu alojamiento para identificar oportunidades y definir qué conviene mejorar primero.',
+      points: ['Revisión de tus canales', 'Oportunidades de mejora', 'Recomendaciones claras'],
       cta: 'Conocer Digital Check',
     },
   },

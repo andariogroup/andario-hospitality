@@ -60,7 +60,48 @@ export const howWeWorkPageEn: HowWeWorkPageContent = {
   approveTitle: 'You approve the path. We help you build it.',
   approveBody:
     'We present our recommendations, priorities, and implementation options. You approve the path, and we help you put it into action.',
-  approveFlow: ['Assessment', 'Strategy', 'Proposal', 'Approval', 'Implementation', 'Measurement'],
+  approveTrust: 'You approve what we implement.',
+  approveResultLabel: 'Result',
+  approveClose: 'We measure to decide what comes next.',
+  approveSteps: [
+    {
+      label: 'Assessment',
+      title: 'We understand where you are.',
+      body: 'We look at your property’s current situation and identify opportunities to improve.',
+      result: 'A clear view of where you stand today.',
+    },
+    {
+      label: 'Strategy',
+      title: 'We define what should come first.',
+      body: 'We turn the findings into priorities and a path to act on.',
+      result: 'Clear, ordered priorities.',
+    },
+    {
+      label: 'Proposal',
+      title: 'We present the path.',
+      body: 'We show our recommendations, the solutions we propose, and how we can put them in place.',
+      result: 'A proposal shaped around what your property needs.',
+    },
+    {
+      label: 'Approval',
+      title: 'You approve the path.',
+      body: 'We review the proposal with you and agree on how to implement it.',
+      result: 'A clear decision, made together.',
+      mark: 'You + Andario',
+    },
+    {
+      label: 'Implementation',
+      title: 'We build it with you.',
+      body: 'We put the agreed solutions in place and stay with you as they go live.',
+      result: 'The solutions start working in your property.',
+    },
+    {
+      label: 'Measurement',
+      title: 'We see what is happening.',
+      body: 'We measure what happens and use that information to identify the next steps.',
+      result: 'Information to keep evolving.',
+    },
+  ],
   knownTitle: 'You know your property. We know the digital side.',
   knownBody:
     'We combine your knowledge of the business with our expertise in digital strategy and technology to build solutions that make sense for your property.',

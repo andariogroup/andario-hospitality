@@ -29,7 +29,30 @@ export const homePageEn: HomePageContent = {
   mockNote: 'Illustrative example. Not a screenshot of the product.',
   bookingAlt:
     'Illustrative Andario Booking Engine interface on a computer and a phone, with rooms and a sample reservation.',
-  bridge: 'Having a digital presence is not the same as having a digital strategy.',
+  bridge: "Having a digital presence doesn't mean having a digital strategy.",
+  bridgeBody:
+    'You can have a website, appear on Google, receive WhatsApp messages and be present on booking platforms. But if each channel works separately, you are not sure what to prioritize, or you do not know what is generating results, there is still a strategy missing.',
+  bridgeMark:
+    "A digital strategy connects your channels, your goals and your guests' experience around one clear path.",
+  bridgePoints: [
+    {
+      title: 'Be found',
+      tags: 'Google · content · social media',
+      body: 'Help more people discover your accommodation when they are looking for options like yours.',
+    },
+    {
+      title: 'Convert',
+      tags: 'Website · WhatsApp · bookings',
+      body: 'Make the journey from discovering your accommodation to contacting or booking it easier.',
+    },
+    {
+      title: 'Know what works',
+      tags: 'Measurement · data · decisions',
+      body: 'Understand what is working and use that information to decide what to improve.',
+    },
+  ],
+  checkLead:
+    'We look at your property’s digital presence, identify opportunities and help you decide what should come first.',
   situationsTitle: 'Where is your property today?',
   situations: [
     { title: 'I am just starting', body: 'Almost no digital presence, and I do not know where to begin.' },
@@ -53,43 +76,50 @@ export const homePageEn: HomePageContent = {
     'andario-web': {
       role: 'Build',
       title: 'A professional website',
-      body: 'So guests can get to know your property, see what you offer and contact you or book.',
+      body: 'We create a professional website to present your property, your spaces and your services, and to make contact or booking straightforward.',
+      points: ['A design shaped around your property', 'A page prepared for Google', 'Direct contact and bookings'],
       cta: 'Explore Andario Web',
     },
     'andario-visibility': {
       role: 'Be found',
       title: 'Get found on Google',
-      body: 'We work so your property has a stronger presence when people search for a place to stay.',
+      body: 'We work on your property’s presence on Google and other channels so more people can find it.',
+      points: ['Presence on Google', 'SEO and content', 'An optimized business profile'],
       cta: 'Explore Andario Visibility',
     },
     'andario-booking-engine': {
-      role: 'Take bookings',
+      role: 'Receive bookings',
       title: 'Take bookings directly',
-      body: 'We build a channel you own so guests can check availability and manage their bookings.',
+      body: 'A booking channel of your own, so guests can check availability and book directly.',
+      points: ['Bookings from your site', 'Availability online', 'Booking management'],
       cta: 'Explore Andario Booking Engine',
     },
     'andario-connect': {
       role: 'Communicate',
       title: 'Look after guests better on WhatsApp',
-      body: 'We help you organize conversations with guests and reply more easily.',
+      body: 'We help you organize communication with your guests, so you can answer questions and stay with them through their booking.',
+      points: ['WhatsApp and other channels', 'Organized messages', 'More efficient replies'],
       cta: 'Explore Andario Connect',
     },
     'andario-content': {
-      role: 'Show',
+      role: 'Showcase',
       title: 'Show your property better',
-      body: 'Photos, writing and content that show the experience you offer.',
+      body: 'We create and manage content that shows your spaces, your services and the experience you offer.',
+      points: ['Professional photography', 'Social media management', 'Content for your property'],
       cta: 'Explore Andario Content',
     },
     'andario-growth': {
-      role: 'Measure and improve',
+      role: 'Measure & improve',
       title: 'See what is working',
-      body: 'We help you understand which channels and actions are producing results.',
+      body: 'We look at how your digital channels perform, find opportunities and help you make better decisions.',
+      points: ['Clear reports', 'Opportunities identified', 'Ongoing support'],
       cta: 'Explore Andario Growth',
     },
     'digital-check': {
       role: 'Understand',
-      title: 'Find out where to start',
-      body: 'We look at your situation and help you decide what to improve first.',
+      title: 'First, we understand where you are.',
+      body: 'We look at your property’s digital presence, find opportunities and help you decide what should come first.',
+      points: ['A review of your channels', 'Opportunities to improve', 'Clear recommendations'],
       cta: 'Explore Digital Check',
     },
   },

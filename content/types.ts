@@ -496,6 +496,10 @@ export type HomePageContent = {
   mockNote: string;
   bookingAlt: string;
   bridge: string;
+  bridgeBody: string;
+  bridgeMark: string;
+  bridgePoints: { title: string; tags: string; body: string }[];
+  checkLead: string;
   situationsTitle: string;
   situations: { title: string; body: string }[];
   situationClose: string;
@@ -509,7 +513,7 @@ export type HomePageContent = {
   nextSteps: string[];
   offerTitle: string;
   offerSupport: string;
-  cards: Record<ServiceId, { role: string; title: string; body: string; cta: string }>;
+  cards: Record<ServiceId, { role: string; title: string; body: string; cta: string; points: string[] }>;
   solutionsCta: string;
   roadmapTitle: string;
   roadmapIntro: string;
@@ -693,7 +697,10 @@ export type HowWeWorkPageContent = {
   roadmap: string[];
   approveTitle: string;
   approveBody: string;
-  approveFlow: string[];
+  approveTrust: string;
+  approveResultLabel: string;
+  approveClose: string;
+  approveSteps: { label: string; title: string; body: string; result: string; mark?: string }[];
   knownTitle: string;
   knownBody: string;
   knownAlt: string;

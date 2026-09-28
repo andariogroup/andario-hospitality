@@ -8,7 +8,7 @@ import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
 import { href, type Locale, type ServiceId } from '@/lib/i18n/routes';
 import { faqJsonLd, itemListJsonLd } from '@/lib/seo/structured-data';
-import { ChartLine, Compass, Cpu, Eye, Handshake, Layers, MessageCircle, Search, Sprout, Unplug, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Check, Compass, Cpu, Eye, Handshake, Layers, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 
 const OFFER_ORDER: ServiceId[] = [
@@ -22,8 +22,73 @@ const OFFER_ORDER: ServiceId[] = [
 
 const ECOSYSTEM: ServiceId[] = ['digital-check', ...OFFER_ORDER];
 
-const SITUATION_ICONS: LucideIcon[] = [Sprout, Search, MessageCircle, Unplug, ChartLine];
 const DIFFERENTIATOR_ICONS: LucideIcon[] = [Compass, Layers, Cpu, Handshake, Eye];
+
+const CARD_VISUALS: Record<ServiceId, { src: string; width: number; height: number; alt: Record<Locale, string> }> = {
+  'digital-check': {
+    src: '/home/digital-check-summary.webp',
+    width: 477,
+    height: 330,
+    alt: {
+      es: 'Resumen de la presencia digital de un alojamiento',
+      en: 'Summary of a property’s digital presence',
+    },
+  },
+  'andario-web': {
+    src: '/home/andario-web-card.webp',
+    width: 471,
+    height: 322,
+    alt: {
+      es: 'Página web de un alojamiento en un computador y un teléfono',
+      en: 'A property website on a laptop and a phone',
+    },
+  },
+  'andario-visibility': {
+    src: '/home/andario-visibility-card.webp',
+    width: 471,
+    height: 322,
+    alt: {
+      es: 'Ficha de un alojamiento en Google junto a un mapa',
+      en: 'A property listing on Google next to a map',
+    },
+  },
+  'andario-booking-engine': {
+    src: '/home/andario-booking-card.webp',
+    width: 480,
+    height: 336,
+    alt: {
+      es: 'Calendario para elegir fechas y reservar un alojamiento',
+      en: 'A calendar for choosing dates and booking a stay',
+    },
+  },
+  'andario-connect': {
+    src: '/home/andario-connect-card.webp',
+    width: 471,
+    height: 336,
+    alt: {
+      es: 'Conversación de WhatsApp con un huésped sobre disponibilidad',
+      en: 'A WhatsApp conversation with a guest about availability',
+    },
+  },
+  'andario-content': {
+    src: '/home/andario-content-card.webp',
+    width: 475,
+    height: 343,
+    alt: {
+      es: 'Publicación de un alojamiento con fotografía de la habitación',
+      en: 'A social post of a property with a photo of the room',
+    },
+  },
+  'andario-growth': {
+    src: '/home/andario-growth-card.webp',
+    width: 487,
+    height: 261,
+    alt: {
+      es: 'Gráfico de visitas, consultas y reservas de un alojamiento',
+      en: 'A chart of a property’s visits, inquiries and bookings',
+    },
+  },
+};
 
 export function HomePage({
   locale,
@@ -91,37 +156,31 @@ export function HomePage({
       </Section>
 
       <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.situationsTitle}</h2>
-          <ol className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {page.situations.map((situation, index) => {
-              const Icon = SITUATION_ICONS[index] ?? Compass;
+        <Container className="lg:max-w-7xl">
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.audienceTitle}</h2>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {page.audiences.map((title, index) => {
+              const Icon = audienceIcons[index % audienceIcons.length];
               return (
-                <li key={situation.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white p-5">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-wash text-teal">
-                      <Icon aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <p className="text-sm font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-ink">{situation.title}</h3>
-                  <p className="mt-2 leading-7 text-muted">{situation.body}</p>
+                <li key={title} className="flex items-center gap-4 rounded-[var(--radius-card)] border border-sand-deep bg-white px-5 py-5 sm:px-6 sm:py-6">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-wash text-teal">
+                    <Icon aria-hidden="true" className="h-5 w-5" />
+                  </span>
+                  <span className="font-semibold text-ink">{title}</span>
                 </li>
               );
             })}
-          </ol>
-          <p className="mt-8 max-w-2xl text-lg font-semibold text-ink">{page.situationClose}</p>
-          <div className="mt-6">
-            <TrackedLink href={contact} event={{ name: 'home_primary_cta_click', placement: 'problems' }} cue>
-              {page.situationCta}
-            </TrackedLink>
-          </div>
+          </ul>
         </Container>
       </Section>
 
       <Section tone="sand">
         <Container className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
-          <p className="max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{page.bridge}</p>
+          <div className="min-w-0">
+            <h2 className="max-w-xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{page.bridge}</h2>
+            <p className="mt-4 max-w-xl leading-7 text-muted">{page.bridgeBody}</p>
+            <p className="mt-4 max-w-xl text-lg font-semibold leading-7 text-ink">{page.bridgeMark}</p>
+          </div>
           <Image
             src="/home/digital-check-desk.webp"
             alt={page.checkAlt}
@@ -139,7 +198,7 @@ export function HomePage({
             <div>
               <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{dict.services['digital-check'].name}</p>
               <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.cards['digital-check'].title}</h2>
-              <p className="mt-4 max-w-xl leading-7 text-muted">{page.cards['digital-check'].body}</p>
+              <p className="mt-4 max-w-xl leading-7 text-muted">{page.checkLead}</p>
               <div className="mt-6">
                 <TrackedLink href={href(locale, 'digital-check')} event={{ name: 'home_service_click', service: 'digital-check' }} cue>
                   {page.cards['digital-check'].cta}
@@ -199,9 +258,18 @@ export function HomePage({
             {page.roadmap.map((step, index) => (
               <li key={step} className="relative flex items-start gap-4 md:flex-col md:gap-3">
                 {index < page.roadmap.length - 1 ? (
-                  <span aria-hidden="true" className="absolute top-5 left-5 h-[calc(100%+1.5rem)] w-px bg-sand-deep md:top-5 md:left-5 md:h-px md:w-[calc(100%-0.5rem)]" />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute top-5 left-[19px] h-[calc(100%+1.5rem)] w-0.5 bg-sand-deep md:top-[19px] md:left-5 md:h-0.5 md:w-[calc(100%-0.5rem)]"
+                  >
+                    <span className="step-pulse-y absolute md:hidden" style={{ animationDelay: `${index * 0.8}s` }} />
+                    <span className="step-pulse-x absolute hidden md:block" style={{ animationDelay: `${index * 0.8}s` }} />
+                  </span>
                 ) : null}
-                <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-teal/30 bg-white text-sm font-semibold text-teal">
+                <span
+                  className="step-node relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-teal/30 bg-white text-sm font-semibold text-teal"
+                  style={{ animationDelay: `${index * 0.8}s` }}
+                >
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <span className="pt-2 font-semibold text-ink md:pt-0">{step}</span>
@@ -220,25 +288,45 @@ export function HomePage({
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.offerTitle}</h2>
           <p className="mt-4 max-w-3xl leading-7 text-muted">{page.offerSupport}</p>
-          <ul className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <ul className="mt-10 grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
             {ECOSYSTEM.map((id) => {
               const card = page.cards[id];
+              const visual = CARD_VISUALS[id];
               const Icon = serviceIcons[id];
               return (
-                <li key={id}>
+                <li key={id} className="min-w-0">
                   <TrackedLink
                     href={href(locale, id)}
                     event={{ name: 'home_service_click', service: id }}
                     variant="secondary"
-                    className="h-full items-start justify-start gap-4 rounded-[var(--radius-card)] border-sand-deep bg-white p-5 text-left shadow-none hover:translate-y-0 hover:border-teal"
+                    className="h-full flex-col items-stretch justify-start gap-0 rounded-[var(--radius-card)] border-sand-deep bg-white p-5 text-left font-normal shadow-none hover:border-teal hover:bg-white"
                   >
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-teal-wash text-teal">
-                      <Icon aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <span>
-                      <span className="block text-xs font-semibold tracking-[0.12em] text-teal uppercase">{card.role}</span>
-                      <span className="mt-1 block font-semibold text-ink">{dict.services[id].name}</span>
+                    <span className="min-w-0">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-teal-wash text-teal">
+                        <Icon aria-hidden="true" className="h-4 w-4" />
+                      </span>
+                      <span className="mt-4 block text-xs font-semibold tracking-[0.14em] text-teal uppercase">{card.role}</span>
+                      <span className="mt-1 block text-lg font-semibold tracking-tight text-ink">{dict.services[id].name}</span>
                       <span className="mt-2 block text-sm leading-6 text-muted">{card.body}</span>
+                    </span>
+                    <Image
+                      src={visual.src}
+                      alt={visual.alt[locale]}
+                      width={visual.width}
+                      height={visual.height}
+                      sizes="(min-width: 1280px) 30vw, (min-width: 768px) 44vw, 90vw"
+                      className="mt-4 h-auto w-full rounded-xl"
+                    />
+                    <ul className="mt-4 space-y-1.5">
+                      {card.points.map((point) => (
+                        <li key={point} className="flex items-start gap-2 text-sm leading-5 text-ink">
+                          <Check aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal" strokeWidth={2.5} />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="mt-auto flex justify-end pt-4">
+                      <ArrowRight aria-hidden="true" className="h-4 w-4 text-teal transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none" />
                     </span>
                   </TrackedLink>
                 </li>
@@ -246,7 +334,7 @@ export function HomePage({
             })}
           </ul>
           <div className="mt-8">
-            <TrackedLink href={href(locale, 'solutions')} event={{ name: 'home_secondary_cta_click', placement: 'solutions' }} variant="secondary">
+            <TrackedLink href={href(locale, 'solutions')} event={{ name: 'home_secondary_cta_click', placement: 'solutions' }} variant="secondary" cue>
               {page.solutionsCta}
             </TrackedLink>
           </div>
@@ -276,31 +364,12 @@ export function HomePage({
 
       <Section>
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.audienceTitle}</h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {page.audiences.map((title, index) => {
-              const Icon = audienceIcons[index % audienceIcons.length];
-              return (
-                <li key={title} className="flex items-center gap-3 rounded-[var(--radius-card)] border border-sand-deep bg-white p-4">
-                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-teal-wash text-teal">
-                    <Icon aria-hidden="true" className="h-5 w-5" />
-                  </span>
-                  <span className="font-semibold text-ink">{title}</span>
-                </li>
-              );
-            })}
-          </ul>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.differentiatorsTitle}</h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {page.differentiators.map((item, index) => {
               const Icon = DIFFERENTIATOR_ICONS[index] ?? Compass;
               return (
-                <li key={item.title} className="rounded-[var(--radius-card)] bg-white p-5">
+                <li key={item.title} className="rounded-[var(--radius-card)] border border-sand-deep bg-white p-5">
                   <Icon aria-hidden="true" className="h-5 w-5 text-teal" />
                   <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
@@ -311,7 +380,7 @@ export function HomePage({
         </Container>
       </Section>
 
-      <Section>
+      <Section tone="sand">
         <Container className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.bookingTitle}</h2>
@@ -323,7 +392,7 @@ export function HomePage({
             <p className="mt-4 font-semibold text-ink">{page.bookingOta}</p>
             <ul className="mt-6 grid gap-2 text-sm text-ink sm:grid-cols-2">
               {page.bookingPoints.map((point) => (
-                <li key={point} className="rounded-2xl bg-sand px-3 py-2">
+                <li key={point} className="rounded-2xl bg-white px-3 py-2">
                   {point}
                 </li>
               ))}
@@ -353,7 +422,7 @@ export function HomePage({
         </Container>
       </Section>
 
-      <Section className="border-t border-sand-deep">
+      <Section>
         <Container>
           <h2 className="text-3xl font-semibold tracking-tight text-ink">{dict.nav.faq}</h2>
           <div className="mt-6">

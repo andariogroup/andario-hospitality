@@ -100,6 +100,98 @@
       transform: translate(12px, 8px) rotate(8deg);
     }
   }
+
+}
+
+@keyframes step-flow-x {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  2% {
+    transform: translateX(-80%);
+    opacity: 1;
+  }
+  11% {
+    transform: translateX(310%);
+    opacity: 1;
+  }
+  13%,
+  100% {
+    transform: translateX(310%);
+    opacity: 0;
+  }
+}
+
+@keyframes step-flow-y {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  2% {
+    transform: translateY(-80%);
+    opacity: 1;
+  }
+  11% {
+    transform: translateY(310%);
+    opacity: 1;
+  }
+  13%,
+  100% {
+    transform: translateY(310%);
+    opacity: 0;
+  }
+}
+
+.step-pulse-x,
+.step-pulse-y {
+  animation-duration: 6.4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.step-pulse-y {
+  top: 0;
+  left: -1px;
+  width: 4px;
+  height: 28%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, var(--color-teal) 35%, var(--color-teal) 65%, transparent);
+  animation-name: step-flow-y;
+}
+
+.step-pulse-x {
+  top: -1px;
+  left: 0;
+  height: 4px;
+  width: 42%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--color-teal) 35%, var(--color-teal) 65%, transparent);
+  animation-name: step-flow-x;
+}
+
+@keyframes step-node {
+  0%,
+  8%,
+  30%,
+  100% {
+    background-color: var(--color-white);
+    border-color: rgb(14 124 120 / 0.3);
+    color: var(--color-teal);
+  }
+  14%,
+  22% {
+    background-color: var(--color-teal-wash);
+    border-color: var(--color-teal);
+    color: var(--color-teal-dark);
+  }
+}
+
+.step-node {
+  animation-name: step-node;
+  animation-duration: 6.4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @layer base {

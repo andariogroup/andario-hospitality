@@ -6,21 +6,17 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { FaqList } from '@/components/sections/faq-list';
 import { serviceIcons } from '@/components/graphics/icons';
 import { AccommodationDigitalMaturity } from '@/components/services/maturity-picker';
-import { NeedPathCard } from '@/components/services/need-path-card';
 import { ServiceCard } from '@/components/services/service-card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
 import { href, SERVICE_IDS, type Locale, type ServiceId } from '@/lib/i18n/routes';
 import { breadcrumbJsonLd, faqJsonLd, itemListJsonLd } from '@/lib/seo/structured-data';
-import { CalendarDays, ChartLine, Megaphone, MessageCircle, Monitor, Search, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 
 function serviceHref(locale: Locale, id: ServiceId) {
   return href(locale, id);
 }
-
-const PROBLEM_ICONS: LucideIcon[] = [Monitor, Search, MessageCircle, CalendarDays, Megaphone, ChartLine];
 
 export function SolutionsView({
   locale,
@@ -105,33 +101,7 @@ export function SolutionsView({
         </Container>
       </Section>
 
-      <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.problemTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.problemIntro}</p>
-          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.problems.map((problem, index) => {
-              const Icon = PROBLEM_ICONS[index] ?? Monitor;
-              return (
-                <li
-                  key={problem}
-                  className="group rounded-[var(--radius-card)] border border-sand-deep bg-sand p-5 transition duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:border-teal"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-ink transition duration-200 group-hover:text-teal">
-                      <Icon aria-hidden="true" className="h-4 w-4" />
-                    </span>
-                    <p className="text-sm font-semibold text-teal">{String(index + 1).padStart(2, '0')}</p>
-                  </div>
-                  <p className="mt-4 text-base leading-7 text-ink">{problem}</p>
-                </li>
-              );
-            })}
-          </ol>
-        </Container>
-      </Section>
-
-      <Section id="situacion" tone="sand" className="scroll-mt-28">
+      <Section id="situacion" className="scroll-mt-28">
         <Container className="grid items-start gap-8 lg:grid-cols-[0.82fr_1fr] lg:gap-10">
           <div>
             <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.whereTitle}</h2>
@@ -154,13 +124,13 @@ export function SolutionsView({
         </Container>
       </Section>
 
-      <Section id="soluciones" className="scroll-mt-28">
+      <Section id="soluciones" tone="sand" className="scroll-mt-28">
         <Container>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.cardsTitle}</h2>
           <p className="mt-4 max-w-3xl leading-7 text-muted">{page.cardsSupport}</p>
-          <article className="mt-10 grid items-center gap-6 rounded-[var(--radius-card)] border border-sand-deep bg-sand p-6 sm:p-8 lg:grid-cols-[1fr_auto]">
+          <article className="mt-10 grid items-center gap-6 rounded-[var(--radius-card)] border border-sand-deep bg-white p-6 sm:p-8 lg:grid-cols-[1fr_auto]">
             <div>
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-teal">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sand text-teal">
                 <CheckIcon aria-hidden="true" className="h-6 w-6" />
               </span>
               <p className="mt-5 text-sm font-semibold text-teal">{page.checkPrompt}</p>
@@ -201,40 +171,6 @@ export function SolutionsView({
             <div className="mt-6">
               <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'portfolio' }} cue>
                 {page.unsureCta}
-              </TrackedLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section id="caminos" tone="sand" className="scroll-mt-28">
-        <Container>
-          <p className="text-sm font-semibold tracking-[0.14em] text-teal uppercase">{page.paceEyebrow}</p>
-          <h2 className="mt-8 max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{page.paceTitle}</h2>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">{page.paceBody}</p>
-          <ul className="mt-14 grid gap-5 md:grid-cols-2">
-            {page.paths.map((item) => (
-              <li
-                key={item.service}
-                className="h-full md:[&:last-child:nth-child(odd)]:col-span-2 md:[&:last-child:nth-child(odd)]:w-[calc(50%-0.625rem)] md:[&:last-child:nth-child(odd)]:justify-self-center"
-              >
-                <NeedPathCard
-                  href={serviceHref(locale, item.service)}
-                  need={item.need}
-                  support={item.support}
-                  solution={dict.services[item.service].name}
-                  serviceId={item.service}
-                  badge={item.service === 'andario-booking-engine' ? page.ownTech : undefined}
-                />
-              </li>
-            ))}
-          </ul>
-          <div className="mt-16 max-w-2xl">
-            <h3 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{page.paceCloseTitle}</h3>
-            <p className="mt-4 leading-7 text-muted">{page.paceCloseBody}</p>
-            <div className="mt-6">
-              <TrackedLink href={contactHref} event={{ name: 'solutions_diagnosis_click', placement: 'pace' }} cue>
-                {page.paceCta}
               </TrackedLink>
             </div>
           </div>
