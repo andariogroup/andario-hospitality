@@ -70,6 +70,7 @@ export const homePageEn: HomePageContent = {
   boardNext: 'Next steps',
   opportunities: ['Direct bookings', 'WhatsApp conversations', 'Seeing what is happening'],
   nextSteps: ['Define the scope', 'Build a roadmap', 'Implement what matters first', 'Measure and adjust'],
+  offerHeading: 'Our products and services',
   offerTitle: 'One system, not seven separate products',
   offerSupport: 'Digital Check shows where to start. The other solutions build only what your property needs.',
   cards: {
@@ -123,7 +124,7 @@ export const homePageEn: HomePageContent = {
       cta: 'Explore Digital Check',
     },
   },
-  solutionsCta: 'Explore our solutions',
+  solutionsCta: 'Talk with Andario',
   roadmapTitle: 'From diagnosis to action',
   roadmapIntro: 'First we understand. Then we build only what makes sense for your property.',
   roadmap: ['Diagnosis', 'Priorities', 'Roadmap', 'Implementation', 'Measurement', 'Evolution'],

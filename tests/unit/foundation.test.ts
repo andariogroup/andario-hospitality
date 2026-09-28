@@ -47,6 +47,8 @@ describe('localized routes', () => {
     expect(href('en', 'andario-web')).toBe('/en/solutions/andario-web');
     expect(href('es', 'accommodations')).toBe('/es/alojamientos');
     expect(isRoutePublic('accommodations')).toBe(false);
+    expect(isRoutePublic('solutions')).toBe(false);
+    expect(isRoutePublic('digital-check')).toBe(true);
     expect(href('en', 'privacy')).toBe('/en/privacy');
   });
 

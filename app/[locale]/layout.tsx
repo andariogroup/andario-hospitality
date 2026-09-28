@@ -9,7 +9,7 @@ import { Header } from '@/components/layout/header';
 import { JsonLd } from '@/components/seo/json-ld';
 import { getDictionary } from '@/content';
 import { site } from '@/lib/config/site';
-import { isLocale, isRoutePublic, LOCALES, type Locale } from '@/lib/i18n/routes';
+import { href, isLocale, isRoutePublic, LOCALES, type Locale } from '@/lib/i18n/routes';
 import { localBusinessJsonLd, organizationJsonLd, websiteJsonLd } from '@/lib/seo/structured-data';
 import '../globals.css';
 
@@ -75,7 +75,14 @@ export default async function LocaleLayout({
         </a>
         <Header
           locale={locale}
-          items={headerItems.map((id) => ({ id, label: dict.nav[id] }))}
+          items={[
+            {
+              id: 'products',
+              label: dict.nav.products,
+              href: `${href(locale, 'home')}#productos-y-servicios`,
+            },
+            ...headerItems.map((id) => ({ id, label: dict.nav[id], href: href(locale, id) })),
+          ]}
           cta={dict.chrome.primaryCta}
           menuLabel={dict.chrome.menu}
           closeLabel={dict.chrome.close}

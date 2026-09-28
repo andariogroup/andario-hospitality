@@ -483,6 +483,7 @@ export const es: Dictionary = {
   nav: {
     home: 'Inicio',
     solutions: 'Soluciones',
+    products: 'Productos y servicios',
     accommodations: 'Alojamientos',
     'how-we-work': 'Cómo trabajamos',
     'andario-booking-engine': 'Booking Engine',

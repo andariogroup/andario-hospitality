@@ -65,7 +65,6 @@ export function DigitalCheckView({
   const contactHref = href(locale, 'contact');
   const crumbs = [
     { label: dict.nav.home, routeId: 'home' as const },
-    { label: dict.nav.solutions, routeId: 'solutions' as const },
     { label: service.name, routeId: 'digital-check' as const },
   ];
 

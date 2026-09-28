@@ -14,6 +14,18 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (pathname === '/es/soluciones' || pathname === '/es/soluciones/') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/es';
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (pathname === '/en/solutions' || pathname === '/en/solutions/' || pathname === '/en/soluciones' || pathname === '/en/soluciones/') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/en';
+    return NextResponse.redirect(url, 308);
+  }
+
   const locale = pathname.split('/').filter(Boolean)[0];
   if (locale && isLocale(locale)) {
     return NextResponse.next();

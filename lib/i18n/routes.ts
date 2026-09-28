@@ -35,9 +35,13 @@ export const CASES_PUBLISHED = false;
 /** The accommodations page stays in the project. Set this to true to publish it again. */
 export const ACCOMMODATIONS_PUBLISHED = false;
 
+/** The solutions hub stays in the project. Home is the public place to see the seven solutions. */
+export const SOLUTIONS_HUB_PUBLISHED = false;
+
 export function isRoutePublic(routeId: RouteId): boolean {
   if (routeId === 'cases') return CASES_PUBLISHED;
   if (routeId === 'accommodations') return ACCOMMODATIONS_PUBLISHED;
+  if (routeId === 'solutions') return SOLUTIONS_HUB_PUBLISHED;
   return true;
 }
 

@@ -284,9 +284,12 @@ export function HomePage({
         </Container>
       </Section>
 
-      <Section>
+      <Section id="productos-y-servicios" className="scroll-mt-28">
         <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.offerTitle}</h2>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            {page.offerHeading}
+          </h2>
+          <p className="mt-3 max-w-3xl text-xl font-semibold tracking-tight text-ink sm:text-2xl">{page.offerTitle}</p>
           <p className="mt-4 max-w-3xl leading-7 text-muted">{page.offerSupport}</p>
           <ul className="mt-10 grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
             {ECOSYSTEM.map((id) => {
@@ -334,7 +337,7 @@ export function HomePage({
             })}
           </ul>
           <div className="mt-8">
-            <TrackedLink href={href(locale, 'solutions')} event={{ name: 'home_secondary_cta_click', placement: 'solutions' }} variant="secondary" cue>
+            <TrackedLink href={contact} event={{ name: 'home_secondary_cta_click', placement: 'offer' }} variant="secondary" cue>
               {page.solutionsCta}
             </TrackedLink>
           </div>

@@ -511,6 +511,7 @@ export type HomePageContent = {
   boardNext: string;
   opportunities: string[];
   nextSteps: string[];
+  offerHeading: string;
   offerTitle: string;
   offerSupport: string;
   cards: Record<ServiceId, { role: string; title: string; body: string; cta: string; points: string[] }>;
@@ -1076,6 +1077,7 @@ export type Dictionary = {
   nav: Record<
     | 'home'
     | 'solutions'
+    | 'products'
     | 'accommodations'
     | 'how-we-work'
     | 'andario-booking-engine'

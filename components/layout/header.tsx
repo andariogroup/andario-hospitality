@@ -7,10 +7,10 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { Mark } from '@/components/layout/mark';
 import { LanguageSwitcher } from '@/components/navigation/language-switcher';
-import { href, type Locale, type RouteId } from '@/lib/i18n/routes';
+import { href, type Locale } from '@/lib/i18n/routes';
 import { cn } from '@/lib/utils/cn';
 
-type Item = { id: RouteId; label: string };
+type Item = { id: string; label: string; href: string };
 
 export function Header({
   locale,
@@ -85,12 +85,11 @@ export function Header({
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1" aria-label="Main">
           {items.map((item) => {
-            const path = href(locale, item.id);
-            const current = pathname === path;
+            const current = pathname === item.href;
             return (
               <Link
                 key={item.id}
-                href={path}
+                href={item.href}
                 aria-current={current ? 'page' : undefined}
                 className={cn(
                   'rounded-full px-1.5 py-2 text-xs font-semibold whitespace-nowrap xl:px-3 xl:text-sm',
@@ -165,12 +164,11 @@ export function Header({
             </div>
             <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Main">
               {items.map((item) => {
-                const path = href(locale, item.id);
-                const current = pathname === path;
+                const current = pathname === item.href;
                 return (
                   <Link
                     key={item.id}
-                    href={path}
+                    href={item.href}
                     aria-current={current ? 'page' : undefined}
                     className={cn(
                       'block rounded-2xl px-4 py-3 text-lg font-semibold',

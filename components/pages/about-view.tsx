@@ -270,7 +270,7 @@ export function AboutView({
             ))}
             <p className="mt-8 font-semibold text-ink">{page.exploreTitle}</p>
             <div className="mt-4">
-              <TrackedLink href={href(locale, 'solutions')} event={{ name: 'about_solution_click', target: 'solutions' }} variant="secondary">
+              <TrackedLink href={href(locale, 'home')} event={{ name: 'about_solution_click', target: 'home' }} variant="secondary">
                 {page.solutionsCta}
               </TrackedLink>
             </div>

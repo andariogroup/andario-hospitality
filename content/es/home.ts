@@ -71,6 +71,7 @@ export const homePageEs: HomePageContent = {
   boardNext: 'Próximos pasos',
   opportunities: ['Reservas directas', 'Atención por WhatsApp', 'Medición de lo que ocurre'],
   nextSteps: ['Definir el alcance', 'Armar una hoja de ruta', 'Implementar lo prioritario', 'Medir y ajustar'],
+  offerHeading: 'Nuestros productos y servicios',
   offerTitle: 'Un sistema, no siete productos sueltos',
   offerSupport: 'Digital Check dice por dónde empezar. Las demás soluciones construyen solo lo que tu alojamiento necesita.',
   cards: {
@@ -124,7 +125,7 @@ export const homePageEs: HomePageContent = {
       cta: 'Conocer Digital Check',
     },
   },
-  solutionsCta: 'Conocer nuestras soluciones',
+  solutionsCta: 'Hablar con Andario',
   roadmapTitle: 'Del diagnóstico a la acción',
   roadmapIntro: 'Primero entendemos. Después hacemos solo lo que tiene sentido para tu alojamiento.',
   roadmap: ['Diagnóstico', 'Priorización', 'Hoja de ruta', 'Implementación', 'Medición', 'Evolución'],

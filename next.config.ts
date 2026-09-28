@@ -69,6 +69,13 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  async redirects() {
+    return [
+      { source: '/es/soluciones', destination: '/es', permanent: true },
+      { source: '/en/solutions', destination: '/en', permanent: true },
+      { source: '/en/soluciones', destination: '/en', permanent: true },
+    ];
+  },
   async headers() {
     const cached = { key: 'Cache-Control', value: 'public, max-age=2592000' };
     return [
