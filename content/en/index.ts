@@ -150,14 +150,14 @@ const services: Dictionary['services'] = {
   },
   'andario-booking-engine': {
     name: 'Andario Booking Engine',
-    subtitle: 'Your own booking channel',
+    subtitle: 'Booking and operations center',
     summary:
-      'Reservation technology that helps you manage availability, rates and bookings from a channel you control.',
+      'The center where bookings from your channels arrive, and where you manage guests, operations, payments, reports and analytics.',
     cardCta: 'Explore Booking Engine',
-    metaTitle: 'Booking engine for hostels and small hotels',
+    metaTitle: 'Booking engine for your own website',
     metaDescription:
-      'Andario Booking Engine centralizes availability, rates, inventory and direct reservations for independent accommodations. Start with your own web channel.',
-    h1: 'Build your own direct booking channel.',
+      'Guests check availability and book from your website. Andario Booking Engine organizes those reservations in one place for independent properties.',
+    h1: 'Take bookings directly from your own website.',
     intro:
       'Andario Booking Engine centralizes your property’s booking logic so you can build a direct channel, organize inventory and gradually connect different points of contact with your guests.',
     problemTitle: 'A property can have many channels. The problem starts when each one works on its own.',
@@ -187,52 +187,40 @@ const services: Dictionary['services'] = {
     ],
     ecosystem:
       'The engine is the technology core of Andario Hospitality, not the whole company. The website, visibility and communication can connect to it when the property needs that. This corporate site does not process reservations.',
-    note: 'The booking engine does not have to replace OTAs. The point is that the property also has a channel of its own.',
-    futureTitle: 'In evolution, not live yet',
-    future: ['WhatsApp', 'Instagram', 'Facebook', 'Google', 'Other channels', 'AI assistant'],
+    note: 'Andario Booking Engine can sit alongside the channels you already use. It does not sync automatically with OTAs.',
+    futureTitle: 'In evolution',
+    future: [],
     faqs: [
       {
         q: 'What is Andario Booking Engine?',
-        a: 'It is Andario’s own system for building and running a property’s direct booking channel. It organizes availability, rates, units and reservations. It is not a loose form or a calendar, and this page does not process bookings.',
+        a: 'It is the booking and operations center for your property. Bookings arrive there, and from there you organize guests, payments, check-in, check-out, invoicing, reports and analytics.',
       },
       {
-        q: 'What is a booking engine for?',
-        a: 'So a guest can see what is free, check the price and move into a reservation from the property’s own channel, instead of repeating that work by hand in every conversation.',
+        q: 'What can a guest do?',
+        a: 'Check availability and rates, choose a unit, enter their details, book, and pay when the configured payment option allows it. They then receive confirmation by email and a PDF document.',
       },
       {
-        q: 'What is the difference between a website and Booking Engine?',
-        a: 'The website presents the property. The Booking Engine handles the reservation: availability, rates and the record.',
+        q: 'What can the property manage?',
+        a: 'Bookings, guest information, statuses, check-in, check-out, invoicing, reports, analytics and the source of each booking.',
       },
       {
-        q: 'Can I keep using Booking.com?',
-        a: 'Yes. You can keep Booking.com and other OTAs and build a channel of your own at the same time. Andario Booking Engine does not sync OTAs today.',
+        q: 'From which channels can I send guests to the Booking Engine?',
+        a: 'From your website, Facebook, Instagram, TikTok, WhatsApp, Google or other channels. You publish your content and share a link. The booking does not happen inside that network: the link takes the guest to your Booking Engine.',
       },
       {
-        q: 'Can I use it if my hostel sells beds?',
-        a: 'Yes, when the property is set up to sell beds as a bookable resource.',
+        q: 'Can I keep using Booking.com and other channels?',
+        a: 'Yes. Andario Booking Engine can sit alongside the channels you already use. It does not sync automatically with Booking.com, Airbnb or other OTAs.',
       },
       {
-        q: 'Does it work for small hotels and cabins?',
-        a: 'Yes. It is meant for independent accommodations. The bookable unit follows the property when the product can represent it: a room, a bed or a whole unit.',
+        q: 'What kinds of properties is it for?',
+        a: 'Independent properties: hostels, small hotels, inns, tourist apartments, aparthotels, cabins, villas and rural stays.',
       },
       {
-        q: 'Do I need to know about technology?',
-        a: 'No. Andario handles the technology and helps you configure the engine around how your property works. You know the business.',
-      },
-      {
-        q: 'Which channels work today?',
-        a: 'The starting point is the website: availability, rates, reservations and administration. WhatsApp can stay a conversation with Andario Connect, but it does not book inside the chat yet.',
-      },
-      {
-        q: 'What is still on the roadmap?',
-        a: 'WhatsApp as a booking channel, Instagram, Facebook, Google, broader automation, an AI assistant and other integrations. None of that is available yet.',
-      },
-      {
-        q: 'How can I begin?',
-        a: 'Tell us what kind of property you have and how you take bookings today. A conversation does not lock you into a contract. Scope is defined after we understand the property.',
+        q: 'How can I start?',
+        a: 'Tell us how your property works today. We look at how you take bookings and show you how the system can fit.',
       },
     ],
-    ctaTitle: 'Build the direct booking channel for your property.',
+    ctaTitle: 'Bring your property’s bookings and operations into one place.',
     ctaLabel: 'Request information',
   },
   'andario-connect': {

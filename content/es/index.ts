@@ -150,14 +150,14 @@ const services: Dictionary['services'] = {
   },
   'andario-booking-engine': {
     name: 'Andario Booking Engine',
-    subtitle: 'Tu canal propio de reservas',
+    subtitle: 'Centro de reservas y operación',
     summary:
-      'Una tecnología de reservas diseñada para ayudarte a gestionar disponibilidad, tarifas y reservas desde un canal propio.',
+      'El centro donde llegan las reservas de tus canales y desde donde gestionas huéspedes, operación, pagos, reportes y analítica.',
     cardCta: 'Conocer Booking Engine',
-    metaTitle: 'Motor de reservas para hostales y hoteles pequeños',
+    metaTitle: 'Motor de reservas para tu propia web',
     metaDescription:
-      'Andario Booking Engine centraliza disponibilidad, tarifas, inventario y reservas directas para alojamientos independientes. Empieza por tu canal web.',
-    h1: 'Construye tu propio canal de reservas.',
+      'Tus huéspedes consultan disponibilidad y reservan desde tu página web. Andario Booking Engine organiza esas reservas en un solo lugar para alojamientos independientes.',
+    h1: 'Recibe reservas directamente desde tu propia web.',
     intro:
       'Andario Booking Engine centraliza la lógica de reservas de tu alojamiento para que puedas construir un canal propio, organizar tu inventario y conectar progresivamente diferentes puntos de contacto con tus huéspedes.',
     problemTitle: 'Tu alojamiento puede tener muchos canales. El problema aparece cuando cada uno funciona por separado.',
@@ -187,52 +187,40 @@ const services: Dictionary['services'] = {
     ],
     ecosystem:
       'El motor es el núcleo tecnológico de Andario Hospitality, no la empresa entera. La web, la visibilidad y la comunicación pueden conectarse con él cuando el establecimiento lo necesite. Este sitio corporativo no procesa reservas.',
-    note: 'El Booking Engine no reemplaza necesariamente las OTAs. La idea es que el establecimiento también tenga y fortalezca su propio canal.',
-    futureTitle: 'En evolución, todavía no operativo',
-    future: ['WhatsApp', 'Instagram', 'Facebook', 'Google', 'Otros canales', 'Asistente de IA'],
+    note: 'Andario Booking Engine puede coexistir con los canales que ya usas. No sincroniza de forma automática con OTAs.',
+    futureTitle: 'En evolución',
+    future: [],
     faqs: [
       {
         q: '¿Qué es Andario Booking Engine?',
-        a: 'Es el sistema propio de Andario que permite a un alojamiento construir y operar su canal de reservas. Organiza disponibilidad, tarifas, unidades y reservas. No es un formulario suelto ni un calendario, y esta página no procesa reservas.',
+        a: 'Es el centro de reservas y operación de tu alojamiento. Ahí llegan las reservas, y desde ahí se organizan huéspedes, pagos, check-in, check-out, facturación, reportes y analítica.',
       },
       {
-        q: '¿Para qué sirve un motor de reservas?',
-        a: 'Para que un huésped consulte qué está disponible, vea el precio y avance en la reserva desde el canal propio del alojamiento, en lugar de repetir ese trabajo a mano en cada conversación.',
+        q: '¿Qué puede hacer el huésped?',
+        a: 'Consultar disponibilidad y tarifas, elegir una unidad, registrar sus datos, reservar y pagar cuando la modalidad configurada lo permite. Después recibe la confirmación por correo y un documento PDF.',
       },
       {
-        q: '¿Cuál es la diferencia entre una web y Booking Engine?',
-        a: 'La web presenta el alojamiento. El Booking Engine se encarga de la reserva: disponibilidad, tarifas y el registro.',
+        q: '¿Qué puede gestionar el alojamiento?',
+        a: 'Reservas, información de huéspedes, estados, check-in, check-out, facturación, reportes, analítica y el origen de cada reserva.',
       },
       {
-        q: '¿Puedo seguir utilizando Booking.com?',
-        a: 'Sí. Puedes mantener Booking.com y otras OTAs y, al mismo tiempo, construir un canal propio. Andario Booking Engine actualmente no sincroniza OTAs.',
+        q: '¿Desde qué canales puedo dirigir huéspedes al Booking Engine?',
+        a: 'Desde tu web, Facebook, Instagram, TikTok, WhatsApp, Google u otros canales. Publicas tu contenido y compartes un enlace. La reserva no ocurre dentro de esa red: el enlace lleva al huésped a tu Booking Engine.',
       },
       {
-        q: '¿Puedo utilizarlo si tengo un hostal con camas?',
-        a: 'Sí, cuando el establecimiento está configurado para vender camas como recurso reservable.',
+        q: '¿Puedo seguir utilizando Booking.com y otros canales?',
+        a: 'Sí. Andario Booking Engine puede coexistir con los canales que ya usas. No sincroniza de forma automática con Booking.com, Airbnb u otras OTAs.',
       },
       {
-        q: '¿Sirve para hoteles pequeños y cabañas?',
-        a: 'Sí. Está pensado para alojamientos independientes. La unidad reservable se adapta cuando el producto puede representarla: una habitación, una cama o una unidad completa.',
+        q: '¿Para qué tipos de alojamiento está pensado?',
+        a: 'Para alojamientos independientes: hostales, hoteles pequeños, posadas, apartamentos turísticos, apartahoteles, cabañas, villas y alojamientos rurales.',
       },
       {
-        q: '¿Necesito saber de tecnología?',
-        a: 'No. Andario se encarga de la parte tecnológica y te ayuda a configurar el motor según cómo funciona tu alojamiento. Tú conoces tu negocio.',
-      },
-      {
-        q: '¿Qué canales funcionan actualmente?',
-        a: 'Hoy el punto de partida es el canal web: disponibilidad, tarifas, reservas y administración. WhatsApp puede acompañar la conversación con Andario Connect, pero todavía no reserva dentro del chat.',
-      },
-      {
-        q: '¿Qué funcionalidades están en evolución?',
-        a: 'WhatsApp como canal de reserva, Instagram, Facebook, Google, una automatización más amplia, un asistente de IA y otras integraciones. Todavía no están disponibles.',
-      },
-      {
-        q: '¿Cómo puedo comenzar?',
-        a: 'Cuéntanos qué tipo de alojamiento tienes y cómo recibes reservas hoy. Conversar no obliga a contratar. El alcance se define después de entender el establecimiento.',
+        q: '¿Cómo puedo empezar?',
+        a: 'Cuéntanos cómo funciona hoy tu alojamiento. Vemos cómo reservas y te mostramos cómo puede encajar el sistema.',
       },
     ],
-    ctaTitle: 'Construye el canal propio de reservas de tu alojamiento.',
+    ctaTitle: 'Lleva las reservas y la operación de tu alojamiento a un solo lugar.',
     ctaLabel: 'Solicitar información',
   },
   'andario-connect': {

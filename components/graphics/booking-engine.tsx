@@ -121,6 +121,41 @@ export function BeforeAfter({
   );
 }
 
+export function BookingCenter({
+  caption,
+  channels,
+  core,
+  outcomes,
+}: {
+  caption: string;
+  channels: string[];
+  core: string;
+  outcomes: string[];
+}) {
+  return (
+    <figure className="rounded-[var(--radius-card)] bg-sand p-5 sm:p-6">
+      <figcaption className="sr-only">{caption}</figcaption>
+      <ul className="flex flex-wrap justify-center gap-2">
+        {channels.map((name) => (
+          <li key={name} className="rounded-full border border-sand-deep bg-white px-3 py-1.5 text-sm font-semibold text-ink">
+            {name}
+          </li>
+        ))}
+      </ul>
+      <div aria-hidden="true" className="mx-auto my-4 h-8 w-px bg-teal" />
+      <p className="rounded-2xl bg-ink px-4 py-5 text-center text-sm font-semibold tracking-wide text-white">{core}</p>
+      <div aria-hidden="true" className="mx-auto my-4 h-8 w-px bg-teal" />
+      <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {outcomes.map((item) => (
+          <li key={item} className="rounded-2xl bg-white px-3 py-3 text-center text-sm font-semibold text-ink">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </figure>
+  );
+}
+
 export function BookingFlow({ steps }: { steps: { title: string; body: string }[] }) {
   return (
     <ol className="grid gap-4 sm:grid-cols-2">
