@@ -43,13 +43,15 @@ function Flow({ steps }: { steps: string[] }) {
 }
 
 function ChannelMark({ id }: { id: BookingEngineContent['channels'][number]['id'] }) {
-  if (id === 'web' || id === 'other') {
-    const Icon = id === 'web' ? Globe : Ellipsis;
-    return <Icon aria-hidden="true" className="h-5 w-5 text-ink" />;
+  if (id === 'web') {
+    return <Globe aria-hidden="true" className="h-5 w-5 text-teal" />;
+  }
+  if (id === 'other') {
+    return <Ellipsis aria-hidden="true" className="h-5 w-5 text-ink" />;
   }
   return (
     <Image
-      src={`/icons/channels/${id}.svg`}
+      src={`/icons/channels/${id}.svg?v=brand`}
       alt=""
       width={20}
       height={20}
@@ -283,25 +285,11 @@ export function BookingEngineView({
 
       <Section>
         <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.journeyTitle}</h2>
-          <ol className="mt-8 flex flex-col gap-4 lg:grid lg:grid-cols-10 lg:gap-3">
-            {page.journeySteps.map((step, index) => (
-              <li key={step} className="flex items-baseline gap-3 lg:flex-col lg:gap-2">
-                <span className="text-xs font-semibold text-teal">{String(index + 1).padStart(2, '0')}</span>
-                <span className="text-sm font-semibold text-ink">{step}</span>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
           <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.typesTitle}</h2>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{page.typesBody}</p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {page.types.map((type) => (
-              <li key={type.name} className="overflow-hidden rounded-[var(--radius-card)] bg-white">
+              <li key={type.name} className="overflow-hidden rounded-[var(--radius-card)] border border-sand-deep bg-sand">
                 <Image
                   src={type.image}
                   alt={type.alt}
@@ -316,26 +304,6 @@ export function BookingEngineView({
               </li>
             ))}
           </ul>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.directTitle}</h2>
-          <p className="mt-4 leading-7 text-muted">{page.directBody}</p>
-          <ul className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
-            {page.directParts.map((part, index) => (
-              <li key={part} className="flex items-center gap-2">
-                <span className="rounded-full border border-sand-deep px-3 py-1.5 text-sm font-semibold text-ink">{part}</span>
-                {index < page.directParts.length - 1 ? (
-                  <span aria-hidden="true" className="font-semibold text-teal">
-                    +
-                  </span>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-sm leading-6 text-muted">{page.directNote}</p>
         </Container>
       </Section>
 

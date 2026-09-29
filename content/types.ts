@@ -946,15 +946,9 @@ export type BookingEngineContent = {
   analyticsImage: string;
   analyticsAlt: string;
   analyticsPoints: string[];
-  journeyTitle: string;
-  journeySteps: string[];
   typesTitle: string;
   typesBody: string;
   types: { name: string; image: string; alt: string }[];
-  directTitle: string;
-  directBody: string;
-  directNote: string;
-  directParts: string[];
   ecosystemTitle: string;
   ecosystemBody: string;
   ecosystem: { id: 'andario-web' | 'andario-visibility' | 'andario-booking-engine' | 'andario-connect' | 'andario-growth'; label: string }[];
