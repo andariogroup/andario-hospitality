@@ -411,9 +411,9 @@ export const en: Dictionary = {
           'BARUCH Hostal is the pioneering property of Andario Hospitality. Results are published only when they are measured.',
       },
       about: {
-        title: 'About',
+        title: 'About Us',
         description:
-          'Meet Andario Hospitality, the Andario Group line specialized in strategy, technology and digitalization for independent accommodations.',
+          'Meet Andario Hospitality, a Colombian company helping small and independent accommodations use technology to grow and compete in the digital world.',
       },
       faq: {
         title: 'Frequently asked questions',

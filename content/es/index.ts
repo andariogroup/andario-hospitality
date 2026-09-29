@@ -413,7 +413,7 @@ export const es: Dictionary = {
       about: {
         title: 'Nosotros',
         description:
-          'Conoce Andario Hospitality, la línea de Andario Group especializada en estrategia, tecnología y digitalización para alojamientos independientes.',
+          'Conoce Andario Hospitality, una empresa colombiana que ayuda a pequeños y medianos alojamientos independientes a aprovechar la tecnología para crecer y competir en el mundo digital.',
       },
       faq: {
         title: 'Preguntas frecuentes',
