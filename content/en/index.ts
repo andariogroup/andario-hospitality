@@ -154,10 +154,10 @@ const services: Dictionary['services'] = {
     summary:
       'The center where bookings from your channels arrive, and where you manage guests, operations, payments, reports and analytics.',
     cardCta: 'Explore Booking Engine',
-    metaTitle: 'Booking engine for your own website',
+    metaTitle: 'Booking engine for hotels and hostels',
     metaDescription:
-      'Guests check availability and book from your website. Andario Booking Engine organizes those reservations in one place for independent properties.',
-    h1: 'Take bookings directly from your own website.',
+      'Take bookings from your channels and manage guests, check-in, check-out, invoicing and reports from one center, for independent properties.',
+    h1: 'The booking and operations center for your property.',
     intro:
       'Andario Booking Engine centralizes your property’s booking logic so you can build a direct channel, organize inventory and gradually connect different points of contact with your guests.',
     problemTitle: 'A property can have many channels. The problem starts when each one works on its own.',

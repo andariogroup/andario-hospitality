@@ -7,7 +7,7 @@ test('home, language and a service page', async ({ page }) => {
   await expect(page).toHaveURL(/\/en$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Grow your property on the internet');
   await page.goto('/en/solutions/andario-booking-engine');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Take bookings directly from your own website');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('The booking and operations center for your property');
 });
 
 test('contact form rejects an empty submit', async ({ page }) => {

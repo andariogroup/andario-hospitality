@@ -154,10 +154,10 @@ const services: Dictionary['services'] = {
     summary:
       'El centro donde llegan las reservas de tus canales y desde donde gestionas huéspedes, operación, pagos, reportes y analítica.',
     cardCta: 'Conocer Booking Engine',
-    metaTitle: 'Motor de reservas para tu propia web',
+    metaTitle: 'Motor de reservas para hoteles y hostales',
     metaDescription:
-      'Tus huéspedes consultan disponibilidad y reservan desde tu página web. Andario Booking Engine organiza esas reservas en un solo lugar para alojamientos independientes.',
-    h1: 'Recibe reservas directamente desde tu propia web.',
+      'Recibe reservas desde tus canales y gestiona huéspedes, check-in, check-out, facturación y reportes desde un solo centro, para alojamientos independientes.',
+    h1: 'El centro de reservas y operación de tu alojamiento.',
     intro:
       'Andario Booking Engine centraliza la lógica de reservas de tu alojamiento para que puedas construir un canal propio, organizar tu inventario y conectar progresivamente diferentes puntos de contacto con tus huéspedes.',
     problemTitle: 'Tu alojamiento puede tener muchos canales. El problema aparece cuando cada uno funciona por separado.',
