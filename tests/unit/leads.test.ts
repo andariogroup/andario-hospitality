@@ -50,9 +50,10 @@ describe('lead schema', () => {
     expect(leadRequestSchema.safeParse({ ...lead, name: ' ' }).success).toBe(false);
   });
 
-  it('rejects an invalid email and allows an empty one', () => {
+  it('rejects an invalid or empty email', () => {
     expect(leadRequestSchema.safeParse({ ...lead, email: 'not-an-email' }).success).toBe(false);
-    expect(leadRequestSchema.safeParse({ ...lead, email: '' }).success).toBe(true);
+    expect(leadRequestSchema.safeParse({ ...lead, email: '' }).success).toBe(false);
+    expect(leadRequestSchema.safeParse({ ...lead, email: '   ' }).success).toBe(false);
   });
 
   it('rejects an unknown accommodation type', () => {

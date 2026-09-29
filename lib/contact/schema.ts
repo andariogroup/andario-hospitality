@@ -7,7 +7,8 @@ export type ContactNeed = (typeof CONTACT_NEEDS)[number];
 
 export type ContactMessages = {
   required: string;
-  email: string;
+  emailRequired: string;
+  emailInvalid: string;
   consent: string;
 };
 
@@ -30,8 +31,9 @@ export function createContactSchema(messages: ContactMessages) {
     email: z
       .string()
       .trim()
+      .min(1, messages.emailRequired)
       .max(160)
-      .refine((value) => value === '' || z.string().email().safeParse(value).success, messages.email),
+      .refine((value) => z.string().email().safeParse(value).success, messages.emailInvalid),
     note: z.string().trim().max(2000),
     consent: z.boolean().refine((value) => value === true, messages.consent),
   });
@@ -39,7 +41,8 @@ export function createContactSchema(messages: ContactMessages) {
 
 export const serverContactSchema = createContactSchema({
   required: 'invalid',
-  email: 'invalid',
+  emailRequired: 'invalid',
+  emailInvalid: 'invalid',
   consent: 'invalid',
 });
 

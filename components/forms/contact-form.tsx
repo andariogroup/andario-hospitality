@@ -95,7 +95,7 @@ export function ContactForm({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   async function continueStep() {
     markStart();
-    const valid = await trigger(['name', 'establishment', 'location', 'accommodationType']);
+    const valid = await trigger(['name', 'email', 'establishment', 'location', 'accommodationType']);
     if (valid) setStep(2);
   }
 
@@ -155,17 +155,21 @@ export function ContactForm({ locale, copy }: { locale: Locale; copy: Copy }) {
   const progress = copy.progress.replace('{current}', String(step)).replace('{total}', '2');
 
   return (
-    <form className="grid gap-6" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-        <label htmlFor="websiteConfirm">{copy.honeypot}</label>
-        <input
-          id="websiteConfirm"
-          tabIndex={-1}
-          autoComplete="off"
-          value={honeypot}
-          onChange={(event) => setHoneypot(event.target.value)}
-        />
-      </div>
+    <form
+      className="relative grid gap-6 rounded-[var(--radius-card)] border border-sand-deep bg-white p-6 shadow-[var(--shadow-soft)] sm:p-8"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+    >
+      <input
+        type="text"
+        name="websiteConfirm"
+        tabIndex={-1}
+        autoComplete="off"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.target.value)}
+        aria-hidden="true"
+        className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0"
+      />
       <div>
         <p className="text-sm font-semibold text-teal">{progress}</p>
         <h2 className="mt-1 text-2xl font-semibold tracking-tight text-ink">{step === 1 ? copy.stepOne : copy.stepTwo}</h2>
@@ -173,8 +177,21 @@ export function ContactForm({ locale, copy }: { locale: Locale; copy: Copy }) {
 
       {step === 1 ? (
         <>
+          <p className="-mt-2 text-xs font-medium text-muted">{copy.requiredNote}</p>
           <Field label={copy.fields.name} error={errors.name?.message}>
             <input className={inputClass} {...register('name')} onFocus={markStart} autoComplete="name" aria-invalid={Boolean(errors.name)} required />
+          </Field>
+          <Field label={copy.fields.email} error={errors.email?.message}>
+            <input
+              className={inputClass}
+              type="email"
+              {...register('email')}
+              onFocus={markStart}
+              autoComplete="email"
+              inputMode="email"
+              aria-invalid={Boolean(errors.email)}
+              required
+            />
           </Field>
           <Field label={copy.fields.establishment} error={errors.establishment?.message}>
             <input
@@ -260,9 +277,6 @@ export function ContactForm({ locale, copy }: { locale: Locale; copy: Copy }) {
               aria-invalid={Boolean(errors.whatsapp)}
               required
             />
-          </Field>
-          <Field label={copy.fields.email} hint={copy.fields.emailHint} error={errors.email?.message}>
-            <input className={inputClass} {...register('email')} autoComplete="email" inputMode="email" aria-invalid={Boolean(errors.email)} />
           </Field>
           <Field label={copy.fields.note} hint={copy.fields.noteHint} error={errors.note?.message}>
             <textarea className={`${inputClass} min-h-28`} {...register('note')} aria-invalid={Boolean(errors.note)} />

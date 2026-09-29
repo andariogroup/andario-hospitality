@@ -1133,7 +1133,8 @@ export type Dictionary = {
     unsureTitle: string;
     unsureBody: string;
     checkCta: string;
-    errors: { required: string; email: string; consent: string };
+    requiredNote: string;
+    errors: { required: string; emailRequired: string; emailInvalid: string; consent: string };
     result: { success: string; invalid: string; rate_limited: string; unavailable: string; error: string };
     honeypot: string;
   };

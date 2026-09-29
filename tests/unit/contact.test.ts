@@ -34,7 +34,7 @@ afterEach(() => {
 describe('contact schema', () => {
   it('accepts a complete lead and rejects a missing consent', () => {
     expect(serverContactSchema.safeParse(lead).success).toBe(true);
-    expect(serverContactSchema.safeParse({ ...lead, email: '' }).success).toBe(true);
+    expect(serverContactSchema.safeParse({ ...lead, email: '' }).success).toBe(false);
     expect(serverContactSchema.safeParse({ ...lead, consent: false }).success).toBe(false);
     expect(serverContactSchema.safeParse({ ...lead, needs: [] }).success).toBe(false);
     expect(serverContactSchema.safeParse({ ...lead, email: 'not-an-email' }).success).toBe(false);

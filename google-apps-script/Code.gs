@@ -33,7 +33,10 @@ function doPost(e) {
     if (expectedToken && body.token !== expectedToken) {
       return json_({ success: false, message: 'Invalid request' });
     }
-    if (!body || !body.name || !body.establishment || !body.whatsapp) {
+    if (!body || !body.name || !body.establishment || !body.whatsapp || !body.email) {
+      return json_({ success: false, message: 'Invalid request' });
+    }
+    if (!isValidEmail_(body.email)) {
       return json_({ success: false, message: 'Invalid request' });
     }
 
@@ -168,6 +171,12 @@ function text_(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function isValidEmail_(value) {
+  var email = String(value || '').trim();
+  if (!email || email.length > 160) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function json_(payload) {
