@@ -1,65 +1,29 @@
+import {
+  BarChart3,
+  ChartPie,
+  Compass,
+  Lightbulb,
+  LineChart,
+  Search,
+  Sparkles,
+  Target,
+  TrendingUp,
+} from 'lucide-react';
+import Image from 'next/image';
 import { TrackedLink } from '@/components/conversion/tracked-link';
 import { WhatsAppButton } from '@/components/conversion/whatsapp-button';
-import {
-  GrowthDataLoop,
-  GrowthDecisionHub,
-  GrowthEcosystem,
-  GrowthMeasureMap,
-  GrowthProcess,
-  GrowthSourceScatter,
-  StepList,
-} from '@/components/graphics/growth';
+import { GrowthDashboard } from '@/components/graphics/growth-dashboard';
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
-import { FaqList } from '@/components/sections/faq-list';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import type { Dictionary } from '@/content/types';
-import type { AnalyticsEvent } from '@/lib/analytics/events';
-import { href, type Locale, type RouteId } from '@/lib/i18n/routes';
-import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo/structured-data';
+import { href, type Locale } from '@/lib/i18n/routes';
+import { breadcrumbJsonLd, serviceJsonLd } from '@/lib/seo/structured-data';
 
-const relationRoutes: { routeId: RouteId; event: AnalyticsEvent }[] = [
-  { routeId: 'digital-check', event: { name: 'andario_growth_cta_click', placement: 'digital-check' } },
-  { routeId: 'andario-web', event: { name: 'andario_growth_web_click' } },
-  { routeId: 'andario-visibility', event: { name: 'andario_growth_cta_click', placement: 'visibility' } },
-  { routeId: 'andario-connect', event: { name: 'andario_growth_cta_click', placement: 'connect' } },
-  { routeId: 'andario-content', event: { name: 'andario_growth_cta_click', placement: 'content' } },
-  { routeId: 'andario-booking-engine', event: { name: 'andario_growth_cta_click', placement: 'booking' } },
-];
-
-function LeadPair({
-  locale,
-  contactHref,
-  primary,
-  whatsapp,
-  whatsappLabel,
-  placement,
-}: {
-  locale: Locale;
-  contactHref: string;
-  primary: string;
-  whatsapp: string | null;
-  whatsappLabel: string;
-  placement: string;
-}) {
-  return (
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-      <TrackedLink href={contactHref} event={{ name: 'andario_growth_cta_click', placement }} cue>
-        {primary}
-      </TrackedLink>
-      {whatsapp ? (
-        <WhatsAppButton
-          phone={whatsapp}
-          locale={locale}
-          context="growth"
-          label={whatsappLabel}
-          event={{ name: 'andario_growth_whatsapp_click' }}
-        />
-      ) : null}
-    </div>
-  );
-}
+const doIcons = [BarChart3, Search, Target, Lightbulb] as const;
+const getIcons = [LineChart, ChartPie, Compass, Sparkles] as const;
+const loopIcons = [BarChart3, Search, Lightbulb, TrendingUp] as const;
 
 export function GrowthView({
   locale,
@@ -73,6 +37,7 @@ export function GrowthView({
   const service = dict.services['andario-growth'];
   const page = dict.growth;
   const contactHref = href(locale, 'contact');
+  const howHref = href(locale, 'how-we-work');
   const crumbs = [
     { label: dict.nav.home, routeId: 'home' as const },
     { label: service.name, routeId: 'andario-growth' as const },
@@ -88,250 +53,203 @@ export function GrowthView({
           routeId: 'andario-growth',
         })}
       />
-      <JsonLd data={faqJsonLd(service.faqs)} />
-      <Section tone="sand" className="overflow-hidden">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+
+      <Section tone="sand" className="relative overflow-hidden py-12 sm:py-16">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] lg:block" aria-hidden="true">
+          <Image
+            src={page.heroAtmosphere}
+            alt=""
+            fill
+            priority
+            sizes="46vw"
+            className="object-cover opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-sand via-sand/80 to-sand/30" />
+        </div>
+        <Container className="relative grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Breadcrumbs locale={locale} items={crumbs} />
             <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
-            <p className="text-sm font-semibold tracking-[0.14em] text-teal">
-              ANDARIO GROWTH · {locale === 'es' ? 'ANALYTICS + OPTIMIZACIÓN' : 'ANALYTICS + OPTIMIZATION'}
+            <p className="mt-5 text-sm font-semibold tracking-[0.14em] text-teal">
+              ANDARIO GROWTH · {service.subtitle}
             </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{service.h1}</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{page.support}</p>
-            <LeadPair
-              locale={locale}
-              contactHref={contactHref}
-              primary={page.primaryCta}
-              whatsapp={whatsapp}
-              whatsappLabel={page.talkCta}
-              placement="hero"
+            <h1 className="mt-4 max-w-xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
+              {service.h1}
+            </h1>
+            <p className="mt-5 max-w-lg text-base leading-7 text-muted sm:text-lg sm:leading-8">{page.support}</p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <TrackedLink href={contactHref} event={{ name: 'andario_growth_cta_click', placement: 'hero' }} cue>
+                {page.primaryCta}
+              </TrackedLink>
+              {whatsapp ? (
+                <WhatsAppButton
+                  phone={whatsapp}
+                  locale={locale}
+                  context="growth"
+                  label={page.talkCta}
+                  event={{ name: 'andario_growth_whatsapp_click' }}
+                />
+              ) : (
+                <TrackedLink
+                  href={contactHref}
+                  event={{ name: 'andario_growth_cta_click', placement: 'hero-talk' }}
+                  variant="secondary"
+                >
+                  {page.talkCta}
+                </TrackedLink>
+              )}
+            </div>
+            <p className="mt-5 text-sm font-semibold text-ink">{page.concepts.join(' · ')}</p>
+          </div>
+          <div className="lg:pl-2">
+            <GrowthDashboard copy={page} />
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="py-12 sm:py-14">
+        <Container>
+          <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {page.loop.map((step, index) => {
+              const Icon = loopIcons[index] ?? BarChart3;
+              return (
+                <li key={step.title} className="relative text-center lg:text-left">
+                  {index < page.loop.length - 1 ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-5 right-[-0.65rem] hidden text-teal lg:block"
+                    >
+                      →
+                    </span>
+                  ) : null}
+                  <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-sand-deep bg-white text-teal shadow-[var(--shadow-soft)] lg:mx-0">
+                    <Icon aria-hidden="true" className="h-5 w-5" />
+                  </span>
+                  <p className="mt-3 text-xs font-semibold tracking-[0.12em] text-muted">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-ink">{step.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted">{step.body}</p>
+                </li>
+              );
+            })}
+          </ol>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm italic leading-6 text-muted">{page.loopNote}</p>
+        </Container>
+      </Section>
+
+      <Section tone="sand" className="py-12 sm:py-16">
+        <Container>
+          <h2 className="text-center text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.doTitle}</h2>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {page.doItems.map((item, index) => {
+              const Icon = doIcons[index] ?? BarChart3;
+              return (
+                <li
+                  key={item.title}
+                  className="rounded-[var(--radius-card)] border border-sand-deep/70 bg-white p-5 shadow-[var(--shadow-soft)] transition duration-200 hover:-translate-y-0.5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-wash text-teal">
+                      <Icon aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <span className="text-sm font-semibold text-muted">{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section className="py-12 sm:py-16">
+        <Container>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.getTitle}</h2>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-muted">{page.getSupport}</p>
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {page.getItems.map((item, index) => {
+              const Icon = getIcons[index] ?? LineChart;
+              return (
+                <li key={item.title}>
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-teal-wash text-teal">
+                    <Icon aria-hidden="true" className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section tone="sand" className="py-0 sm:py-0">
+        <Container className="grid overflow-hidden rounded-[var(--radius-card)] bg-white shadow-[var(--shadow-soft)] lg:grid-cols-2">
+          <div className="relative min-h-72 sm:min-h-96">
+            <Image
+              src={page.editorialImage}
+              alt={page.editorialAlt}
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
             />
-            <p className="mt-4 max-w-xl text-sm text-muted">{page.audienceLine}</p>
           </div>
-          <GrowthDataLoop steps={page.loop} note={page.loopNote} label={page.exampleLabel} />
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{service.problemTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{service.problem}</p>
-          <div className="mt-8">
-            <GrowthSourceScatter sources={page.sources} note={page.sourceNote} />
-          </div>
-          <p className="mt-6 max-w-3xl text-sm font-semibold text-ink">{page.guessLine}</p>
-          <div className="mt-10">
-            <GrowthDecisionHub items={page.hub} />
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.questionsTitle}</h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.questions.map((question) => (
-              <li key={question} className="rounded-[var(--radius-card)] bg-white p-4 text-sm leading-6 text-ink">
-                {question}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">{page.questionsNote}</p>
-          <div className="mt-12 max-w-3xl">
-            <h2 className="text-2xl font-semibold text-ink">{page.whatTitle}</h2>
-            <p className="mt-4 leading-7 text-muted">{page.whatBody}</p>
-            <p className="mt-4 text-sm font-semibold text-ink">{page.whatNote}</p>
-          </div>
-          <div className="mt-10">
-            <GrowthEcosystem caption={page.ecosystemCaption} columns={page.ecosystemColumns} />
-          </div>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.measureTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.measureIntro}</p>
-          <p className="mt-3 text-sm font-semibold text-teal">{page.scopeLabel}</p>
-          <div className="mt-8">
-            <GrowthMeasureMap groups={page.measureGroups} note={page.measureNote} />
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.channelsTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.channelsBody}</p>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.channels.map((channel) => (
-              <li key={channel.title} className="rounded-[var(--radius-card)] bg-white p-4">
-                <h3 className="font-semibold text-ink">{channel.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{channel.body}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">{page.channelsNote}</p>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.includesTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-muted">{page.includesIntro}</p>
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {page.groups.map((group) => (
-              <article key={group.title} className="rounded-[var(--radius-card)] bg-sand p-5">
-                <h3 className="text-lg font-semibold text-ink">{group.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">
-                  <span className="font-semibold text-ink">{page.whatLabel}. </span>
-                  {group.what}
-                </p>
-                <p className="mt-2 text-sm leading-6 text-muted">
-                  <span className="font-semibold text-ink">{page.purposeLabel}. </span>
-                  {group.purpose}
-                </p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-10 max-w-3xl">
-            <h2 className="text-2xl font-semibold text-ink">{page.privacyTitle}</h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {page.privacyPoints.map((point) => (
-                <li key={point} className="rounded-full border border-sand-deep px-3 py-1.5 text-sm text-ink">
-                  {point}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm leading-6 text-muted">{page.privacyNote}</p>
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container className="grid gap-8 lg:grid-cols-2">
-          {page.relations.map((relation, index) => {
-            const link = relationRoutes[index];
-            return (
-              <article key={relation.title}>
-                <h2 className="text-2xl font-semibold text-ink">{relation.title}</h2>
-                <p className="mt-3 leading-7 text-muted">{relation.body}</p>
-                <div className="mt-4">
-                  <StepList steps={relation.steps} />
-                </div>
-                <p className="mt-3 text-sm leading-6 text-muted">{relation.note}</p>
-                {link ? (
-                  <TrackedLink href={href(locale, link.routeId)} event={link.event} variant="secondary" className="mt-4">
-                    {relation.hrefLabel}
-                  </TrackedLink>
-                ) : null}
-              </article>
-            );
-          })}
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-ink">{page.processTitle}</h2>
-          <div className="mt-8">
-            <GrowthProcess steps={page.process} />
-          </div>
-          <div className="mt-12 grid gap-10 lg:grid-cols-2">
-            <div>
-              <h2 className="text-2xl font-semibold text-ink">{page.receiveTitle}</h2>
-              <ul className="mt-4 space-y-2">
-                {page.receive.map((item) => (
-                  <li key={item} className="rounded-2xl bg-sand px-4 py-3 text-sm text-ink">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 text-sm leading-6 text-muted">{page.receiveNote}</p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold text-ink">{page.whoTitle}</h2>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {page.whoTypes.map((type) => (
-                  <li key={type} className="rounded-full bg-sand px-3 py-1.5 text-sm font-semibold text-ink">
-                    {type}
-                  </li>
-                ))}
-              </ul>
-              <ul className="mt-4 grid gap-2">
-                {page.whoFit.map((item) => (
-                  <li key={item} className="rounded-2xl border border-sand-deep px-4 py-3 text-sm text-ink">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+          <div className="flex flex-col justify-center bg-sand/40 px-6 py-10 sm:px-10 sm:py-12">
+            <p className="text-xs font-semibold tracking-[0.16em] text-teal uppercase">{page.editorialEyebrow}</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.editorialTitle}</h2>
+            <p className="mt-4 max-w-md text-base leading-7 text-muted">{page.editorialBody}</p>
+            <div className="mt-7">
+              <TrackedLink
+                href={howHref}
+                event={{ name: 'andario_growth_web_click' }}
+                variant="secondary"
+                cue
+              >
+                {page.editorialCta}
+              </TrackedLink>
             </div>
           </div>
         </Container>
       </Section>
 
-      <Section tone="sand">
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{page.notTitle}</h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {page.not.map((item) => (
-              <li key={item.title} className="rounded-[var(--radius-card)] bg-white p-4">
-                <h3 className="font-semibold text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-12">
-            <h2 className="text-2xl font-semibold text-ink">{page.ecosystemTitle}</h2>
-            <ol className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-              {page.ecosystemSteps.map((step, index) => (
-                <li key={`${step}-${index}`} className="rounded-full border border-sand-deep bg-white px-3 py-1.5 text-sm font-semibold text-ink">
-                  {String(index + 1).padStart(2, '0')} {step}
-                </li>
-              ))}
-            </ol>
-            <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">{page.ecosystemNote}</p>
+      <section className="relative mt-12 overflow-hidden py-16 sm:mt-16 sm:py-20">
+        <Image src={page.finalImage} alt="" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-ink/70" />
+        <Container className="relative flex flex-col items-center text-center">
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">{page.finalTitle}</h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-white/85">{page.finalBody}</p>
+          <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+            <TrackedLink
+              href={contactHref}
+              event={{ name: 'andario_growth_cta_click', placement: 'final-diagnosis' }}
+              cue
+            >
+              {page.diagnosisCta}
+            </TrackedLink>
+            {whatsapp ? (
+              <WhatsAppButton
+                phone={whatsapp}
+                locale={locale}
+                context="growth"
+                label={page.talkCta}
+                variant="inverse"
+                event={{ name: 'andario_growth_whatsapp_click' }}
+              />
+            ) : (
+              <TrackedLink
+                href={contactHref}
+                event={{ name: 'andario_growth_cta_click', placement: 'final-talk' }}
+                variant="inverse"
+              >
+                {page.talkCta}
+              </TrackedLink>
+            )}
           </div>
-          <article className="mt-10 max-w-3xl rounded-[var(--radius-card)] border border-sand-deep bg-white p-5">
-            <h2 className="text-xl font-semibold text-ink">{page.pioneerTitle}</h2>
-            <p className="mt-2 text-sm leading-6 text-muted">{page.pioneerBody}</p>
-          </article>
+          <p className="mt-6 text-sm text-white/75">{page.finalNote}</p>
         </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">{dict.nav.faq}</h2>
-          <div className="mt-6">
-            <FaqList items={service.faqs} openEvent={{ name: 'andario_growth_faq_open' }} />
-          </div>
-          <LeadPair
-            locale={locale}
-            contactHref={contactHref}
-            primary={page.talkCta}
-            whatsapp={whatsapp}
-            whatsappLabel={page.whatsappCta}
-            placement="faq"
-          />
-        </Container>
-      </Section>
-
-      <Section tone="sand" className="pb-24">
-        <Container>
-          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{page.finalTitle}</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{page.finalBody}</p>
-          <LeadPair
-            locale={locale}
-            contactHref={contactHref}
-            primary={page.primaryCta}
-            whatsapp={whatsapp}
-            whatsappLabel={page.talkCta}
-            placement="final"
-          />
-          <p className="mt-4 max-w-xl text-sm text-muted">{page.finalNote}</p>
-        </Container>
-      </Section>
+      </section>
     </>
   );
 }
