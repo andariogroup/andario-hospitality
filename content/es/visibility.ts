@@ -3,15 +3,15 @@ import type { FaqItem, VisibilityContent } from '@/content/types';
 export const visibilityFaqsEs: FaqItem[] = [
   {
     q: '¿Qué es Andario Visibility?',
-    a: 'Es el servicio que trabaja la presencia digital de tu alojamiento para mejorar cómo aparece, cómo se entiende y cómo lo encuentran las personas que buscan dónde hospedarse.',
+    a: 'Es el servicio que trabaja la presencia digital de tu alojamiento para que sea más fácil de descubrir, entender y considerar cuando alguien busca dónde hospedarse.',
   },
   {
     q: '¿Prometen una posición en Google?',
-    a: 'No. Construimos una base sólida y medible. Nadie puede garantizar el primer lugar ni un volumen de tráfico.',
+    a: 'No. Trabajamos con estrategia, optimización, medición y mejora continua. Nadie puede garantizar el primer lugar ni un volumen fijo de visitas o reservas.',
   },
   {
     q: '¿Necesito tener un sitio web?',
-    a: 'Ayuda. Visibility se apoya en la web y en el contenido. Si aún no tienes sitio, podemos hablar de Andario Web primero.',
+    a: 'Ayuda. La visibilidad se fortalece cuando tu alojamiento tiene una presencia clara donde mostrar información, fotografías y un camino de contacto. Si aún no tienes sitio, podemos hablar de Andario Web primero.',
   },
   {
     q: '¿Puedo empezar solo con Visibility?',
@@ -21,46 +21,106 @@ export const visibilityFaqsEs: FaqItem[] = [
 
 export const visibilityEs: VisibilityContent = {
   support:
-    'Trabajamos la presencia digital de tu alojamiento para mejorar cómo aparece, cómo se entiende y cómo lo encuentran las personas que buscan dónde hospedarse.',
-  concepts: ['Google', 'SEO', 'Visibilidad'],
-  primaryCta: 'Quiero conocer este servicio',
+    'Cuando una persona busca dónde hospedarse en tu destino, tu alojamiento debería tener la oportunidad de aparecer, llamar su atención y llevarla hacia tus canales. Trabajamos tu visibilidad digital para ayudarte a conseguirlo.',
+  concepts: ['Google y búsquedas', 'Presencia local', 'Contenido relevante', 'Más oportunidades'],
+  primaryCta: 'Quiero mejorar mi visibilidad',
   talkCta: 'Hablar con Andario',
-  opportunityTitle: 'Estar en Internet no significa ser visible.',
-  opportunityBody:
-    'Tu alojamiento puede tener una web y redes sociales, pero si las personas no lo encuentran cuando buscan, estás perdiendo oportunidades.',
-  opportunityPoints: ['Ser encontrado', 'Ser entendido', 'Generar oportunidades'],
-  doTitle: '¿Qué hacemos por tu alojamiento?',
-  doItems: [
+  heroImage: '/andario-web/hero-property.webp',
+  heroAlt: 'Fachada y ambiente de un alojamiento de hospitalidad',
+  searchLabel: 'Buscar alojamiento',
+  searchQuery: 'alojamientos en tu destino',
+  searchResultName: 'Tu alojamiento',
+  searchResultMeta: 'Información clara · Fotografías · Contacto',
+  searchCaption: 'Representación conceptual: alguien busca alojamiento y puede descubrirte.',
+  journeyTitle: 'Tus futuros huéspedes ya están buscando dónde alojarse.',
+  journeyBody:
+    'Antes de elegir un alojamiento, muchas personas buscan el destino, comparan opciones, revisan fotografías, ubicación, servicios y opiniones. Si tu alojamiento tiene poca visibilidad o presenta información poco clara, puede quedar fuera de esa decisión.',
+  journey: [
+    { title: 'Planea su viaje', image: '/digital-check/step-decide.webp' },
+    { title: 'Busca alojamiento', image: '/digital-check/step-find.webp' },
+    { title: 'Encuentra opciones', image: '/home/andario-visibility-card.webp' },
+    { title: 'Descubre tu alojamiento', image: '/andario-web/find-stay.webp' },
+    { title: 'Le interesa', image: '/digital-check/step-know.webp' },
+    { title: 'Visita tu web o te contacta', image: '/digital-check/step-contact.webp' },
+  ],
+  whatEyebrow: 'ANDARIO VISIBILITY',
+  whatTitle: 'Trabajamos para que tu alojamiento tenga más oportunidades de ser encontrado.',
+  whatBody:
+    'Organizamos, optimizamos y fortalecemos tu presencia digital para que los buscadores y los viajeros comprendan mejor qué ofreces, dónde estás y por qué deberían considerarte.',
+  whatImage: '/andario-web/personalize.jpg',
+  whatAlt: 'Interior cálido de un alojamiento preparado para recibir huéspedes',
+  whatItems: [
     {
-      title: 'Optimización para Google',
-      body: 'Ordenamos la información y la estructura para que tu alojamiento se comprenda mejor en búsquedas.',
+      title: 'Búsquedas',
+      body: 'Ayudamos a que los buscadores comprendan mejor tu alojamiento y la información que lo hace especial.',
     },
     {
-      title: 'SEO y contenido',
-      body: 'Trabajamos textos, metadatos y señales que ayudan a que tu oferta se encuentre con más claridad.',
+      title: 'Tu destino',
+      body: 'Fortalecemos tu presencia cuando viajeros buscan alojamiento en tu zona.',
     },
     {
-      title: 'Presencia local',
-      body: 'Fortalecemos la forma en que tu alojamiento aparece cuando alguien busca en tu destino.',
+      title: 'Tu propuesta',
+      body: 'Mostramos claramente tus habitaciones, servicios, experiencias, ubicación y contenidos.',
     },
     {
-      title: 'Mejora continua basada en datos',
-      body: 'Revisamos lo que está ocurriendo y priorizamos ajustes sin prometer posiciones fijas.',
+      title: 'Evolución',
+      body: 'Analizamos qué funciona y dónde existen oportunidades para seguir mejorando.',
     },
   ],
-  getTitle: 'Lo que obtienes',
-  getItems: [
-    'Mayor claridad sobre tu presencia digital',
-    'Una base SEO sólida',
-    'Mejor presencia en búsquedas relevantes',
-    'Recomendaciones para seguir creciendo',
+  benefitsEyebrow: 'BENEFICIOS',
+  benefitsTitle: '¿Qué puede cambiar para tu alojamiento?',
+  benefits: [
+    {
+      title: 'Más posibilidades de ser encontrado',
+      body: 'Fortalecer tu presencia cuando viajeros buscan alojamiento en tu destino.',
+      image: '/how-we-work/hero-facade.webp',
+    },
+    {
+      title: 'Una presencia más profesional',
+      body: 'Información, imágenes y canales que transmiten mejor lo que realmente ofreces.',
+      image: '/booking-engine/room-sea.jpg',
+    },
+    {
+      title: 'Más caminos hacia tu alojamiento',
+      body: 'Los diferentes puntos de descubrimiento pueden llevar personas hacia tu web, WhatsApp o proceso de reserva.',
+      image: '/andario-web/find-contact.webp',
+    },
+    {
+      title: 'Mejores decisiones',
+      body: 'Entender cómo llegan las personas y qué oportunidades existen para seguir fortaleciendo tu presencia.',
+      image: '/growth/editorial.webp',
+    },
   ],
-  crossSellBody:
-    'Ser encontrado es el primer paso. El siguiente es convertir esa visita en una oportunidad.',
-  crossSellCta: 'Conoce Andario Web',
-  crossSellRoute: 'andario-web',
-  finalTitle: '¿Quieres mejorar la visibilidad de tu alojamiento?',
-  finalBody: 'Cuéntanos cómo te encuentran hoy y qué te gustaría mejorar.',
-  diagnosisCta: 'Solicitar diagnóstico',
-  finalNote: 'Partimos de tu alojamiento, tus objetivos y tus necesidades.',
+  compareTitle: 'Estar en Internet no es lo mismo que ser fácil de encontrar.',
+  scatteredTitle: 'Presencia dispersa',
+  scatteredPoints: [
+    'Información incompleta',
+    'Canales aislados',
+    'Web poco clara o desactualizada',
+    'Información diferente entre canales',
+    'Poca claridad para el huésped',
+  ],
+  workedTitle: 'Presencia trabajada',
+  workedPoints: [
+    'Información clara y coherente',
+    'Web preparada para presentar el alojamiento',
+    'Ubicación y contenido fortalecidos',
+    'Canales conectados alrededor del huésped',
+    'Más oportunidades de ser descubierto',
+  ],
+  ecosystemTitle: 'Ser encontrado es solo el comienzo.',
+  ecosystemBody:
+    'La visibilidad abre la puerta. Después, tu presencia digital debe ayudar al huésped a conocerte, confiar en tu alojamiento y encontrar un camino sencillo para contactarte o reservar.',
+  ecosystem: [
+    { id: 'andario-visibility', name: 'Andario Visibility', role: 'Ser encontrado' },
+    { id: 'andario-web', name: 'Andario Web', role: 'Conocerte' },
+    { id: 'andario-connect', name: 'Andario Connect', role: 'Contactar' },
+    { id: 'andario-booking-engine', name: 'Andario Booking Engine', role: 'Reservar y gestionar' },
+  ],
+  finalImage: '/andario-web/final-cta.webp',
+  finalAlt: 'Ambiente de alojamiento al atardecer',
+  finalTitle: 'Haz que más personas puedan descubrir tu alojamiento.',
+  finalBody:
+    'Cuéntanos cómo te encuentran hoy. Analizamos tu situación y te ayudamos a identificar oportunidades para fortalecer tu presencia digital.',
+  finalNote: 'Sin promesas de posiciones. Con estrategia, medición y mejora continua.',
 };
